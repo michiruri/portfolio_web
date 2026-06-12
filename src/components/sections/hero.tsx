@@ -88,7 +88,7 @@ export function HeroSection() {
             <div className={`mt-8 flex flex-col sm:flex-row justify-center lg:justify-start gap-4 ${inView ? "animate-fade-up delay-400" : "opacity-0"}`}>
               <Button
                 size="lg"
-                className="group cursor-pointer gap-2 hover:scale-105 transition-all duration-300 hover:shadow-[0_0_20px_rgba(var(--primary),0.3)] relative overflow-hidden"
+                className="group cursor-pointer gap-2 hover:scale-105 transition-all duration-300 hover:shadow-[0_0_20px_rgba(139,92,246,0.3)] relative overflow-hidden"
                 render={<a href="#projects" />}
                 nativeButton={false}
               >
@@ -101,7 +101,7 @@ export function HeroSection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="cursor-pointer hover:bg-muted font-bold text-sm hover:scale-105 transition-all duration-300 hover:shadow-lg"
+                className="cursor-pointer font-bold text-sm hover:scale-105 transition-all duration-300 hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] border-primary/30 text-primary hover:text-primary hover:border-primary/60 bg-primary/5 hover:bg-primary/10"
                 render={<a href="#contact" />}
                 nativeButton={false}
               >
@@ -111,7 +111,7 @@ export function HeroSection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="cursor-pointer hover:bg-muted font-bold text-sm hover:scale-105 transition-all duration-300 hover:shadow-lg border-primary/20 text-primary hover:text-primary hover:border-primary/50"
+                className="cursor-pointer font-bold text-sm hover:scale-105 transition-all duration-300 hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] border-primary/20 text-primary hover:text-primary hover:border-primary/50 bg-primary/5 hover:bg-primary/10"
                 onClick={() => setIsGalleryOpen(true)}
               >
                 <EyeOff className="h-4 w-4 mr-2" />

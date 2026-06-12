@@ -102,7 +102,7 @@ export function ExperienceSection() {
       role: "Bachelor of Science in Information Technology",
       company: "Pangasinan State University",
       division: "Major in Web and Mobile Technologies",
-      date: "2022",
+      date: "2022 - 2026",
       type: "Education",
       logo: "/logos/psu-logo.png",
       fallbackLogo: "PSU",

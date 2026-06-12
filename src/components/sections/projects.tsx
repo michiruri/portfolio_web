@@ -21,9 +21,9 @@ const saasProjects = [
 const professionalProjects = [
   {
     title: "PANELCO III - Visitor Management System",
-    description: "Designed, built, and deployed as the sole software engineer to automate visitor tracking, gate operations, and internal routing at PANELCO III. Engineered secure regional MySQL databases, role-based guard dashboards, and an automated ID scanner using Google Gemini AI and ML Kit OCR for high-precision data extraction. Integrated thermal receipt slip printers and live audit tracking, successfully moving the system from concept to production.",
+    description: "Designed, built, and deployed as the sole software engineer a joint web and mobile solution to automate visitor tracking, gate operations, and internal routing at PANELCO III. Engineered secure regional MySQL databases, a web-based administration and monitoring portal, and a mobile application for gate guards with an integrated Google Gemini AI and ML Kit OCR engine for high-precision ID scanning, thermal receipt printing, and live audit logging.",
     tags: ["Flutter", "Dart", "PHP API", "MySQL", "Google Gemini", "ML Kit OCR"],
-    type: "mobile" as const,
+    type: "both" as const,
     github: "https://github.com/michiruri/visitor_management_app",
     demo: "https://github.com/michiruri/visitor_management_app/releases",
     role: "Lead Engineer",
@@ -54,7 +54,7 @@ type Project = {
   title: string
   description: string
   tags: string[]
-  type: "web" | "mobile"
+  type: "web" | "mobile" | "both"
   demo: string
   github?: string
   role?: string
@@ -62,19 +62,26 @@ type Project = {
 }
 
 function ProjectCard({ project }: { project: Project }) {
-  const glowColor = project.type === "web" ? "from-primary/20 to-cyan-500/20" : "from-purple-500/20 to-primary/20"
+  const glowColor = 
+    project.type === "web" 
+      ? "from-primary/20 to-cyan-500/20" 
+      : project.type === "mobile" 
+      ? "from-purple-500/20 to-primary/20" 
+      : "from-primary/25 via-purple-500/20 to-cyan-500/25"
   
   return (
     <div className="relative h-full group/card">
       <div className={`absolute inset-0 bg-gradient-to-tr ${glowColor} rounded-2xl blur-xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none`} />
-      <Card className="relative flex flex-col h-full border border-border/60 bg-card/80 backdrop-blur-sm rounded-2xl hover:border-primary/30 transition-all duration-300 group">
+      <Card className="relative flex flex-col h-full border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl hover:border-primary/30 transition-all duration-300 group">
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between mb-2">
             <span className="inline-flex items-center gap-1.5 text-[10px] font-bold text-primary uppercase tracking-wider">
               {project.type === "web" ? (
                 <><Monitor className="h-3.5 w-3.5" />Web App</>
-              ) : (
+              ) : project.type === "mobile" ? (
                 <><Phone className="h-3.5 w-3.5" />Mobile App</>
+              ) : (
+                <><Monitor className="h-3.5 w-3.5" /><span className="mx-0.5">&amp;</span><Phone className="h-3.5 w-3.5" />Web &amp; Mobile App</>
               )}
             </span>
             {project.role && (
@@ -84,6 +91,15 @@ function ProjectCard({ project }: { project: Project }) {
             )}
           </div>
           <CardTitle className="text-lg font-extrabold transition-colors group-hover:text-primary">{project.title}</CardTitle>
+          
+          {/* Image Preview Placeholder (after the title and before the description) */}
+          <div className="aspect-[16/9] w-full rounded-xl bg-black/40 border border-border/70 dark:border-white/5 flex items-center justify-center relative overflow-hidden my-3 group-hover/card:border-primary/35 transition-all">
+            <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/5 to-cyan-500/5 opacity-50 pointer-events-none" />
+            <span className="text-[9px] font-bold tracking-widest uppercase text-muted-foreground/50 group-hover/card:text-primary/60 transition-colors z-10">
+              [ {project.title} Preview Placeholder ]
+            </span>
+          </div>
+
           <CardDescription className="mt-2 text-xs font-semibold text-muted-foreground leading-relaxed">
             {project.description}
           </CardDescription>
@@ -100,52 +116,7 @@ function ProjectCard({ project }: { project: Project }) {
             ))}
           </div>
         </CardContent>
-        <CardFooter className="pt-4 border-t border-border/50 flex gap-3.5 bg-muted/10 rounded-b-2xl mt-auto">
-          {project.github && project.demo ? (
-            <>
-              <Button
-                variant="outline"
-                size="sm"
-                className="flex-grow gap-1.5 hover:scale-105 transition-all duration-300 cursor-pointer"
-                render={<a href={project.github} target="_blank" rel="noopener noreferrer" />}
-                nativeButton={false}
-              >
-                <GithubIcon className="h-4 w-4" />
-                Code
-              </Button>
-              <Button
-                size="sm"
-                className="flex-grow gap-1.5 hover:scale-105 transition-all duration-300 cursor-pointer bg-primary text-primary-foreground hover:bg-primary/90"
-                render={<a href={project.demo} target="_blank" rel="noopener noreferrer" />}
-                nativeButton={false}
-              >
-                <ExternalLink className="h-4 w-4" />
-                Demo
-              </Button>
-            </>
-          ) : project.demo ? (
-            <Button
-              size="sm"
-              className="w-full gap-1.5 hover:scale-105 transition-all duration-300 cursor-pointer bg-primary text-primary-foreground hover:bg-primary/90"
-              render={<a href={project.demo} target="_blank" rel="noopener noreferrer" />}
-              nativeButton={false}
-            >
-              <ExternalLink className="h-4 w-4" />
-              Live Product
-            </Button>
-          ) : (
-            <Button
-              variant="outline"
-              size="sm"
-              className="w-full gap-1.5 hover:scale-105 transition-all duration-300 cursor-pointer"
-              render={<a href={project.github} target="_blank" rel="noopener noreferrer" />}
-              nativeButton={false}
-            >
-              <GithubIcon className="h-4 w-4" />
-              Source Code
-            </Button>
-          )}
-        </CardFooter>
+        {/* Actions are left blank (hidden) for now */}
       </Card>
     </div>
   )
