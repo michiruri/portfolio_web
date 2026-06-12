@@ -1,5 +1,15 @@
 {
   "projects": {
-    "default": "your-firebase-project-id"
-  }
+    "default": "capitis-projects"
+  },
+  "targets": {
+    "capitis-projects": {
+      "hosting": {
+        "raileymitchellcaitis": [
+          "raileymitchellcapitis"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
