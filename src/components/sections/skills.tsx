@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Cpu, Database, Globe, Smartphone, Terminal, GitFork, Sparkles } from "lucide-react"
+import { Card } from "@/components/ui/card"
+import { Database, Globe, Terminal, GitFork, Sparkles } from "lucide-react"
 import { useInView } from "@/hooks/use-in-view"
 
 // ── Tech Icons SVG Map ───────────────────────────────────────────────────
@@ -55,7 +55,7 @@ const icons: Record<string, { svg: string; color: string; label: string; isMulti
   nodejs: {
     label: "Node.js",
     color: "#339933",
-    svg: `<path d="M11.998,24c-0.321,0-0.641-0.084-0.922-0.247l-2.936-1.737c-0.438-0.245-0.224-0.332-0.08-0.383 c0.585-0.203,0.703-0.25,1.328-0.604c0.065-0.037,0.151-0.023,0.218,0.017l2.256,1.339c0.082,0.045,0.197,0.045,0.272,0l8.795-5.076 c0.082-0.047,0.134-0.141,0.134-0.238V6.921c0-0.099-0.053-0.192-0.137-0.242l-8.791-5.072c-0.081-0.047-0.189-0.047-0.271,0 L3.075,6.68C2.99,6.729,2.936,6.825,2.936,6.921v10.15c0,0.097,0.054,0.189,0.139,0.235l2.409,1.392 c1.307,0.654,2.108-0.116,2.108-0.89V7.787c0-0.142,0.114-0.253,0.256-0.253h1.115c0.139,0,0.255,0.112,0.255,0.253v10.021 c0,1.745-0.95,2.745-2.604,2.745c-0.508,0-0.909,0-2.026-0.551L2.28,18.675c-0.57-0.329-0.922-0.945-0.922-1.604V6.921 c0-0.659,0.353-1.275,0.922-1.603l8.795-5.082c0.557-0.315,1.296-0.315,1.848,0l8.794,5.082c0.570,0.329,0.924,0.944,0.924,1.603 v10.15c0,0.659-0.354,1.273-0.924,1.604l-8.794,5.078C12.643,23.916,12.324,24,11.998,24z"/>`,
+    svg: `<path d="M11.998,24c-0.321,0-0.641-0.084-0.922-0.247l-2.936-1.737c-0.438-0.245-0.224-0.332-0.08-0.383 c0.585-0.203,0.703-0.25,1.328-0.604c0.065-0.037,0.151-0.023,0.218,0.017l2.256,1.339c0.082,0.045,0.197,0.045,0.272,0 l8.795-5.076 c0.082-0.047,0.134-0.141,0.134-0.238V6.921c0-0.099-0.053-0.192-0.137-0.242l-8.791-5.072c-0.081-0.047-0.189-0.047-0.271,0 L3.075,6.68C2.99,6.729,2.936,6.825,2.936,6.921v10.15c0,0.097,0.054,0.189,0.139,0.235l2.409,1.392 c1.307,0.654,2.108-0.116,2.108-0.89V7.787c0-0.142,0.114-0.253,0.256-0.253h1.115c0.139,0,0.255,0.112,0.255,0.253v10.021 c0,1.745-0.95,2.745-2.604,2.745c-0.508,0-0.909,0-2.026-0.551L2.28,18.675c-0.57-0.329-0.922-0.945-0.922-1.604V6.921 c0-0.659,0.353-1.275,0.922-1.603l8.795-5.082c0.557-0.315,1.296-0.315,1.848,0l8.794,5.082c0.570,0.329,0.924,0.944,0.924,1.603 v10.15c0,0.659-0.354,1.273-0.924,1.604l-8.794,5.078C12.643,23.916,12.324,24,11.998,24z"/>`,
   },
   mysql: {
     label: "MySQL",
@@ -94,7 +94,7 @@ const icons: Record<string, { svg: string; color: string; label: string; isMulti
   },
   figma: {
     label: "Figma",
-    color: "",
+    color: "#A259FF",
     isMulticolor: true,
     svg: `<path d="M12 22a5 5 0 0 1-5-5 5 5 0 0 1 5-5v10z" fill="#0ACF83"/><path d="M12 12a5 5 0 0 1-5-5 5 5 0 0 1 5-5v10z" fill="#F24E1E"/><path d="M12 2h5a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-5V2z" fill="#FF7262"/><path d="M12 12h5a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-5v-10z" fill="#18A0FB"/><path d="M7 17a5 5 0 0 1 5-5H7v5z" fill="#A259FF"/>`,
   },
@@ -106,7 +106,7 @@ const icons: Record<string, { svg: string; color: string; label: string; isMulti
   agenticai: {
     label: "Agentic AI",
     color: "#a855f7",
-    svg: `<path d="M9.5 2A2.5 2.5 0 0 1 12 4.5A2.5 2.5 0 0 1 9.5 7A2.5 2.5 0 0 1 7 4.5A2.5 2.5 0 0 1 9.5 2M14.5 17A2.5 2.5 0 0 1 17 19.5a2.5 2.5 0 0 1-2.5 2.5A2.5 2.5 0 0 1 12 19.5a2.5 2.5 0 0 1 2.5-2.5M4.5 9.5A2.5 2.5 0 0 1 7 12a2.5 2.5 0 0 1-2.5 2.5A2.5 2.5 0 0 1 2 12a2.5 2.5 0 0 1 4.5-2.5m15 0a2.5 2.5 0 0 1 2.5 2.5a2.5 2.5 0 0 1-2.5 2.5a2.5 2.5 0 0 1-2.5-2.5a2.5 2.5 0 0 1 2.5-2.5M12 10.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3M9.5 5.5l-5 6.5m10 7.5l-5-6.5m.5-.5L18.5 11m-14 1l9 7m-9-7.5l5.5-2m5 1.5l1.5-3"/>`
+    svg: `<path d="M9.5 2A2.5 2.5 0 0 1 12 4.5A2.5 2.5 0 0 1 9.5 7A2.5 2.5 0 0 1 7 4.5A2.5 2.5 0 0 1 9.5 2M14.5 17A2.5 2.5 0 0 1 17 19.5a2.5 2.5 0 0 1-2.5 2.5A2.5 2.5 0 0 1 12 19.5a2.5 2.5 0 0 1 14.5-2.5M4.5 9.5A2.5 2.5 0 0 1 7 12a2.5 2.5 0 0 1-2.5 2.5A2.5 2.5 0 0 1 2 12a2.5 2.5 0 0 1 4.5-2.5m15 0a2.5 2.5 0 0 1 2.5 2.5a2.5 2.5 0 0 1-2.5 2.5a2.5 2.5 0 0 1-2.5-2.5a2.5 2.5 0 0 1 2.5-2.5M12 10.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3M9.5 5.5l-5 6.5m10 7.5l-5-6.5m.5-.5L18.5 11m-14 1l9 7m-9-7.5l5.5-2m5 1.5l1.5-3"/>`
   },
   mcp: {
     label: "MCP",
@@ -209,52 +209,16 @@ export function SkillsSection() {
   const { ref, inView } = useInView()
   
   // Interactive States
-  const [activeFrontend, setActiveFrontend] = React.useState<keyof typeof skillsData>("react")
-  const [activeMobile, setActiveMobile] = React.useState<"flutter" | "reactnative" | "expo">("flutter")
-  const [activeBackend, setActiveBackend] = React.useState<"nodejs" | "mongodb" | "firebase" | "mysql" | "postgresql" | "sqlite">("nodejs")
-  const [activeWorkflow, setActiveWorkflow] = React.useState<"figma" | "git" | "github" | "firebasehosting">("git")
-  const [activeAI, setActiveAI] = React.useState<"agenticai" | "mcp" | "prompteng" | "multiagent" | "claude" | "gemini" | "chatgpt" | "higgsfield" | "cursor" | "whatnot">("agenticai")
+  const [clientTab, setClientTab] = React.useState<"web" | "mobile">("web")
+  const [activeClientTool, setActiveClientTool] = React.useState<string>("react")
+  const [activeBackend, setActiveBackend] = React.useState<string>("nodejs")
+  const [activeAI, setActiveAI] = React.useState<string>("agenticai")
+  const [activeWorkflow, setActiveWorkflow] = React.useState<string>("git")
+  const [hoveredSkill, setHoveredSkill] = React.useState<string | null>(null)
 
-  // Interactive mobile view
-  const renderMobileDetails = () => {
-    switch (activeMobile) {
-      case "flutter":
-        return (
-          <div className="flex-1 flex flex-col justify-center items-center gap-3 text-center p-3 animate-fade-in">
-            <div className="p-3.5 bg-blue-500/10 rounded-2xl text-blue-500 border border-blue-500/20">
-              <Cpu className="h-6 w-6" />
-            </div>
-            <div>
-              <p className="text-xs font-extrabold text-foreground">Fluid Performance</p>
-              <p className="text-[10px] text-muted-foreground mt-0.5">High-performance native compilation</p>
-            </div>
-          </div>
-        )
-      case "reactnative":
-        return (
-          <div className="flex-1 flex flex-col justify-center items-center gap-3 text-center p-3 animate-fade-in">
-            <div className="p-3.5 bg-cyan-500/10 rounded-2xl text-cyan-500 border border-cyan-500/20">
-              <Sparkles className="h-6 w-6" />
-            </div>
-            <div>
-              <p className="text-xs font-extrabold text-foreground">Native Integration</p>
-              <p className="text-[10px] text-muted-foreground mt-0.5">Direct bridge to native components</p>
-            </div>
-          </div>
-        )
-      case "expo":
-        return (
-          <div className="flex-1 flex flex-col justify-center items-center gap-3 text-center p-3 animate-fade-in">
-            <div className="p-3.5 bg-purple-500/10 rounded-2xl text-purple-400 border border-purple-500/20">
-              <Smartphone className="h-6 w-6" />
-            </div>
-            <div>
-              <p className="text-xs font-extrabold text-foreground">Rapid Prototyping</p>
-              <p className="text-[10px] text-muted-foreground mt-0.5">Accelerated updates pipeline</p>
-            </div>
-          </div>
-        )
-    }
+  const handleTabChange = (tab: "web" | "mobile") => {
+    setClientTab(tab)
+    setActiveClientTool(tab === "web" ? "react" : "flutter")
   }
 
   return (
@@ -275,302 +239,361 @@ export function SkillsSection() {
           </p>
         </div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {/* Bento Console Dashboard (Symmetrical 2x2 layout) */}
+        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto ${inView ? "animate-fade-up delay-100" : "opacity-0"}`}>
           
-          {/* 1. FRONT-END PANEL (Col Span 2, Row Span 2) */}
-          <div className={`lg:col-span-2 flex flex-col ${inView ? "animate-scale-in delay-100" : "opacity-0"}`}>
-            <Card className="flex-grow border border-purple-500/15 bg-purple-950/5 dark:bg-purple-950/15 backdrop-blur-md rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-purple-500/30 hover:shadow-[0_0_25px_rgba(139,92,246,0.15)]">
-              
-              <div className="px-5 py-4 border-b border-purple-500/15 flex items-center justify-between bg-purple-950/20 dark:bg-purple-950/30">
-                <div className="flex items-center gap-1.5">
-                  <Globe className="h-4 w-4 text-primary" />
-                  <span className="text-xs font-bold text-foreground">Web Front-End Stack</span>
-                </div>
-                <div className="flex gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-purple-500/30" />
-                  <span className="w-2 h-2 rounded-full bg-purple-500/30" />
+          {/* Card 1: Client-Side Console */}
+          <Card className="border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-primary/20 dark:hover:border-primary/20 hover:shadow-[0_0_35px_rgba(139,92,246,0.06)] flex flex-col justify-between min-h-[460px] md:min-h-[420px]">
+            {/* Header */}
+            <div className="px-5 py-4 border-b border-border/70 dark:border-white/5 flex items-center justify-between bg-black/10 dark:bg-black/20">
+              <div className="flex items-center gap-2">
+                <Globe className="h-4 w-4 text-primary animate-pulse" />
+                <span className="text-xs font-bold text-foreground tracking-wide uppercase">Client-Side Engine</span>
+              </div>
+              <div className="flex gap-1.5 items-center">
+                {/* Segment tab control */}
+                <div className="flex bg-black/35 p-0.5 rounded-lg border border-border/70 dark:border-white/5 text-[10px]">
+                  <button
+                    onClick={() => handleTabChange("web")}
+                    className={`px-2.5 py-1 rounded-md font-bold transition-all ${
+                      clientTab === "web"
+                        ? "bg-primary text-white shadow-sm"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    Web
+                  </button>
+                  <button
+                    onClick={() => handleTabChange("mobile")}
+                    className={`px-2.5 py-1 rounded-md font-bold transition-all ${
+                      clientTab === "mobile"
+                        ? "bg-primary text-white shadow-sm"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    Mobile
+                  </button>
                 </div>
               </div>
+            </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-5 min-h-[280px]">
-                {/* Active Showcase Left (2 Cols) */}
-                <div className="md:col-span-2 border-r border-purple-500/20 p-5 space-y-4 bg-purple-950/10 dark:bg-purple-950/20 flex flex-col justify-center">
-                  <div key={activeFrontend} className="space-y-2 animate-fade-in">
-                    <p className="text-xs font-black text-primary uppercase tracking-widest">Selected Tool</p>
-                    <h3 className="text-lg font-black text-foreground">{skillsData[activeFrontend].name}</h3>
-                    <p className="text-xs text-muted-foreground leading-relaxed font-semibold">
-                      {skillsData[activeFrontend].desc}
+            {/* Content Body */}
+            <div className="flex-grow grid grid-cols-1 md:grid-cols-5 min-h-0">
+              {/* Telemetry Details Left (2 Cols) */}
+              <div className="md:col-span-2 border-r border-border/70 dark:border-white/5 p-5 bg-black/5 dark:bg-black/10 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-1.5 text-[9px] font-black text-muted-foreground uppercase tracking-widest">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>Selected Module</span>
+                  </div>
+                  <div>
+                    <h3 className="text-base font-black text-foreground tracking-tight flex items-center gap-2">
+                      <span style={{ color: icons[activeClientTool]?.color }}>
+                        <TechIcon svg={icons[activeClientTool]?.svg} label={icons[activeClientTool]?.label} isMulticolor={icons[activeClientTool]?.isMulticolor} />
+                      </span>
+                      {skillsData[activeClientTool as keyof typeof skillsData]?.name}
+                    </h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed mt-2 font-medium">
+                      {skillsData[activeClientTool as keyof typeof skillsData]?.desc}
                     </p>
                   </div>
                 </div>
-
-                {/* Skill Chips Right (3 Cols) */}
-                <div className="md:col-span-3 p-6 flex flex-col justify-center bg-transparent">
-                  <div className="grid grid-cols-2 gap-2.5">
-                    {(["html5", "css3", "javascript", "typescript", "react", "nextjs", "tailwind"] as const).map((key) => {
-                      const icon = icons[key]
-                      const isActive = activeFrontend === key
-                      const isSpecialColor = key === "nextjs"
-                      
-                      return (
-                        <div
-                          key={key}
-                          onMouseEnter={() => setActiveFrontend(key)}
-                          className={`flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl cursor-default transition-all duration-300 border backdrop-blur-md ${
-                            isActive
-                              ? "bg-purple-500/20 border-purple-500/50 text-foreground scale-[1.02] shadow-[0_0_15px_rgba(168,85,247,0.25)]"
-                              : "bg-purple-950/5 border-purple-500/10 text-muted-foreground hover:text-foreground hover:bg-purple-950/20 hover:border-purple-500/30"
-                          }`}
-                        >
-                          <span
-                            className={isSpecialColor ? "text-foreground" : ""}
-                            style={isSpecialColor ? undefined : { color: icon.color }}
-                          >
-                            <TechIcon svg={icon.svg} label={icon.label} isMulticolor={icon.isMulticolor} />
-                          </span>
-                          <span className="text-xs font-bold leading-none">{icon.label}</span>
-                        </div>
-                      )
-                    })}
-                  </div>
+                <div className="pt-4 border-t border-border/40 dark:border-white/5 font-mono text-[9px] text-muted-foreground/60 space-y-1">
+                  <div>[ENGINE_MODE]: DYNAMIC_SSR</div>
+                  <div>[MODULE_REF]: {activeClientTool.toUpperCase()}</div>
                 </div>
               </div>
-            </Card>
-          </div>
 
-          {/* 2. MOBILE SHOWCASE (Col Span 1, Row Span 2) */}
-          <div className={`flex flex-col ${inView ? "animate-scale-in delay-200" : "opacity-0"}`}>
-            <Card className="flex-grow border border-purple-500/15 bg-purple-950/5 dark:bg-purple-950/15 backdrop-blur-md rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-purple-500/30 hover:shadow-[0_0_25px_rgba(139,92,246,0.15)] flex flex-col justify-between">
-
-              <div className="px-5 py-4 border-b border-purple-500/15 flex items-center gap-1.5 bg-purple-950/20 dark:bg-purple-950/30">
-                <Smartphone className="h-4 w-4 text-primary" />
-                <span className="text-xs font-bold text-foreground">Mobile Frameworks</span>
-              </div>
-
-              <div className="p-5 flex-grow flex flex-col justify-between gap-6">
-                
-                {/* Visual Frame */}
-                <div className="w-full flex-grow flex flex-col justify-center items-center py-4 px-2 bg-purple-950/15 dark:bg-purple-950/25 rounded-2xl border border-purple-500/15 min-h-[140px]">
-                  {renderMobileDetails()}
-                </div>
-
-                {/* Mobile selector chips */}
-                <div className="w-full flex flex-col gap-2">
-                  {(["flutter", "reactnative", "expo"] as const).map((key) => {
+              {/* Chips Grid Right (3 Cols) */}
+              <div className="md:col-span-3 p-5 flex flex-col justify-center">
+                <div className="grid grid-cols-2 gap-2.5">
+                  {(clientTab === "web"
+                    ? (["react", "nextjs", "typescript", "javascript", "tailwind", "css3", "html5"] as const)
+                    : (["flutter", "reactnative", "expo"] as const)
+                  ).map((key) => {
                     const icon = icons[key]
-                    const isActive = activeMobile === key
-                    
-                    return (
-                      <button
-                        key={key}
-                        onClick={() => setActiveMobile(key)}
-                        className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl transition-all duration-300 border text-left backdrop-blur-md ${
-                          isActive
-                            ? "bg-purple-500/20 border-purple-500/50 text-foreground scale-[1.02] shadow-[0_0_15px_rgba(168,85,247,0.25)]"
-                            : "bg-purple-950/5 border-purple-500/10 text-muted-foreground hover:text-foreground hover:bg-purple-950/20 hover:border-purple-500/30"
-                        }`}
-                      >
-                        <div className="flex items-center gap-2">
-                          <span style={{ color: icon.color }}>
-                            <TechIcon svg={icon.svg} label={icon.label} />
-                          </span>
-                          <span className="text-xs font-bold">{icon.label}</span>
-                        </div>
-                        <span className={`w-1.5 h-1.5 rounded-full ${
-                          isActive ? "bg-primary animate-pulse" : "bg-muted-foreground/30"
-                        }`} />
-                      </button>
-                    )
-                  })}
-                </div>
-              </div>
-            </Card>
-          </div>
+                    const isActive = activeClientTool === key
+                    const isHovered = hoveredSkill === key
+                    const isSpecialColor = key === "nextjs" && !isHovered && !isActive
 
-          {/* 3. DATABASE & BACK-END (Col Span 2, Row Span 1) */}
-          <div className={`lg:col-span-2 flex flex-col ${inView ? "animate-scale-in delay-300" : "opacity-0"}`}>
-            <Card className="flex-grow border border-purple-500/15 bg-purple-950/5 dark:bg-purple-950/15 backdrop-blur-md rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-purple-500/30 hover:shadow-[0_0_25px_rgba(139,92,246,0.15)] flex flex-col justify-between">
-
-              <div className="px-5 py-4 border-b border-purple-500/15 flex items-center justify-between bg-purple-950/20 dark:bg-purple-950/30">
-                <div className="flex items-center gap-1.5">
-                  <Database className="h-4 w-4 text-primary" />
-                  <span className="text-xs font-bold text-foreground">Back-End &amp; Database Stack</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-bold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-status-pulse" />
-                  <span>Configured &amp; Active</span>
-                </div>
-              </div>
-
-              <div className="p-6 grid grid-cols-1 md:grid-cols-5 gap-6">
-                
-                {/* Tech list (3 Cols) */}
-                <div className="md:col-span-3 flex flex-col gap-2">
-                  {(["nodejs", "mongodb", "firebase", "postgresql", "mysql", "sqlite"] as const).map((key) => {
-                    const icon = icons[key]
-                    const isActive = activeBackend === key
-                    
                     return (
                       <div
                         key={key}
-                        onMouseEnter={() => setActiveBackend(key)}
-                        className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl transition-all border cursor-default backdrop-blur-md ${
-                          isActive
-                            ? "bg-purple-500/20 border-purple-500/45 text-foreground scale-[1.02] shadow-[0_0_15px_rgba(168,85,247,0.25)]"
-                            : "bg-purple-950/5 border-purple-500/10 text-muted-foreground hover:bg-purple-950/20 hover:text-foreground"
+                        onMouseEnter={() => {
+                          setActiveClientTool(key)
+                          setHoveredSkill(key)
+                        }}
+                        onMouseLeave={() => setHoveredSkill(null)}
+                        style={{
+                          borderColor: isHovered || isActive ? icon.color : undefined,
+                          boxShadow: isHovered || isActive ? `0 0 15px ${icon.color}20` : undefined,
+                          backgroundColor: isHovered || isActive ? `${icon.color}0a` : undefined,
+                        }}
+                        className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl cursor-default transition-all duration-300 border backdrop-blur-md ${
+                          isActive || isHovered
+                            ? "text-foreground scale-[1.02] border-opacity-70"
+                            : "bg-black/5 dark:bg-black/10 border-border/70 dark:border-white/5 text-muted-foreground hover:text-foreground hover:bg-black/10 dark:hover:bg-black/20"
                         }`}
                       >
-                        <div className="flex items-center gap-3">
-                          <span style={{ color: icon.color }}>
-                            <TechIcon svg={icon.svg} label={icon.label} />
-                          </span>
-                          <span className="text-xs font-bold">{icon.label}</span>
-                        </div>
-                        <span className={`w-1.5 h-1.5 rounded-full ${
-                          isActive ? "bg-emerald-500 animate-pulse" : "bg-muted-foreground/35"
-                        }`} />
+                        <span
+                          className={isSpecialColor ? "text-foreground" : ""}
+                          style={isSpecialColor ? undefined : { color: icon.color }}
+                        >
+                          <TechIcon svg={icon.svg} label={icon.label} isMulticolor={icon.isMulticolor} />
+                        </span>
+                        <span className="text-xs font-bold leading-none">{icon.label}</span>
                       </div>
                     )
                   })}
                 </div>
+              </div>
+            </div>
+          </Card>
 
-                {/* Detail view pane (2 Cols) */}
-                <div className="md:col-span-2 bg-purple-950/15 dark:bg-purple-950/25 rounded-xl border border-purple-500/15 p-5 flex flex-col justify-center gap-3 min-h-[180px] text-center md:text-left">
-                  <div key={activeBackend} className="space-y-1.5 animate-fade-in">
-                    <p className="text-[10px] font-black text-primary uppercase tracking-widest">Database/Service</p>
-                    <h4 className="text-sm font-extrabold text-foreground">{skillsData[activeBackend].name}</h4>
-                    <p className="text-xs text-muted-foreground font-semibold leading-relaxed">
-                      {skillsData[activeBackend].desc}
+          {/* Card 2: Backend & Databases */}
+          <Card className="border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-primary/20 dark:hover:border-primary/20 hover:shadow-[0_0_35px_rgba(139,92,246,0.06)] flex flex-col justify-between min-h-[460px] md:min-h-[420px]">
+            {/* Header */}
+            <div className="px-5 py-4 border-b border-border/70 dark:border-white/5 flex items-center justify-between bg-black/10 dark:bg-black/20">
+              <div className="flex items-center gap-2">
+                <Database className="h-4 w-4 text-primary animate-pulse" />
+                <span className="text-xs font-bold text-foreground tracking-wide uppercase">Backend &amp; Databases</span>
+              </div>
+              <div className="flex items-center gap-1.5 text-[10px] text-emerald-400 font-bold">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                <span>ONLINE</span>
+              </div>
+            </div>
+
+            {/* Content Body */}
+            <div className="flex-grow grid grid-cols-1 md:grid-cols-5 min-h-0">
+              {/* Telemetry Details Left (2 Cols) */}
+              <div className="md:col-span-2 border-r border-border/70 dark:border-white/5 p-5 bg-black/5 dark:bg-black/10 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-1.5 text-[9px] font-black text-muted-foreground uppercase tracking-widest">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>Telemetry Pane</span>
+                  </div>
+                  <div>
+                    <h3 className="text-base font-black text-foreground tracking-tight flex items-center gap-2">
+                      <span style={{ color: icons[activeBackend]?.color }}>
+                        <TechIcon svg={icons[activeBackend]?.svg} label={icons[activeBackend]?.label} />
+                      </span>
+                      {skillsData[activeBackend as keyof typeof skillsData]?.name}
+                    </h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed mt-2 font-medium">
+                      {skillsData[activeBackend as keyof typeof skillsData]?.desc}
                     </p>
                   </div>
                 </div>
-
-              </div>
-            </Card>
-          </div>
-
-          {/* 4. WORKFLOW & TOOLS (Col Span 1, Row Span 1) */}
-          <div className={`flex flex-col ${inView ? "animate-scale-in delay-400" : "opacity-0"}`}>
-            <Card className="flex-grow border border-purple-500/15 bg-purple-950/5 dark:bg-purple-950/15 backdrop-blur-md rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-purple-500/30 hover:shadow-[0_0_25px_rgba(139,92,246,0.15)] flex flex-col justify-between">
-
-              <div className="px-5 py-4 border-b border-purple-500/15 flex items-center justify-between bg-purple-950/20 dark:bg-purple-950/30">
-                <div className="flex items-center gap-1.5">
-                  <Terminal className="h-4 w-4 text-primary" />
-                  <span className="text-xs font-bold text-foreground">Tools &amp; Utilities</span>
+                <div className="pt-4 border-t border-border/40 dark:border-white/5 font-mono text-[9px] text-muted-foreground/60 space-y-1">
+                  <div>[SERVICE_STATUS]: OPERATIONAL</div>
+                  <div>[ENGINE_REF]: {activeBackend.toUpperCase()}</div>
                 </div>
-                <GitFork className="h-3.5 w-3.5 text-muted-foreground" />
               </div>
 
-              <div className="p-5 flex-grow flex flex-col justify-between gap-5">
-                
-                {/* SVG Git Graph visual */}
-                <div className="relative flex-grow flex items-center justify-between px-3 bg-purple-950/15 dark:bg-purple-950/25 py-5 rounded-xl border border-purple-500/15">
-                  
-                  {(["figma", "git", "github", "firebasehosting"] as const).map((key) => {
-                    const icon = key === "firebasehosting" ? icons.firebase : icons[key]
-                    const isActive = activeWorkflow === key
-                    const colors = {
-                      figma: "border-orange-500 text-orange-500 bg-orange-500/10 shadow-orange-500/10",
-                      git: "border-red-500 text-red-500 bg-red-500/10 shadow-red-500/10",
-                      github: "border-foreground text-foreground bg-foreground/10 shadow-foreground/10",
-                      firebasehosting: "border-amber-500 text-amber-500 bg-amber-500/10 shadow-amber-500/10"
-                    }
-                    
+              {/* Chips Grid Right (3 Cols) */}
+              <div className="md:col-span-3 p-5 flex flex-col justify-center">
+                <div className="grid grid-cols-2 gap-2.5">
+                  {(["nodejs", "mongodb", "firebase", "postgresql", "mysql", "sqlite"] as const).map((key) => {
+                    const icon = icons[key]
+                    const isActive = activeBackend === key
+                    const isHovered = hoveredSkill === key
+
                     return (
-                      <button
+                      <div
                         key={key}
-                        onMouseEnter={() => setActiveWorkflow(key)}
-                        className={`relative z-10 w-9 h-9 rounded-full border-2 flex items-center justify-center transition-all duration-300 shadow-md ${
-                          colors[key]
-                        } ${
-                          isActive
-                            ? "scale-110 ring-2 ring-primary/45"
-                            : "scale-100 opacity-60 hover:opacity-100"
+                        onMouseEnter={() => {
+                          setActiveBackend(key)
+                          setHoveredSkill(key)
+                        }}
+                        onMouseLeave={() => setHoveredSkill(null)}
+                        style={{
+                          borderColor: isHovered || isActive ? icon.color : undefined,
+                          boxShadow: isHovered || isActive ? `0 0 15px ${icon.color}20` : undefined,
+                          backgroundColor: isHovered || isActive ? `${icon.color}0a` : undefined,
+                        }}
+                        className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl cursor-default transition-all duration-300 border backdrop-blur-md ${
+                          isActive || isHovered
+                            ? "text-foreground scale-[1.02] border-opacity-70"
+                            : "bg-black/5 dark:bg-black/10 border-border/70 dark:border-white/5 text-muted-foreground hover:text-foreground hover:bg-black/10 dark:hover:bg-black/20"
                         }`}
                       >
-                        <TechIcon svg={icon.svg} label={icon.label} isMulticolor={icon.isMulticolor} />
-                      </button>
+                        <span style={{ color: icon.color }}>
+                          <TechIcon svg={icon.svg} label={icon.label} />
+                        </span>
+                        <span className="text-xs font-bold leading-none">{icon.label}</span>
+                      </div>
                     )
                   })}
                 </div>
-
-                {/* Minimal description box */}
-                <div key={activeWorkflow} className="p-4 bg-purple-950/15 dark:bg-purple-950/25 rounded-lg border border-purple-500/15 text-xs text-center md:text-left min-h-[80px] flex flex-col justify-center animate-fade-in font-medium text-muted-foreground leading-relaxed font-semibold">
-                  {activeWorkflow === "figma" && "Figma: Creating responsive user interface wireframes, prototypes, and asset blueprints."}
-                  {activeWorkflow === "git" && "Git: Managing versions, branches, tracking revisions, and local file checkpoints."}
-                  {activeWorkflow === "github" && "GitHub: Managing shared remote repositories, pulling requests, and automated testing."}
-                  {activeWorkflow === "firebasehosting" && "Hosting: Deploying optimized builds on fast edge servers with SSL certificates."}
-                </div>
-
               </div>
-            </Card>
-          </div>
+            </div>
+          </Card>
 
-          {/* 5. AI & AUTOMATION (Col Span 3) */}
-          <div className={`lg:col-span-3 flex flex-col ${inView ? "animate-scale-in delay-500" : "opacity-0"}`}>
-            <Card className="flex-grow border border-purple-500/15 bg-purple-950/5 dark:bg-purple-950/15 backdrop-blur-md rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-purple-500/30 hover:shadow-[0_0_25px_rgba(139,92,246,0.15)] flex flex-col justify-between">
-              
-              <div className="px-5 py-4 border-b border-purple-500/15 flex items-center justify-between bg-purple-950/20 dark:bg-purple-950/30">
-                <div className="flex items-center gap-1.5">
-                  <Sparkles className="h-4 w-4 text-purple-500 dark:text-purple-400 animate-pulse" />
-                  <span className="text-xs font-bold text-foreground">AI &amp; Automation Stack</span>
-                </div>
-                <div className="flex gap-1.5 items-center">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
-                  </span>
-                  <span className="text-[10px] text-purple-600 dark:text-purple-400 font-bold uppercase tracking-wider">Agentic Architectures</span>
-                </div>
+          {/* Card 3: AI & Agentic Core */}
+          <Card className="border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-primary/20 dark:hover:border-primary/20 hover:shadow-[0_0_35px_rgba(139,92,246,0.06)] flex flex-col justify-between min-h-[400px]">
+            {/* Header */}
+            <div className="px-5 py-4 border-b border-border/70 dark:border-white/5 flex items-center justify-between bg-black/10 dark:bg-black/20">
+              <div className="flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-purple-500 animate-pulse" />
+                <span className="text-xs font-bold text-foreground tracking-wide uppercase">AI &amp; Agentic Core</span>
               </div>
+              <div className="flex items-center gap-1.5 text-[9px] text-purple-500 font-bold uppercase tracking-wider">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+                </span>
+                <span>COGNITIVE LINK</span>
+              </div>
+            </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-5 min-h-[200px]">
-                {/* Selected AI Tool Details Left (2 Cols) */}
-                <div className="md:col-span-2 border-r border-purple-500/20 p-5 space-y-4 bg-purple-950/10 dark:bg-purple-950/20 flex flex-col justify-center">
-                  <div key={activeAI} className="space-y-2 animate-fade-in">
-                    <p className="text-[9px] font-black text-purple-500 dark:text-purple-400 uppercase tracking-widest">Selected Skill</p>
-                    <h3 className="text-base font-black text-foreground">{skillsData[activeAI].name}</h3>
-                    <p className="text-xs text-muted-foreground leading-relaxed font-semibold">
-                      {skillsData[activeAI].desc}
+            {/* Content Body */}
+            <div className="flex-grow grid grid-cols-1 md:grid-cols-5 min-h-0">
+              {/* Telemetry Details Left (2 Cols) */}
+              <div className="md:col-span-2 border-r border-border/70 dark:border-white/5 p-5 bg-black/5 dark:bg-black/10 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-1.5 text-[9px] font-black text-muted-foreground uppercase tracking-widest">
+                    <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
+                    <span>Agentic State</span>
+                  </div>
+                  <div>
+                    <h3 className="text-base font-black text-foreground tracking-tight flex items-center gap-2">
+                      <span style={{ color: icons[activeAI]?.color }}>
+                        <TechIcon svg={icons[activeAI]?.svg} label={icons[activeAI]?.label} />
+                      </span>
+                      {skillsData[activeAI as keyof typeof skillsData]?.name}
+                    </h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed mt-2 font-medium">
+                      {skillsData[activeAI as keyof typeof skillsData]?.desc}
                     </p>
                   </div>
                 </div>
-
-                {/* AI Chips Right (3 Cols) */}
-                <div className="md:col-span-3 p-6 flex flex-col justify-center bg-transparent">
-                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
-                    {(["agenticai", "mcp", "prompteng", "multiagent", "claude", "gemini", "chatgpt", "higgsfield", "cursor", "whatnot"] as const).map((key) => {
-                      const icon = icons[key]
-                      const isActive = activeAI === key
-                      const isSpecialColor = key === "claude" || key === "gemini" || key === "chatgpt" || key === "cursor"
-                      
-                      return (
-                        <div
-                          key={key}
-                          onMouseEnter={() => setActiveAI(key)}
-                          className={`flex flex-col items-center justify-center gap-2 px-2 py-3.5 rounded-xl cursor-default transition-all duration-300 border text-center backdrop-blur-md ${
-                            isActive
-                              ? "bg-purple-500/20 border-purple-500/50 text-foreground scale-[1.02] shadow-[0_0_15px_rgba(168,85,247,0.25)]"
-                              : "bg-purple-950/5 border-purple-500/10 text-muted-foreground hover:text-foreground hover:bg-purple-950/20 hover:border-purple-500/30"
-                          }`}
-                        >
-                          <span
-                            style={isSpecialColor ? undefined : { color: icon.color }}
-                            className={`${isSpecialColor ? "text-foreground" : ""} transition-transform duration-300 ${isActive ? "scale-110" : ""}`}
-                          >
-                            <TechIcon svg={icon.svg} label={icon.label} />
-                          </span>
-                          <span className="text-[9.5px] font-bold leading-tight select-none">{icon.label}</span>
-                        </div>
-                      )
-                    })}
-                  </div>
+                <div className="pt-4 border-t border-border/40 dark:border-white/5 font-mono text-[9px] text-muted-foreground/60 space-y-1">
+                  <div>[COGNITIVE_SYNC]: STABLE</div>
+                  <div>[MODEL_REF]: {activeAI.toUpperCase()}</div>
                 </div>
               </div>
 
-            </Card>
-          </div>
+              {/* Chips Grid Right (3 Cols) */}
+              <div className="md:col-span-3 p-5 flex flex-col justify-center">
+                <div className="grid grid-cols-5 gap-2">
+                  {(["agenticai", "mcp", "prompteng", "multiagent", "claude", "gemini", "chatgpt", "higgsfield", "cursor", "whatnot"] as const).map((key) => {
+                    const icon = icons[key]
+                    const isActive = activeAI === key
+                    const isHovered = hoveredSkill === key
+                    const isSpecialColor = (key === "claude" || key === "gemini" || key === "chatgpt" || key === "cursor") && !isHovered && !isActive
+
+                    return (
+                      <div
+                        key={key}
+                        onMouseEnter={() => {
+                          setActiveAI(key)
+                          setHoveredSkill(key)
+                        }}
+                        onMouseLeave={() => setHoveredSkill(null)}
+                        style={{
+                          borderColor: isHovered || isActive ? icon.color : undefined,
+                          boxShadow: isHovered || isActive ? `0 0 15px ${icon.color}20` : undefined,
+                          backgroundColor: isHovered || isActive ? `${icon.color}0a` : undefined,
+                        }}
+                        className={`flex flex-col items-center justify-center gap-1.5 p-2 rounded-xl cursor-default transition-all duration-300 border text-center ${
+                          isActive || isHovered
+                            ? "text-foreground scale-[1.05] border-opacity-70"
+                            : "bg-black/5 dark:bg-black/10 border-border/70 dark:border-white/5 text-muted-foreground hover:text-foreground hover:bg-black/10 dark:hover:bg-black/20"
+                        }`}
+                      >
+                        <span
+                          className={`${isSpecialColor ? "text-foreground" : ""} transition-transform duration-300 ${isActive || isHovered ? "scale-110" : ""}`}
+                          style={isSpecialColor ? undefined : { color: icon.color }}
+                        >
+                          <TechIcon svg={icon.svg} label={icon.label} />
+                        </span>
+                        <span className="text-[9px] font-bold leading-tight select-none">{icon.label}</span>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          {/* Card 4: Workflow & Systems Pipeline */}
+          <Card className="border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-primary/20 dark:hover:border-primary/20 hover:shadow-[0_0_35px_rgba(139,92,246,0.06)] flex flex-col justify-between min-h-[400px]">
+            {/* Header */}
+            <div className="px-5 py-4 border-b border-border/70 dark:border-white/5 flex items-center justify-between bg-black/10 dark:bg-black/20">
+              <div className="flex items-center gap-2">
+                <Terminal className="h-4 w-4 text-primary animate-pulse" />
+                <span className="text-xs font-bold text-foreground tracking-wide uppercase">Workflow &amp; Operations</span>
+              </div>
+              <div className="flex gap-1 items-center">
+                <GitFork className="h-3.5 w-3.5 text-muted-foreground animate-[spin_8s_linear_infinite]" />
+              </div>
+            </div>
+
+            {/* Content Body */}
+            <div className="p-5 flex-grow flex flex-col justify-between gap-4">
+              {/* Interactive pipeline flow mapping */}
+              <div className="relative w-full flex items-center justify-between px-6 py-6 bg-black/10 dark:bg-black/20 rounded-xl border border-border/70 dark:border-white/5 overflow-hidden">
+                {/* Glowing pipeline line in background */}
+                <div className="absolute top-1/2 left-10 right-10 h-[2px] bg-border dark:bg-white/5 -translate-y-1/2 z-0" />
+                
+                {/* Dynamic progress highlight bar based on step hover/active */}
+                <div
+                  className="absolute top-1/2 left-10 h-[2px] bg-gradient-to-r from-orange-500 via-red-500 to-amber-500 -translate-y-1/2 z-0 transition-all duration-500 origin-left"
+                  style={{
+                    width: activeWorkflow === "figma" ? "0%" :
+                           activeWorkflow === "git" ? "33%" :
+                           activeWorkflow === "github" ? "66%" : "100%"
+                  }}
+                />
+
+                {(["figma", "git", "github", "firebasehosting"] as const).map((key) => {
+                  const icon = key === "firebasehosting" ? icons.firebase : icons[key]
+                  const isActive = activeWorkflow === key
+                  const isHovered = hoveredSkill === key
+                  
+                  // Compute positions & styles based on activation
+                  const colors = {
+                    figma: "border-orange-500 text-orange-500 bg-orange-500/10 hover:shadow-orange-500/20",
+                    git: "border-red-500 text-red-500 bg-red-500/10 hover:shadow-red-500/20",
+                    github: "border-foreground text-foreground bg-foreground/10 hover:shadow-foreground/20",
+                    firebasehosting: "border-amber-500 text-amber-500 bg-amber-500/10 hover:shadow-amber-500/20"
+                  }
+
+                  return (
+                    <button
+                      key={key}
+                      onMouseEnter={() => {
+                        setActiveWorkflow(key)
+                        setHoveredSkill(key)
+                      }}
+                      onMouseLeave={() => setHoveredSkill(null)}
+                      className={`relative z-10 w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all duration-300 shadow-md ${
+                        colors[key]
+                      } ${
+                        isActive || isHovered
+                          ? "scale-110 ring-2 ring-primary/45 border-opacity-100 shadow-[0_0_15px_rgba(139,92,246,0.15)]"
+                          : "scale-100 opacity-60 hover:opacity-100 border-opacity-40"
+                      }`}
+                    >
+                      <TechIcon svg={icon.svg} label={icon.label} isMulticolor={icon.isMulticolor} />
+                    </button>
+                  )
+                })}
+              </div>
+
+              {/* Terminal Logs Output Box */}
+              <div className="p-4 bg-black/20 dark:bg-black/35 rounded-xl border border-border/70 dark:border-white/5 font-mono text-[11px] min-h-[110px] flex flex-col justify-center">
+                <div className="flex items-center gap-1.5 text-emerald-400 mb-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>PIPELINE_DEVOPS: RUNNING</span>
+                </div>
+                <p className="text-muted-foreground leading-relaxed text-xs">
+                  {skillsData[activeWorkflow as keyof typeof skillsData]?.desc}
+                </p>
+              </div>
+            </div>
+          </Card>
 
         </div>
       </div>
