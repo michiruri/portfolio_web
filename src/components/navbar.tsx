@@ -88,7 +88,8 @@ export function Navbar() {
 
           {/* Resume button — matching height of ThemeToggle (h-9) */}
           <Button
-            className="hidden sm:inline-flex h-9 gap-1.5 cursor-pointer px-4"
+            variant="outline"
+            className="hidden sm:inline-flex h-9 gap-1.5 cursor-pointer px-4 font-bold text-xs hover:scale-105 transition-all duration-300 hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] border-primary/30 text-primary hover:text-primary hover:border-primary/60 bg-primary/5 hover:bg-primary/10"
             render={<a href="/resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download Resume" />}
             nativeButton={false}
           >
@@ -128,7 +129,7 @@ export function Navbar() {
                     href="/resume.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold text-primary hover:bg-primary/10 transition-colors"
+                    className="mt-4 flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-sm font-bold border border-primary/30 bg-primary/5 text-primary hover:bg-primary/10 hover:border-primary/60 hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] transition-all"
                   >
                     <FileText className="h-4 w-4" />
                     Resume

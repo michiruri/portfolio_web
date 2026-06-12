@@ -6,7 +6,7 @@ import { Database, Globe, Terminal, Sparkles } from "lucide-react"
 import { useInView } from "@/hooks/use-in-view"
 
 // ── Tech Icons SVG Map ───────────────────────────────────────────────────
-const icons: Record<string, { svg: string; color: string; label: string; isMulticolor?: boolean; viewBox?: string }> = {
+const icons: Record<string, { svg?: string; img?: string; color: string; label: string; isMulticolor?: boolean; viewBox?: string }> = {
   html5: {
     label: "HTML5",
     color: "#E34F26",
@@ -35,7 +35,7 @@ const icons: Record<string, { svg: string; color: string; label: string; isMulti
   nextjs: {
     label: "Next.js",
     color: "#ffffff",
-    svg: `<path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm2-14.25v4.5l-5.25-5.25H7.5v8.5h1.5V9.75l5.25 5.25h1.25V7.75h-1.5z"/>`,
+    img: "/logos/Next.js-logo.svg",
   },
   tailwind: {
     label: "Tailwind CSS",
@@ -50,17 +50,17 @@ const icons: Record<string, { svg: string; color: string; label: string; isMulti
   firebase: {
     label: "Firebase",
     color: "#FFCA28",
-    svg: `<path d="M2.28 15.063L4.252 2.381a.453.453 0 0 1 .847-.145l2.12 3.979-4.938 8.848zM16.281 18.14L14.404 6.469a.454.454 0 0 0-.766-.246L1.802 18.14l6.55 3.691c.411.23.912.23 1.323 0l6.606-3.691zM10.957 7.955L9.44 5.052a.452.452 0 0 0-.8 0l-6.66 11.937 8.977-9.034zM10.74 22.176l-1.397.781c-.41.229-.912.229-1.322 0L2.12 19.539l7.95-7.986 8.528 8.528-7.858 2.095z"/>`,
+    img: "/logos/firebase-logo.png",
   },
   nodejs: {
     label: "Node.js",
     color: "#339933",
-    svg: `<path d="M11.998,24c-0.321,0-0.641-0.084-0.922-0.247l-2.936-1.737c-0.438-0.245-0.224-0.332-0.08-0.383 c0.585-0.203,0.703-0.25,1.328-0.604c0.065-0.037,0.151-0.023,0.218,0.017l2.256,1.339c0.082,0.045,0.197,0.045,0.272,0 l8.795-5.076 c0.082-0.047,0.134-0.141,0.134-0.238V6.921c0-0.099-0.053-0.192-0.137-0.242l-8.791-5.072c-0.081-0.047-0.189-0.047-0.271,0 L3.075,6.68C2.99,6.729,2.936,6.825,2.936,6.921v10.15c0,0.097,0.054,0.189,0.139,0.235l2.409,1.392 c1.307,0.654,2.108-0.116,2.108-0.89V7.787c0-0.142,0.114-0.253,0.256-0.253h1.115c0.139,0,0.255,0.112,0.255,0.253v10.021 c0,1.745-0.95,2.745-2.604,2.745c-0.508,0-0.909,0-2.026-0.551L2.28,18.675c-0.57-0.329-0.922-0.945-0.922-1.604V6.921 c0-0.659,0.353-1.275,0.922-1.603l8.795-5.082c0.557-0.315,1.296-0.315,1.848,0l8.794,5.082c0.570,0.329,0.924,0.944,0.924,1.603 v10.15c0,0.659-0.354,1.273-0.924,1.604l-8.794,5.078C12.643,23.916,12.324,24,11.998,24z"/>`,
+    img: "/logos/node-js-logo.png",
   },
   mysql: {
     label: "MySQL",
     color: "#4479A1",
-    svg: `<path d="M16.405 5.501c-.115 0-.193.014-.274.033v.013h.014c.054.104.146.19.214.29.054.104.1.208.214.313l.014-.015c.094-.066.14-.172.14-.333-.04-.047-.046-.094-.08-.14-.04-.067-.126-.1-.242-.161zm5.258 2.485c-.006-.027-.04-.067-.08-.094-.046-.027-.1-.04-.14-.027l-4.28 1.754c-.067.04-.134.08-.2.14l-2.205 1.74 1.046.906 5.08-2.86c.227-.14.373-.32.373-.52.013-.04.013-.08-.014-.12l-.58-1.07zM.002 3.56c0 .2.04.4.14.52l3.067 5.8c.106.2.266.36.46.48l3.253 1.834c.106.047.2.014.24-.08l.72-1.007c.066-.094.04-.213-.027-.28l-5.4-4.54c-.2-.17-.347-.387-.347-.627V2.7c0-.233.147-.44.347-.613L6.49 1.174c.14-.12.32-.173.5-.16l5.64.814c.16.027.32.107.44.214l3.2 2.86c.174.16.314.387.314.627v.434l-4.04 2.267c-.067.04-.107.107-.107.174v5.027c0 .08.04.16.107.213l.906.72c.08.067.2.04.267-.04l4.36-4.547c.12-.134.193-.293.193-.48V5.36c0-.227-.104-.454-.293-.594l-3.96-3.573c-.133-.12-.32-.2-.506-.227L6.05.08c-.173-.013-.347.04-.493.147L1.13 2.98C.507 3.39.003 4.06.003 4.8V3.56h-.001zm5.76 7.934c.267 0 .507-.084.68-.247L12.11 8.14c.2-.173.3-.413.3-.64V3.16c0-.24-.14-.46-.336-.607L9.116 1.127C8.95 1.007 8.75.96 8.55.96l-4.4.134c-.206.013-.39.08-.52.2L2.003 2.8c-.12.12-.173.28-.173.44v3.12c0 .173.066.333.18.447l3.6 4.827c.13.173.32.28.53.28l.16-.014c.06-.013.12-.027.17-.053.127-.04.24-.107.32-.193z"/>`,
+    img: "/logos/mysql-logo.webp",
   },
   git: {
     label: "Git",
@@ -75,12 +75,12 @@ const icons: Record<string, { svg: string; color: string; label: string; isMulti
   postgresql: {
     label: "PostgreSQL",
     color: "#4169E1",
-    svg: `<path d="M17.128 0a10.134 10.134 0 0 0-2.755.403l-.063.02A10.922 10.922 0 0 0 12.6.258C11.422.238 10.41.524 9.594 1 8.79.721 7.122.24 5.364.336 4.14.403 2.804.775 1.814 1.82.824 2.865.305 4.482.415 6.682c.032.607.24 2.049.65 3.235.413 1.192.998 2.183 1.76 2.343.428.09.951-.082 1.335-.746.07.095.141.194.217.3.265.372.566.77.88 1.146.317.376.646.752.95 1.065.314.325.875.898 1.446 1.144-.411 1.018-.506 2.76.938 4.36.88.982 1.97 1.594 3.21 1.73.08.009.156.013.232.013.663 0 1.306-.302 1.918-.813.609-.51 1.04-1.121 1.248-1.57.55.025 1.32-.018 1.942-.394.748-.453 1.213-1.098 1.386-1.92.24-1.14-.08-2.424-.893-3.579a7.044 7.044 0 0 0-.233-.296c.146-.11.292-.234.43-.38.627-.638 1.003-1.398 1.088-2.182.094-.835-.15-1.618-.618-2.116a1.372 1.372 0 0 0-.063-.063c.086-.048.171-.1.254-.157 1.11-.739 1.73-1.847 1.702-3.022C23.95 2.518 23.344 1.558 22.27.95A7.194 7.194 0 0 0 19.7.103 9.716 9.716 0 0 0 17.128 0z"/>`,
+    img: "/logos/postgresql-logo.png",
   },
   sqlite: {
     label: "SQLite",
     color: "#003B57",
-    svg: `<path d="M21.678.521C20.467-.607 19.033-.276 17.666.521L3.532 9.137a3.287 3.287 0 0 0-.92 4.68l.127.128-1.529 2.69a1.09 1.09 0 0 0 .9 1.658h1.146v1.73a1.09 1.09 0 0 0 .109 1.09a1.09 1.09 0 0 0 .718-.27l2.17-1.957a3.29 3.29 0 0 0 1.1.229 3.28 3.28 0 0 0 1.644-.44l14.135-8.616C25.847 9.055 26.201 7.62 25.416 6.41a3.38 3.38 0 0 0-.67-.81L21.678.521z"/>`,
+    img: "/logos/sqlite-logo.webp",
   },
   flutter: {
     label: "Flutter",
@@ -90,13 +90,12 @@ const icons: Record<string, { svg: string; color: string; label: string; isMulti
   mongodb: {
     label: "MongoDB",
     color: "#47A248",
-    svg: `<path d="M17.193 11.235c-.477-.66-1.127-1.428-1.554-1.92a29.835 29.835 0 00-1.89-1.986c-.574-.536-1.144-1.022-1.536-1.332-.234-.184-.442-.332-.613-.443V0c-.06.012-.132.033-.19.055a40.063 40.063 0 00-2.33 1.055 31.78 31.78 0 00-4.004 2.457A27.18 27.18 0 002.39 6.842a22.11 22.11 0 00-1.92 4.41c-.247 1.05-.34 2.213-.197 3.327.143 1.11.49 2.186 1.006 3.125a12.87 12.87 0 003.565 4.148c.143.11.286.216.435.316l.163-.195v-3.79c0-.495-.03-.984-.105-1.47a11.96 11.96 0 01-.197-2.613c.09-1.08.413-2.126.938-3.056.495-.873 1.158-1.616 1.83-2.228.663-.604 1.345-1.096 1.896-1.417.26-.153.486-.255.67-.323v13.684c.14.072.316.14.484.183.172.046.353.072.533.072a2.38 2.38 0 00.912-.18v-13.76c.183.064.41.163.67.316.55.32 1.233.81 1.896 1.413.672.608 1.335 1.348 1.83 2.22a10.966 10.966 0 01.938 3.057c.075.875.012 1.758-.198 2.614-.075.485-.105.975-.105 1.47v3.79l.162.195a12.87 12.87 0 004-4.464 15.02 15.02 0 001.007-3.126 15.113 15.113 0 00.198-3.327c.14-1.113.047-2.274-.2-3.327a22.11 22.11 0 00-1.92-4.41z"/>`,
+    img: "/logos/mongodb-logo.svg",
   },
   figma: {
     label: "Figma",
     color: "#A259FF",
-    isMulticolor: true,
-    svg: `<path d="M12 22a5 5 0 0 1-5-5 5 5 0 0 1 5-5v10z" fill="#0ACF83"/><path d="M12 12a5 5 0 0 1-5-5 5 5 0 0 1 5-5v10z" fill="#F24E1E"/><path d="M12 2h5a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-5V2z" fill="#FF7262"/><path d="M12 12h5a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-5v-10z" fill="#18A0FB"/><path d="M7 17a5 5 0 0 1 5-5H7v5z" fill="#A259FF"/>`,
+    img: "/logos/figma-logo.webp",
   },
   expo: {
     label: "Expo CLI",
@@ -127,12 +126,12 @@ const icons: Record<string, { svg: string; color: string; label: string; isMulti
   claude: {
     label: "Claude",
     color: "#d97706",
-    svg: `<path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/>`,
+    img: "/logos/claude-logo.jpg",
   },
   gemini: {
     label: "Gemini",
     color: "#60a5fa",
-    svg: `<path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/>`,
+    img: "/logos/gemini-logo.png",
   },
   chatgpt: {
     label: "ChatGPT",
@@ -142,12 +141,12 @@ const icons: Record<string, { svg: string; color: string; label: string; isMulti
   higgsfield: {
     label: "Higgsfield",
     color: "#ec4899",
-    svg: `<path d="M23 7l-7 5 7 5V7zM2 5h12v14H2V5zm6 4v6l4-3l-4-3z"/>`
+    img: "/logos/higgsfieldai-logo.png",
   },
   cursor: {
     label: "Cursor",
     color: "#38bdf8",
-    svg: `<path d="M22.106 5.68L12.5.135a.998.998 0 00-.998 0L1.893 5.68a.84.84 0 00-.419.726v11.186c0 .3.16.577.42.727l9.607 5.547a.999.999 0 00.998 0l9.608-5.547a.84.84 0 00.42-.727V6.407a.84.84 0 00-.42-.726zm-.603 1.176L12.228 22.92c-.063.108-.228.064-.228-.061V12.34a.59.59 0 00-.295-.51l-9.11-5.26c-.107-.062-.063-.228.062-.228h18.55c.264 0 .428.286.296.514z"/>`
+    img: "/logos/cursor-logo.webp",
   },
   whatnot: {
     label: "Other Agents",
@@ -194,17 +193,38 @@ const skillsData = {
   whatnot: { name: "Agentic Tools", desc: "Automated coding assistants, Windsurf agentic ide workflows, v0 UI prototyping, and AI code generation pipelines." }
 }
 
-const TechIcon = ({ svg, label, isMulticolor, viewBox = "0 0 24 24" }: { svg: string; label: string; isMulticolor?: boolean; viewBox?: string }) => (
-  <span title={label} className="inline-flex shrink-0" aria-label={label}>
-    <svg
-      viewBox={viewBox}
-      className="h-5 w-5"
-      fill={isMulticolor ? undefined : "currentColor"}
-      aria-hidden="true"
-      dangerouslySetInnerHTML={{ __html: svg }}
-    />
-  </span>
-)
+const TechIcon = ({ 
+  svg, 
+  img, 
+  label, 
+  isMulticolor, 
+  viewBox = "0 0 24 24" 
+}: { 
+  svg?: string; 
+  img?: string; 
+  label: string; 
+  isMulticolor?: boolean; 
+  viewBox?: string 
+}) => {
+  if (img) {
+    return (
+      <span title={label} className="inline-flex shrink-0 items-center justify-center h-5 w-5" aria-label={label}>
+        <img src={img} alt={label} className="h-5 w-5 object-contain" />
+      </span>
+    )
+  }
+  return (
+    <span title={label} className="inline-flex shrink-0" aria-label={label}>
+      <svg
+        viewBox={viewBox}
+        className="h-5 w-5"
+        fill={isMulticolor ? undefined : "currentColor"}
+        aria-hidden="true"
+        dangerouslySetInnerHTML={{ __html: svg || "" }}
+      />
+    </span>
+  )
+}
 
 export function SkillsSection() {
   const { ref, inView } = useInView()
@@ -290,7 +310,7 @@ export function SkillsSection() {
                   <div>
                     <h3 className="text-base font-black text-foreground tracking-tight flex items-center gap-2">
                       <span style={{ color: icons[activeClientTool]?.color }}>
-                        <TechIcon svg={icons[activeClientTool]?.svg} label={icons[activeClientTool]?.label} isMulticolor={icons[activeClientTool]?.isMulticolor} viewBox={icons[activeClientTool]?.viewBox} />
+                        <TechIcon svg={icons[activeClientTool]?.svg} img={icons[activeClientTool]?.img} label={icons[activeClientTool]?.label} isMulticolor={icons[activeClientTool]?.isMulticolor} viewBox={icons[activeClientTool]?.viewBox} />
                       </span>
                       {skillsData[activeClientTool as keyof typeof skillsData]?.name}
                     </h3>
@@ -340,7 +360,7 @@ export function SkillsSection() {
                           className={isSpecialColor ? "text-foreground" : ""}
                           style={isSpecialColor ? undefined : { color: icon.color }}
                         >
-                          <TechIcon svg={icon.svg} label={icon.label} isMulticolor={icon.isMulticolor} viewBox={icon.viewBox} />
+                          <TechIcon svg={icon.svg} img={icon.img} label={icon.label} isMulticolor={icon.isMulticolor} viewBox={icon.viewBox} />
                         </span>
                         <span className="text-xs font-bold leading-none">{icon.label}</span>
                       </div>
@@ -377,7 +397,7 @@ export function SkillsSection() {
                   <div>
                     <h3 className="text-base font-black text-foreground tracking-tight flex items-center gap-2">
                       <span style={{ color: icons[activeBackend]?.color }}>
-                        <TechIcon svg={icons[activeBackend]?.svg} label={icons[activeBackend]?.label} viewBox={icons[activeBackend]?.viewBox} />
+                        <TechIcon svg={icons[activeBackend]?.svg} img={icons[activeBackend]?.img} label={icons[activeBackend]?.label} viewBox={icons[activeBackend]?.viewBox} />
                       </span>
                       {skillsData[activeBackend as keyof typeof skillsData]?.name}
                     </h3>
@@ -420,7 +440,7 @@ export function SkillsSection() {
                         }`}
                       >
                         <span style={{ color: icon.color }}>
-                          <TechIcon svg={icon.svg} label={icon.label} viewBox={icon.viewBox} />
+                          <TechIcon svg={icon.svg} img={icon.img} label={icon.label} viewBox={icon.viewBox} />
                         </span>
                         <span className="text-xs font-bold leading-none">{icon.label}</span>
                       </div>
@@ -460,7 +480,7 @@ export function SkillsSection() {
                   <div>
                     <h3 className="text-base font-black text-foreground tracking-tight flex items-center gap-2">
                       <span style={{ color: icons[activeAI]?.color }}>
-                        <TechIcon svg={icons[activeAI]?.svg} label={icons[activeAI]?.label} viewBox={icons[activeAI]?.viewBox} />
+                        <TechIcon svg={icons[activeAI]?.svg} img={icons[activeAI]?.img} label={icons[activeAI]?.label} viewBox={icons[activeAI]?.viewBox} />
                       </span>
                       {skillsData[activeAI as keyof typeof skillsData]?.name}
                     </h3>
@@ -507,7 +527,7 @@ export function SkillsSection() {
                           className={`${isSpecialColor ? "text-foreground" : ""} transition-transform duration-300 ${isActive || isHovered ? "scale-110" : ""}`}
                           style={isSpecialColor ? undefined : { color: icon.color }}
                         >
-                          <TechIcon svg={icon.svg} label={icon.label} viewBox={icon.viewBox} />
+                          <TechIcon svg={icon.svg} img={icon.img} label={icon.label} viewBox={icon.viewBox} />
                         </span>
                         <span className="text-[9px] font-bold leading-tight select-none">{icon.label}</span>
                       </div>
@@ -546,6 +566,7 @@ export function SkillsSection() {
                       <span style={{ color: activeWorkflow === "firebasehosting" ? icons.firebase?.color : icons[activeWorkflow]?.color }}>
                         <TechIcon
                           svg={activeWorkflow === "firebasehosting" ? icons.firebase?.svg : icons[activeWorkflow]?.svg}
+                          img={activeWorkflow === "firebasehosting" ? icons.firebase?.img : icons[activeWorkflow]?.img}
                           label={activeWorkflow === "firebasehosting" ? icons.firebase?.label : icons[activeWorkflow]?.label}
                           isMulticolor={activeWorkflow === "firebasehosting" ? icons.firebase?.isMulticolor : icons[activeWorkflow]?.isMulticolor}
                           viewBox={activeWorkflow === "firebasehosting" ? icons.firebase?.viewBox : icons[activeWorkflow]?.viewBox}
@@ -592,7 +613,7 @@ export function SkillsSection() {
                         }`}
                       >
                         <span style={{ color: icon.color }}>
-                          <TechIcon svg={icon.svg} label={icon.label} isMulticolor={icon.isMulticolor} viewBox={icon.viewBox} />
+                          <TechIcon svg={icon.svg} img={icon.img} label={icon.label} isMulticolor={icon.isMulticolor} viewBox={icon.viewBox} />
                         </span>
                         <span className="text-xs font-bold leading-none">{icon.label}</span>
                       </div>

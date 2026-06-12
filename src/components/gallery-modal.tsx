@@ -52,7 +52,7 @@ export function GalleryModal({ isOpen, onClose }: GalleryModalProps) {
     <div className="fixed inset-0 z-[100] flex items-center justify-center">
       {/* Backdrop */}
       <div 
-        className={`absolute inset-0 bg-[#020205]/95 backdrop-blur-3xl transition-opacity duration-500 ease-in-out ${
+        className={`absolute inset-0 bg-[#020205]/75 backdrop-blur-md transition-opacity duration-500 ease-in-out ${
           isAnimating ? "opacity-100" : "opacity-0"
         }`}
         onClick={onClose}
@@ -61,7 +61,7 @@ export function GalleryModal({ isOpen, onClose }: GalleryModalProps) {
       {/* Close Button */}
       <button 
         onClick={onClose}
-        className={`absolute top-6 right-6 z-[110] w-12 h-12 rounded-full bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-300 hover:text-white hover:bg-purple-500/20 hover:border-purple-400/40 hover:scale-105 transition-all duration-500 ease-out ${
+        className={`absolute top-6 right-6 z-[110] w-12 h-12 rounded-full bg-purple-500/5 hover:bg-purple-500/15 border border-purple-500/20 hover:border-purple-500/50 flex items-center justify-center text-purple-300 hover:text-white hover:scale-105 hover:shadow-[0_0_15px_rgba(168,85,247,0.25)] transition-all duration-500 ease-out ${
           isAnimating ? "opacity-100 scale-100" : "opacity-0 scale-75"
         }`}
       >
@@ -105,7 +105,7 @@ export function GalleryModal({ isOpen, onClose }: GalleryModalProps) {
                 ].map((item) => (
                   <div 
                     key={item.id} 
-                    className={`bg-purple-950/10 border border-purple-500/15 rounded-2xl flex items-center justify-center group relative overflow-hidden transition-all duration-300 hover:border-purple-400/40 hover:shadow-[0_0_18px_rgba(168,85,247,0.15)] ${item.aspect}`}
+                    className={`bg-[#07070a]/40 border border-purple-500/15 rounded-2xl flex items-center justify-center group relative overflow-hidden transition-all duration-300 hover:border-purple-500/50 hover:bg-purple-500/[0.02] hover:shadow-[0_0_18px_rgba(168,85,247,0.15)] ${item.aspect}`}
                   >
                     <span className="text-[10px] font-bold tracking-widest uppercase text-purple-300/40 group-hover:text-purple-200/90 transition-colors z-10">Artwork {item.id}</span>
                     <div className="absolute inset-0 bg-gradient-to-t from-purple-950/80 via-purple-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
@@ -130,7 +130,7 @@ export function GalleryModal({ isOpen, onClose }: GalleryModalProps) {
                 ].map((item) => (
                   <div 
                     key={item.id} 
-                    className={`bg-purple-950/10 border border-purple-500/15 rounded-2xl flex items-center justify-center group relative overflow-hidden transition-all duration-300 hover:border-purple-400/40 hover:shadow-[0_0_18px_rgba(168,85,247,0.15)] ${item.aspect}`}
+                    className={`bg-[#07070a]/40 border border-cyan-500/15 rounded-2xl flex items-center justify-center group relative overflow-hidden transition-all duration-300 hover:border-cyan-500/50 hover:bg-cyan-500/[0.02] hover:shadow-[0_0_18px_rgba(6,182,212,0.15)] ${item.aspect}`}
                   >
                     <span className="text-[10px] font-bold tracking-widest uppercase text-purple-300/40 group-hover:text-purple-200/90 transition-colors z-10">Photo {item.id}</span>
                     <div className="absolute inset-0 bg-gradient-to-t from-purple-950/80 via-purple-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
