@@ -24,8 +24,7 @@ export function CosmicBackground() {
     rightPx: number;
     size: number;
     glow: boolean;
-    color: string;
-    glowColor: string;
+    isVariant: boolean;
   }>>([])
 
   const blackHoleRef = React.useRef<HTMLDivElement>(null)
@@ -101,12 +100,7 @@ export function CosmicBackground() {
           rightPx: rightOffsetPx - (xTranslation + scatterX),
           size: Math.random() * 3.5 + 1.2,
           glow: Math.random() > 0.35,
-          color: resolvedTheme === "light"
-            ? (Math.random() > 0.5 ? "bg-amber-400/60" : "bg-orange-400/60")
-            : (Math.random() > 0.5 ? "bg-cyan-400/50 dark:bg-cyan-400/60" : "bg-purple-400/50 dark:bg-purple-400/60"),
-          glowColor: resolvedTheme === "light"
-            ? (Math.random() > 0.5 ? "rgba(245, 158, 11, 0.45)" : "rgba(239, 68, 68, 0.4)")
-            : (Math.random() > 0.5 ? "rgba(34, 211, 238, 0.6)" : "rgba(168, 85, 247, 0.6)"),
+          isVariant: Math.random() > 0.5,
         }
       })
       setTrailStars(generatedTrail)
@@ -146,7 +140,7 @@ export function CosmicBackground() {
       window.removeEventListener("scroll", handleScroll)
       window.removeEventListener("resize", updateDimensions)
     }
-  }, [resolvedTheme, mounted])
+  }, [mounted])
 
   if (!mounted) return null
 
@@ -189,7 +183,7 @@ export function CosmicBackground() {
         {stars.map((star) => (
           <div
             key={star.id}
-            className={`absolute rounded-full animate-pulse ${isLight ? "bg-amber-400" : "bg-white"}`}
+            className="absolute rounded-full animate-pulse bg-amber-400 dark:bg-white"
             style={{
               top: star.top,
               left: star.left,
@@ -197,7 +191,7 @@ export function CosmicBackground() {
               height: `${star.size}px`,
               animationDelay: star.delay,
               animationDuration: star.duration,
-              boxShadow: star.size > 2 ? (isLight ? "0 0 6px 1.5px rgba(245, 158, 11, 0.5)" : "0 0 6px 1.5px rgba(255, 255, 255, 0.9)") : "none",
+              boxShadow: star.size > 2 ? "0 0 6px 1.5px var(--glow-bg-star)" : "none",
               transform: `translate(${star.driftX}, ${star.driftY})`,
             }}
           />
@@ -217,13 +211,19 @@ export function CosmicBackground() {
         {trailStars.map((star) => (
           <div
             key={star.id}
-            className={`absolute rounded-full ${star.color} animate-pulse`}
+            className={`absolute rounded-full animate-pulse ${
+              star.isVariant 
+                ? "bg-amber-400/60 dark:bg-cyan-400/50" 
+                : "bg-orange-400/60 dark:bg-purple-400/50"
+            }`}
             style={{
               top: `${star.topPx}px`,
               right: `${star.rightPx}px`,
               width: `${star.size}px`,
               height: `${star.size}px`,
-              boxShadow: star.glow ? `0 0 10px 2.5px ${star.glowColor}` : "none",
+              boxShadow: star.glow 
+                ? `0 0 10px 2.5px ${star.isVariant ? "var(--glow-color-1)" : "var(--glow-color-2)"}` 
+                : "none",
               animationDuration: `${Math.random() * 3 + 2.5}s`,
             }}
           />

@@ -10,12 +10,19 @@ import { useTheme } from "next-themes"
 
 // ── 1. PRODUCTS & SAAS (THE FOUNDER TIER) ────────────────────────────────────
 const saasProjects = [
-  {
-    title: "Triage",
-    description: "An AI-first multi-tenant helpdesk SaaS platform for B2B/SMEs. Architected a secure tenant-isolated GCIP authentication system and Firestore database partition ensuring strict client data isolation. Integrated retrieval-augmented generation (RAG) policies using Google Gemini API to drive automated first-responder deflection, combined with invoicing and payment pipelines for end-to-end support automation.",
-    tags: ["React", "TypeScript", "Next.js", "Firebase GCIP", "Google Gemini API"],
+  // {
+  //   title: "Triage",
+  //   description: "An AI-first multi-tenant helpdesk SaaS platform for B2B/SMEs. Architected a secure tenant-isolated GCIP authentication system and Firestore database partition ensuring strict client data isolation. Integrated retrieval-augmented generation (RAG) policies using Google Gemini API to drive automated first-responder deflection, combined with invoicing and payment pipelines for end-to-end support automation.",
+  //   tags: ["React", "TypeScript", "Next.js", "Firebase GCIP", "Google Gemini API"],
+  //   type: "web" as const,
+  //   demo: "https://voltstream-portal.web.app",
+  // },
+    {
+    title: "???",
+    description: "SaaS platform for B2B/SMEs in Development - Hidden for Now",
+    tags: ["???"],
     type: "web" as const,
-    demo: "https://voltstream-portal.web.app",
+    demo: "???",
   },
 ]
 
@@ -26,8 +33,8 @@ const professionalProjects = [
     description: "Designed, built, and deployed as the sole software engineer a joint web and mobile solution to automate visitor tracking, gate operations, and internal routing at PANELCO III. Engineered secure regional MySQL databases, a web-based administration and monitoring portal, and a mobile application for gate guards with an integrated Google Gemini AI and ML Kit OCR engine for high-precision ID scanning, thermal receipt printing, and live audit logging.",
     tags: ["Flutter", "Dart", "PHP API", "MySQL", "Google Gemini", "ML Kit OCR"],
     type: "both" as const,
-    github: "https://github.com/michiruri/visitor_management_app",
-    demo: "https://github.com/michiruri/visitor_management_app/releases",
+    github: "",
+    demo: "",
     role: "Lead Engineer",
   },
 ]
@@ -39,16 +46,16 @@ const playgroundProjects = [
     description: "An all-in-one SaaS recipe-building and cost-tracking application designed for home bakers and commercial bakeries. Built with Riverpod state management and GoRouter. Showcases complex UI components like the RecipeCanvas editor, dynamic ingredient scaling calculators, Firestore-linked inventory costing, and automated expense spreadsheets.",
     tags: ["Flutter", "Dart", "Riverpod", "Firestore", "Google Gemini"],
     type: "mobile" as const,
-    github: "https://github.com/michiruri/mise",
-    demo: "https://github.com/michiruri/mise",
+    github: "",
+    demo: "",
   },
   {
     title: "typing_game_rai",
     description: "A HTML5 Canvas speed typing web game featuring boss-fight state logic. Features a state machine managing word clear intervals, secret keyword overlays (KEYWORD MODE ACTIVATED / RESTORING TO REALITY), and multi-event stacking logic (Black Hole + Abundance + Time Warp). Implemented Firebase Firestore score tracking with client-side caching to prevent API quota limits.",
     tags: ["JavaScript", "HTML5 Canvas", "Firebase", "State Management"],
     type: "web" as const,
-    github: "https://github.com/michiruri/typing_game",
-    demo: "https://github.com/michiruri/typing_game",
+    github: "",
+    demo: "",
   },
 ]
 

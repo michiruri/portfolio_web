@@ -15,7 +15,12 @@ export function ThemeToggle() {
 
   const toggleTheme = () => {
     const current = resolvedTheme ?? theme
-    setTheme(current === "dark" ? "light" : "dark")
+    const nextTheme = current === "dark" ? "light" : "dark"
+    window.dispatchEvent(
+      new CustomEvent("trigger-theme-transition", {
+        detail: { targetTheme: nextTheme }
+      })
+    )
   }
 
   if (!mounted) {

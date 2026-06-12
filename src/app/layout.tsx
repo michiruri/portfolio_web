@@ -3,6 +3,7 @@ import { Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { CosmicBackground } from "@/components/ui/cosmic-background";
+import { ThemeTransitionOverlay } from "@/components/theme-transition-overlay";
 
 // Inter — clean, highly readable humanist sans-serif used across the UI
 const inter = Inter({
@@ -66,6 +67,7 @@ export default function RootLayout({
           disableTransitionOnChange={false}
         >
           <CosmicBackground />
+          <ThemeTransitionOverlay />
           {children}
         </ThemeProvider>
       </body>
