@@ -4,6 +4,7 @@ import * as React from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Calendar, GraduationCap, MapPin, Briefcase, Check } from "lucide-react"
 import { useInView } from "@/hooks/use-in-view"
+import { useTheme } from "next-themes"
 
 function LogoImage({ src, alt, fallbackText }: { src: string; alt: string; fallbackText: React.ReactNode }) {
   const [hasError, setHasError] = React.useState(false)
@@ -30,6 +31,13 @@ function LogoImage({ src, alt, fallbackText }: { src: string; alt: string; fallb
 
 export function ExperienceSection() {
   const { ref, inView } = useInView()
+  const [mounted, setMounted] = React.useState(false)
+  const { resolvedTheme } = useTheme()
+  const isLight = mounted && resolvedTheme === "light"
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const experiences = [
     {
@@ -134,7 +142,7 @@ export function ExperienceSection() {
         <div className="relative pl-6 sm:pl-8">
           
           {/* Vertical timeline axis line */}
-          <div className="absolute left-[7px] sm:left-[11px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-primary via-purple-500 to-transparent z-0" />
+          <div className={`absolute left-[7px] sm:left-[11px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-primary ${isLight ? "via-orange-500" : "via-purple-500"} to-transparent z-0`} />
 
           {experiences.map((exp, index) => (
             <div key={exp.id} className="relative pl-6 sm:pl-8 pb-12 last:pb-0 z-10">
@@ -154,7 +162,7 @@ export function ExperienceSection() {
 
               <div className={`${inView ? `animate-slide-left` : "opacity-0"}`} style={{ animationDelay: `${(index + 1) * 100}ms` }}>
                 <Card className={`relative overflow-hidden border border-border/70 bg-card/60 backdrop-blur-sm rounded-2xl hover:shadow-lg transition-all duration-300 group ${
-                  exp.highlight ? "border-primary/45 shadow-[0_0_15px_rgba(139,92,246,0.08)] bg-card/85" : ""
+                  exp.highlight ? `border-primary/45 ${isLight ? "shadow-[0_0_15px_rgba(249,115,22,0.08)]" : "shadow-[0_0_15px_rgba(139,92,246,0.08)]"} bg-card/85` : ""
                 }`}>
                   {/* Left colored tag border */}
                   <div className={`absolute top-0 left-0 h-full w-[3px] transition-all group-hover:w-[5px] ${

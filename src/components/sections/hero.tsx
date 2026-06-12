@@ -206,7 +206,7 @@ export function HeroSection() {
 
                   {/* ── BACK: Profile Highlights Dashboard ── */}
                   <div
-                    className={`rounded-2xl bg-card dark:bg-[#07070a] p-6 flex flex-col justify-between relative group/card border border-border/70 dark:border-white/5 transition-all duration-500 shadow-2xl hover:border-primary/60 dark:hover:border-primary/50 min-h-0 overflow-hidden ${isLight ? "hover:shadow-[0_0_25px_rgba(249,115,22,0.2)]" : "hover:shadow-[0_0_25px_rgba(139,92,246,0.25)] dark:hover:shadow-[0_0_30px_rgba(139,92,246,0.35)]"}`}
+                    className={`rounded-2xl bg-[#07070a] p-6 flex flex-col justify-between relative group/card border border-white/5 transition-all duration-500 shadow-2xl hover:border-primary/50 min-h-0 overflow-hidden ${isLight ? "hover:shadow-[0_0_25px_rgba(249,115,22,0.25)]" : "hover:shadow-[0_0_30px_rgba(139,92,246,0.35)]"}`}
                     style={{
                       position: "absolute",
                       inset: 0,
@@ -222,7 +222,7 @@ export function HeroSection() {
                         <span className="text-xs font-mono font-bold text-emerald-400">developer.json</span>
                       </div>
                       
-                      <div className="flex items-center gap-1.5 text-slate-600 dark:text-white/60 group-hover/card:text-slate-900 dark:group-hover/card:text-white transition-colors px-3 py-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 backdrop-blur-md">
+                      <div className="flex items-center gap-1.5 text-white/60 group-hover/card:text-white transition-colors px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
                         <span className="text-[10px] font-bold uppercase tracking-wider">Return</span>
                         <RefreshCw className="w-3.5 h-3.5" />
                       </div>

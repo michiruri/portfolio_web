@@ -6,9 +6,18 @@ import { Card } from "@/components/ui/card"
 import { Mail, Send, CheckCircle2, MapPin, Clock, Sparkles, User, MessageSquare, ChevronRight } from "lucide-react"
 import { GithubIcon, LinkedinIcon } from "@/components/icons"
 import { useInView } from "@/hooks/use-in-view"
+import { useTheme } from "next-themes"
 
 export function ContactSection() {
   const { ref, inView } = useInView()
+  const [mounted, setMounted] = React.useState(false)
+  const { resolvedTheme } = useTheme()
+  const isLight = mounted && resolvedTheme === "light"
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const [status, setStatus] = React.useState<"idle" | "sending" | "sent">("idle")
   const [formData, setFormData] = React.useState({
     name: "",
@@ -48,7 +57,7 @@ export function ContactSection() {
 
         {/* Unified Connected Card */}
         <div className={`max-w-3xl mx-auto ${inView ? "animate-scale-in delay-200" : "opacity-0"}`}>
-          <Card className="border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden hover:border-primary/20 hover:shadow-[0_0_25px_rgba(139,92,246,0.05)] transition-all duration-500">
+          <Card className={`border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden hover:border-primary/20 transition-all duration-500 ${isLight ? "hover:shadow-[0_0_25px_rgba(249,115,22,0.08)]" : "hover:shadow-[0_0_25px_rgba(139,92,246,0.05)]"}`}>
             <div className="grid md:grid-cols-12 divide-y md:divide-y-0 md:divide-x divide-border/40 dark:divide-white/5 items-stretch">
               
               {/* Left Column: What to Expect */}
@@ -100,7 +109,7 @@ export function ContactSection() {
                 <div className="space-y-2 border-t border-border/40 dark:border-white/5 pt-4">
                   <a
                     href="mailto:raileymitchellcapitis@gmail.com"
-                    className="flex items-center justify-between px-2.5 py-1.5 rounded-xl border border-border/50 dark:border-white/5 bg-background/50 dark:bg-black/20 hover:bg-primary/5 hover:border-primary/30 hover:text-primary transition-all duration-300 hover:shadow-[0_0_15px_rgba(139,92,246,0.08)] group/link"
+                    className={`flex items-center justify-between px-2.5 py-1.5 rounded-xl border border-border/50 dark:border-white/5 bg-background/50 dark:bg-black/20 hover:bg-primary/5 hover:border-primary/30 hover:text-primary transition-all duration-300 ${isLight ? "hover:shadow-[0_0_15px_rgba(249,115,22,0.1)]" : "hover:shadow-[0_0_15px_rgba(139,92,246,0.08)]"} group/link`}
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
                       <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20 text-primary group-hover/link:bg-primary/20 group-hover/link:text-primary transition-colors shrink-0">
@@ -118,7 +127,7 @@ export function ContactSection() {
                     href="https://www.linkedin.com/in/michiruri"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between px-2.5 py-1.5 rounded-xl border border-border/50 dark:border-white/5 bg-background/50 dark:bg-black/20 hover:bg-primary/5 hover:border-primary/30 hover:text-primary transition-all duration-300 hover:shadow-[0_0_15px_rgba(139,92,246,0.08)] group/link"
+                    className={`flex items-center justify-between px-2.5 py-1.5 rounded-xl border border-border/50 dark:border-white/5 bg-background/50 dark:bg-black/20 hover:bg-primary/5 hover:border-primary/30 hover:text-primary transition-all duration-300 ${isLight ? "hover:shadow-[0_0_15px_rgba(249,115,22,0.1)]" : "hover:shadow-[0_0_15px_rgba(139,92,246,0.08)]"} group/link`}
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
                       <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20 text-primary group-hover/link:bg-primary/20 group-hover/link:text-primary transition-colors shrink-0">
@@ -136,7 +145,7 @@ export function ContactSection() {
                     href="https://github.com/michiruri"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between px-2.5 py-1.5 rounded-xl border border-border/50 dark:border-white/5 bg-background/50 dark:bg-black/20 hover:bg-primary/5 hover:border-primary/30 hover:text-primary transition-all duration-300 hover:shadow-[0_0_15px_rgba(139,92,246,0.08)] group/link"
+                    className={`flex items-center justify-between px-2.5 py-1.5 rounded-xl border border-border/50 dark:border-white/5 bg-background/50 dark:bg-black/20 hover:bg-primary/5 hover:border-primary/30 hover:text-primary transition-all duration-300 ${isLight ? "hover:shadow-[0_0_15px_rgba(249,115,22,0.1)]" : "hover:shadow-[0_0_15px_rgba(139,92,246,0.08)]"} group/link`}
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
                       <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20 text-primary group-hover/link:bg-primary/20 group-hover/link:text-primary transition-colors shrink-0">
@@ -153,7 +162,7 @@ export function ContactSection() {
               </div>
 
               {/* Right Column: The Form */}
-              <div className="md:col-span-7 p-6 bg-black/5 dark:bg-black/10 flex flex-col justify-between gap-6">
+              <div className={`md:col-span-7 p-6 transition-colors duration-300 ${isLight ? "bg-orange-500/[0.02]" : "bg-black/5 dark:bg-black/10"} flex flex-col justify-between gap-6`}>
                 {status !== "sent" ? (
                   <form onSubmit={handleSubmit} className="h-full flex flex-col justify-between gap-6">
                     

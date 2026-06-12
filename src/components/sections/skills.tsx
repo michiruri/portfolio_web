@@ -4,6 +4,7 @@ import * as React from "react"
 import { Card } from "@/components/ui/card"
 import { Database, Globe, Terminal, Sparkles } from "lucide-react"
 import { useInView } from "@/hooks/use-in-view"
+import { useTheme } from "next-themes"
 
 // ── Tech Icons SVG Map ───────────────────────────────────────────────────
 const icons: Record<string, { svg?: string; img?: string; color: string; label: string; isMulticolor?: boolean; viewBox?: string }> = {
@@ -228,6 +229,13 @@ const TechIcon = ({
 
 export function SkillsSection() {
   const { ref, inView } = useInView()
+  const [mounted, setMounted] = React.useState(false)
+  const { resolvedTheme } = useTheme()
+  const isLight = mounted && resolvedTheme === "light"
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
   
   // Interactive States
   const [clientTab, setClientTab] = React.useState<"web" | "mobile">("web")
@@ -252,7 +260,7 @@ export function SkillsSection() {
         
         {/* Section Header */}
         <div className={`text-center mb-16 ${inView ? "animate-fade-up delay-0" : "opacity-0"}`}>
-          <h2 className="font-heading text-3xl font-extrabold tracking-tight sm:text-4xl bg-gradient-to-r from-primary via-purple-600 to-indigo-500 bg-clip-text text-transparent">
+          <h2 className={`font-heading text-3xl font-extrabold tracking-tight sm:text-4xl bg-clip-text text-transparent ${isLight ? "bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500" : "bg-gradient-to-r from-primary via-purple-600 to-indigo-500"}`}>
             Tech Stack &amp; Skills
           </h2>
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto font-semibold">
@@ -264,16 +272,16 @@ export function SkillsSection() {
         <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto ${inView ? "animate-fade-up delay-100" : "opacity-0"}`}>
           
           {/* Card 1: Client-Side Console */}
-          <Card className="border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-primary/20 dark:hover:border-primary/20 hover:shadow-[0_0_35px_rgba(139,92,246,0.06)] flex flex-col justify-between min-h-[460px] md:min-h-[420px]">
+          <Card className={`border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-primary/20 dark:hover:border-primary/20 ${isLight ? "hover:shadow-[0_0_35px_rgba(249,115,22,0.08)]" : "hover:shadow-[0_0_35px_rgba(139,92,246,0.06)]"} flex flex-col justify-between min-h-[460px] md:min-h-[420px]`}>
             {/* Header */}
-            <div className="px-5 py-4 border-b border-border/70 dark:border-white/5 flex items-center justify-between bg-black/10 dark:bg-black/20">
+            <div className={`px-5 py-4 border-b border-border/70 dark:border-white/5 flex items-center justify-between transition-colors duration-300 ${isLight ? "bg-orange-500/[0.04]" : "bg-black/10 dark:bg-black/20"}`}>
               <div className="flex items-center gap-2">
                 <Globe className="h-4 w-4 text-primary animate-pulse" />
                 <span className="text-xs font-bold text-foreground tracking-wide uppercase">Client-Side Engine</span>
               </div>
               <div className="flex gap-1.5 items-center">
                 {/* Segment tab control */}
-                <div className="flex bg-black/35 p-0.5 rounded-lg border border-border/70 dark:border-white/5 text-[10px]">
+                <div className={`flex p-0.5 rounded-lg border border-border/70 dark:border-white/5 text-[10px] transition-colors duration-300 ${isLight ? "bg-orange-500/10" : "bg-black/35"}`}>
                   <button
                     onClick={() => handleTabChange("web")}
                     className={`px-2.5 py-1 rounded-md font-bold transition-all ${
@@ -301,7 +309,7 @@ export function SkillsSection() {
             {/* Content Body */}
             <div className="flex-grow grid grid-cols-1 md:grid-cols-5 min-h-0">
               {/* Telemetry Details Left (2 Cols) */}
-              <div className="md:col-span-2 border-r border-border/70 dark:border-white/5 p-5 bg-black/5 dark:bg-black/10 flex flex-col justify-between">
+              <div className={`md:col-span-2 border-r border-border/70 dark:border-white/5 p-5 transition-colors duration-300 ${isLight ? "bg-orange-500/[0.02]" : "bg-black/5 dark:bg-black/10"} flex flex-col justify-between`}>
                 <div className="space-y-3">
                   <div className="flex items-center gap-1.5 text-[9px] font-black text-muted-foreground uppercase tracking-widest">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -319,7 +327,7 @@ export function SkillsSection() {
                     </p>
                   </div>
                 </div>
-                <div className="pt-4 border-t border-border/40 dark:border-white/5 font-mono text-[9px] text-muted-foreground/60 space-y-1">
+                <div className={`pt-4 border-t border-border/40 dark:border-white/5 font-mono text-[9px] ${isLight ? "text-muted-foreground/80" : "text-muted-foreground/60"} space-y-1`}>
                   <div>[ENGINE_MODE]: DYNAMIC_SSR</div>
                   <div>[MODULE_REF]: {activeClientTool.toUpperCase()}</div>
                 </div>
@@ -353,7 +361,7 @@ export function SkillsSection() {
                         className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl cursor-default transition-all duration-300 border backdrop-blur-md ${
                           isActive || isHovered
                             ? "text-foreground scale-[1.02] border-opacity-70"
-                            : "bg-black/5 dark:bg-black/10 border-border/70 dark:border-white/5 text-muted-foreground hover:text-foreground hover:bg-black/10 dark:hover:bg-black/20"
+                            : `${isLight ? "bg-orange-500/[0.03]" : "bg-black/5 dark:bg-black/10"} border-border/70 dark:border-white/5 text-muted-foreground hover:text-foreground ${isLight ? "hover:bg-orange-500/[0.06]" : "hover:bg-black/10 dark:hover:bg-black/20"}`
                         }`}
                       >
                         <span
@@ -372,9 +380,9 @@ export function SkillsSection() {
           </Card>
 
           {/* Card 2: Backend & Databases */}
-          <Card className="border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-primary/20 dark:hover:border-primary/20 hover:shadow-[0_0_35px_rgba(139,92,246,0.06)] flex flex-col justify-between min-h-[460px] md:min-h-[420px]">
+          <Card className={`border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-primary/20 dark:hover:border-primary/20 ${isLight ? "hover:shadow-[0_0_35px_rgba(249,115,22,0.08)]" : "hover:shadow-[0_0_35px_rgba(139,92,246,0.06)]"} flex flex-col justify-between min-h-[460px] md:min-h-[420px]`}>
             {/* Header */}
-            <div className="px-5 py-4 border-b border-border/70 dark:border-white/5 flex items-center justify-between bg-black/10 dark:bg-black/20">
+            <div className={`px-5 py-4 border-b border-border/70 dark:border-white/5 flex items-center justify-between transition-colors duration-300 ${isLight ? "bg-orange-500/[0.04]" : "bg-black/10 dark:bg-black/20"}`}>
               <div className="flex items-center gap-2">
                 <Database className="h-4 w-4 text-primary animate-pulse" />
                 <span className="text-xs font-bold text-foreground tracking-wide uppercase">Backend &amp; Databases</span>
@@ -388,7 +396,7 @@ export function SkillsSection() {
             {/* Content Body */}
             <div className="flex-grow grid grid-cols-1 md:grid-cols-5 min-h-0">
               {/* Telemetry Details Left (2 Cols) */}
-              <div className="md:col-span-2 border-r border-border/70 dark:border-white/5 p-5 bg-black/5 dark:bg-black/10 flex flex-col justify-between">
+              <div className={`md:col-span-2 border-r border-border/70 dark:border-white/5 p-5 transition-colors duration-300 ${isLight ? "bg-orange-500/[0.02]" : "bg-black/5 dark:bg-black/10"} flex flex-col justify-between`}>
                 <div className="space-y-3">
                   <div className="flex items-center gap-1.5 text-[9px] font-black text-muted-foreground uppercase tracking-widest">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -406,7 +414,7 @@ export function SkillsSection() {
                     </p>
                   </div>
                 </div>
-                <div className="pt-4 border-t border-border/40 dark:border-white/5 font-mono text-[9px] text-muted-foreground/60 space-y-1">
+                <div className={`pt-4 border-t border-border/40 dark:border-white/5 font-mono text-[9px] ${isLight ? "text-muted-foreground/80" : "text-muted-foreground/60"} space-y-1`}>
                   <div>[SERVICE_STATUS]: OPERATIONAL</div>
                   <div>[ENGINE_REF]: {activeBackend.toUpperCase()}</div>
                 </div>
@@ -436,7 +444,7 @@ export function SkillsSection() {
                         className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl cursor-default transition-all duration-300 border backdrop-blur-md ${
                           isActive || isHovered
                             ? "text-foreground scale-[1.02] border-opacity-70"
-                            : "bg-black/5 dark:bg-black/10 border-border/70 dark:border-white/5 text-muted-foreground hover:text-foreground hover:bg-black/10 dark:hover:bg-black/20"
+                            : `${isLight ? "bg-orange-500/[0.03]" : "bg-black/5 dark:bg-black/10"} border-border/70 dark:border-white/5 text-muted-foreground hover:text-foreground ${isLight ? "hover:bg-orange-500/[0.06]" : "hover:bg-black/10 dark:hover:bg-black/20"}`
                         }`}
                       >
                         <span style={{ color: icon.color }}>
@@ -452,17 +460,17 @@ export function SkillsSection() {
           </Card>
 
           {/* Card 3: AI & Agentic Core */}
-          <Card className="border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-primary/20 dark:hover:border-primary/20 hover:shadow-[0_0_35px_rgba(139,92,246,0.06)] flex flex-col justify-between min-h-[400px]">
+          <Card className={`border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-primary/20 dark:hover:border-primary/20 ${isLight ? "hover:shadow-[0_0_35px_rgba(249,115,22,0.08)]" : "hover:shadow-[0_0_35px_rgba(139,92,246,0.06)]"} flex flex-col justify-between min-h-[400px]`}>
             {/* Header */}
-            <div className="px-5 py-4 border-b border-border/70 dark:border-white/5 flex items-center justify-between bg-black/10 dark:bg-black/20">
+            <div className={`px-5 py-4 border-b border-border/70 dark:border-white/5 flex items-center justify-between transition-colors duration-300 ${isLight ? "bg-orange-500/[0.04]" : "bg-black/10 dark:bg-black/20"}`}>
               <div className="flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-purple-500 animate-pulse" />
+                <Sparkles className={`h-4 w-4 ${isLight ? "text-primary" : "text-purple-500"} animate-pulse`} />
                 <span className="text-xs font-bold text-foreground tracking-wide uppercase">AI &amp; Agentic Core</span>
               </div>
-              <div className="flex items-center gap-1.5 text-[9px] text-purple-500 font-bold uppercase tracking-wider">
+              <div className={`flex items-center gap-1.5 text-[9px] ${isLight ? "text-primary" : "text-purple-500"} font-bold uppercase tracking-wider`}>
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+                  <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${isLight ? "bg-orange-400" : "bg-purple-400"} opacity-75`}></span>
+                  <span className={`relative inline-flex rounded-full h-2 w-2 ${isLight ? "bg-primary" : "bg-purple-500"}`}></span>
                 </span>
                 <span>COGNITIVE LINK</span>
               </div>
@@ -471,10 +479,10 @@ export function SkillsSection() {
             {/* Content Body */}
             <div className="flex-grow grid grid-cols-1 md:grid-cols-5 min-h-0">
               {/* Telemetry Details Left (2 Cols) */}
-              <div className="md:col-span-2 border-r border-border/70 dark:border-white/5 p-5 bg-black/5 dark:bg-black/10 flex flex-col justify-between">
+              <div className={`md:col-span-2 border-r border-border/70 dark:border-white/5 p-5 transition-colors duration-300 ${isLight ? "bg-orange-500/[0.02]" : "bg-black/5 dark:bg-black/10"} flex flex-col justify-between`}>
                 <div className="space-y-3">
                   <div className="flex items-center gap-1.5 text-[9px] font-black text-muted-foreground uppercase tracking-widest">
-                    <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
+                    <span className={`w-1.5 h-1.5 rounded-full ${isLight ? "bg-primary" : "bg-purple-400"} animate-pulse`} />
                     <span>Agentic State</span>
                   </div>
                   <div>
@@ -489,7 +497,7 @@ export function SkillsSection() {
                     </p>
                   </div>
                 </div>
-                <div className="pt-4 border-t border-border/40 dark:border-white/5 font-mono text-[9px] text-muted-foreground/60 space-y-1">
+                <div className={`pt-4 border-t border-border/40 dark:border-white/5 font-mono text-[9px] ${isLight ? "text-muted-foreground/80" : "text-muted-foreground/60"} space-y-1`}>
                   <div>[COGNITIVE_SYNC]: STABLE</div>
                   <div>[MODEL_REF]: {activeAI.toUpperCase()}</div>
                 </div>
@@ -497,7 +505,7 @@ export function SkillsSection() {
 
               {/* Chips Grid Right (3 Cols) */}
               <div className="md:col-span-3 p-5 flex flex-col justify-center">
-                <div className="grid grid-cols-5 gap-2">
+                <div className="grid grid-cols-2 gap-2.5">
                   {(["agenticai", "mcp", "prompteng", "multiagent", "claude", "gemini", "chatgpt", "higgsfield", "cursor", "whatnot"] as const).map((key) => {
                     const icon = icons[key]
                     const isActive = activeAI === key
@@ -517,10 +525,10 @@ export function SkillsSection() {
                           boxShadow: isHovered || isActive ? `0 0 15px ${icon.color}20` : undefined,
                           backgroundColor: isHovered || isActive ? `${icon.color}0a` : undefined,
                         }}
-                        className={`flex flex-col items-center justify-center gap-1.5 p-2 rounded-xl cursor-default transition-all duration-300 border text-center ${
+                        className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl cursor-default transition-all duration-300 border backdrop-blur-md ${
                           isActive || isHovered
-                            ? "text-foreground scale-[1.05] border-opacity-70"
-                            : "bg-black/5 dark:bg-black/10 border-border/70 dark:border-white/5 text-muted-foreground hover:text-foreground hover:bg-black/10 dark:hover:bg-black/20"
+                            ? "text-foreground scale-[1.02] border-opacity-70"
+                            : `${isLight ? "bg-orange-500/[0.03]" : "bg-black/5 dark:bg-black/10"} border-border/70 dark:border-white/5 text-muted-foreground hover:text-foreground ${isLight ? "hover:bg-orange-500/[0.06]" : "hover:bg-black/10 dark:hover:bg-black/20"}`
                         }`}
                       >
                         <span
@@ -529,7 +537,7 @@ export function SkillsSection() {
                         >
                           <TechIcon svg={icon.svg} img={icon.img} label={icon.label} viewBox={icon.viewBox} />
                         </span>
-                        <span className="text-[9px] font-bold leading-tight select-none">{icon.label}</span>
+                        <span className="text-xs font-bold leading-none select-none">{icon.label}</span>
                       </div>
                     )
                   })}
@@ -539,9 +547,9 @@ export function SkillsSection() {
           </Card>
 
           {/* Card 4: Developer Systems & Ops */}
-          <Card className="border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-primary/20 dark:hover:border-primary/20 hover:shadow-[0_0_35px_rgba(139,92,246,0.06)] flex flex-col justify-between min-h-[400px]">
+          <Card className={`border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-primary/20 dark:hover:border-primary/20 ${isLight ? "hover:shadow-[0_0_35px_rgba(249,115,22,0.08)]" : "hover:shadow-[0_0_35px_rgba(139,92,246,0.06)]"} flex flex-col justify-between min-h-[400px]`}>
             {/* Header */}
-            <div className="px-5 py-4 border-b border-border/70 dark:border-white/5 flex items-center justify-between bg-black/10 dark:bg-black/20">
+            <div className={`px-5 py-4 border-b border-border/70 dark:border-white/5 flex items-center justify-between transition-colors duration-300 ${isLight ? "bg-orange-500/[0.04]" : "bg-black/10 dark:bg-black/20"}`}>
               <div className="flex items-center gap-2">
                 <Terminal className="h-4 w-4 text-primary animate-pulse" />
                 <span className="text-xs font-bold text-foreground tracking-wide uppercase">Developer Systems &amp; Ops</span>
@@ -555,7 +563,7 @@ export function SkillsSection() {
             {/* Content Body */}
             <div className="flex-grow grid grid-cols-1 md:grid-cols-5 min-h-0">
               {/* Telemetry Details Left (2 Cols) */}
-              <div className="md:col-span-2 border-r border-border/70 dark:border-white/5 p-5 bg-black/5 dark:bg-black/10 flex flex-col justify-between">
+              <div className={`md:col-span-2 border-r border-border/70 dark:border-white/5 p-5 transition-colors duration-300 ${isLight ? "bg-orange-500/[0.02]" : "bg-black/5 dark:bg-black/10"} flex flex-col justify-between`}>
                 <div className="space-y-3">
                   <div className="flex items-center gap-1.5 text-[9px] font-black text-muted-foreground uppercase tracking-widest">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -579,7 +587,7 @@ export function SkillsSection() {
                     </p>
                   </div>
                 </div>
-                <div className="pt-4 border-t border-border/40 dark:border-white/5 font-mono text-[9px] text-muted-foreground/60 space-y-1">
+                <div className={`pt-4 border-t border-border/40 dark:border-white/5 font-mono text-[9px] ${isLight ? "text-muted-foreground/80" : "text-muted-foreground/60"} space-y-1`}>
                   <div>[SYSTEM_STATUS]: OPERATIONAL</div>
                   <div>[MODULE_REF]: {activeWorkflow.toUpperCase()}</div>
                 </div>
@@ -609,7 +617,7 @@ export function SkillsSection() {
                         className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl cursor-default transition-all duration-300 border backdrop-blur-md ${
                           isActive || isHovered
                             ? "text-foreground scale-[1.02] border-opacity-70"
-                            : "bg-black/5 dark:bg-black/10 border-border/70 dark:border-white/5 text-muted-foreground hover:text-foreground hover:bg-black/10 dark:hover:bg-black/20"
+                            : `${isLight ? "bg-orange-500/[0.03]" : "bg-black/5 dark:bg-black/10"} border-border/70 dark:border-white/5 text-muted-foreground hover:text-foreground ${isLight ? "hover:bg-orange-500/[0.06]" : "hover:bg-black/10 dark:hover:bg-black/20"}`
                         }`}
                       >
                         <span style={{ color: icon.color }}>
