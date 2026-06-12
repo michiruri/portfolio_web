@@ -314,6 +314,11 @@
 .bg-grid-subtle {
   background-size: 24px 24px;
   background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+}
+.dark .bg-grid-subtle {
+  background-image: 
     linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
@@ -361,23 +366,7 @@
   animation: border-dash-reverse 4s linear infinite;
 }
 
-/* Profile card back theme shadows */
-.profile-card-back {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(139, 92, 246, 0.1);
-  transition: border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.profile-card-back:hover {
-  border-color: rgba(124, 58, 237, 0.6) !important;
-  box-shadow: 0 0 25px rgba(124, 58, 237, 0.25) !important;
-}
-
-.dark .profile-card-back {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(139, 92, 246, 0.1);
-}
-.dark .profile-card-back:hover {
-  border-color: rgba(139, 92, 246, 0.6) !important;
-  box-shadow: 0 0 30px rgba(139, 92, 246, 0.35) !important;
-}
+/* Profile card back styles removed in favor of unified Tailwind hover classes */
 
 @keyframes spin-reverse {
   from {

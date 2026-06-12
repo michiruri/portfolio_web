@@ -267,7 +267,7 @@ export function SkillsSection() {
         
         {/* Section Header */}
         <div className={`text-center mb-16 ${inView ? "animate-fade-up delay-0" : "opacity-0"}`}>
-          <h2 className="font-heading text-3xl font-extrabold tracking-tight sm:text-4xl text-foreground">
+          <h2 className="font-heading text-3xl font-extrabold tracking-tight sm:text-4xl bg-gradient-to-r from-primary via-purple-600 to-indigo-500 bg-clip-text text-transparent">
             Tech Stack &amp; Skills
           </h2>
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto font-semibold">
@@ -280,22 +280,22 @@ export function SkillsSection() {
           
           {/* 1. FRONT-END PANEL (Col Span 2, Row Span 2) */}
           <div className={`lg:col-span-2 flex flex-col ${inView ? "animate-scale-in delay-100" : "opacity-0"}`}>
-            <Card className="flex-grow border border-border/60 bg-card/60 backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:shadow-lg">
+            <Card className="flex-grow border border-purple-500/15 bg-purple-950/5 dark:bg-purple-950/15 backdrop-blur-md rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-purple-500/30 hover:shadow-[0_0_25px_rgba(139,92,246,0.15)]">
               
-              <div className="px-5 py-4 border-b border-border/50 flex items-center justify-between bg-muted/30">
+              <div className="px-5 py-4 border-b border-purple-500/15 flex items-center justify-between bg-purple-950/20 dark:bg-purple-950/30">
                 <div className="flex items-center gap-1.5">
                   <Globe className="h-4 w-4 text-primary" />
                   <span className="text-xs font-bold text-foreground">Web Front-End Stack</span>
                 </div>
                 <div className="flex gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-border" />
-                  <span className="w-2 h-2 rounded-full bg-border" />
+                  <span className="w-2 h-2 rounded-full bg-purple-500/30" />
+                  <span className="w-2 h-2 rounded-full bg-purple-500/30" />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-5 min-h-[280px]">
                 {/* Active Showcase Left (2 Cols) */}
-                <div className="md:col-span-2 border-r border-border/40 p-5 space-y-4 bg-muted/10 flex flex-col justify-center">
+                <div className="md:col-span-2 border-r border-purple-500/20 p-5 space-y-4 bg-purple-950/10 dark:bg-purple-950/20 flex flex-col justify-center">
                   <div key={activeFrontend} className="space-y-2 animate-fade-in">
                     <p className="text-xs font-black text-primary uppercase tracking-widest">Selected Tool</p>
                     <h3 className="text-lg font-black text-foreground">{skillsData[activeFrontend].name}</h3>
@@ -306,7 +306,7 @@ export function SkillsSection() {
                 </div>
 
                 {/* Skill Chips Right (3 Cols) */}
-                <div className="md:col-span-3 p-6 flex flex-col justify-center bg-card/30">
+                <div className="md:col-span-3 p-6 flex flex-col justify-center bg-transparent">
                   <div className="grid grid-cols-2 gap-2.5">
                     {(["html5", "css3", "javascript", "typescript", "react", "nextjs", "tailwind"] as const).map((key) => {
                       const icon = icons[key]
@@ -319,8 +319,8 @@ export function SkillsSection() {
                           onMouseEnter={() => setActiveFrontend(key)}
                           className={`flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl cursor-default transition-all duration-300 border backdrop-blur-md ${
                             isActive
-                              ? "bg-primary/20 border-primary/50 text-foreground scale-[1.02] shadow-[0_0_15px_rgba(var(--primary),0.2)]"
-                              : "bg-muted/30 border-border/40 text-muted-foreground hover:text-foreground hover:bg-muted/60 hover:border-border/80"
+                              ? "bg-purple-500/20 border-purple-500/50 text-foreground scale-[1.02] shadow-[0_0_15px_rgba(168,85,247,0.25)]"
+                              : "bg-purple-950/5 border-purple-500/10 text-muted-foreground hover:text-foreground hover:bg-purple-950/20 hover:border-purple-500/30"
                           }`}
                         >
                           <span
@@ -341,9 +341,9 @@ export function SkillsSection() {
 
           {/* 2. MOBILE SHOWCASE (Col Span 1, Row Span 2) */}
           <div className={`flex flex-col ${inView ? "animate-scale-in delay-200" : "opacity-0"}`}>
-            <Card className="flex-grow border border-border/60 bg-card/60 backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:shadow-lg flex flex-col justify-between">
+            <Card className="flex-grow border border-purple-500/15 bg-purple-950/5 dark:bg-purple-950/15 backdrop-blur-md rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-purple-500/30 hover:shadow-[0_0_25px_rgba(139,92,246,0.15)] flex flex-col justify-between">
 
-              <div className="px-5 py-4 border-b border-border/50 flex items-center gap-1.5 bg-muted/30">
+              <div className="px-5 py-4 border-b border-purple-500/15 flex items-center gap-1.5 bg-purple-950/20 dark:bg-purple-950/30">
                 <Smartphone className="h-4 w-4 text-primary" />
                 <span className="text-xs font-bold text-foreground">Mobile Frameworks</span>
               </div>
@@ -351,7 +351,7 @@ export function SkillsSection() {
               <div className="p-5 flex-grow flex flex-col justify-between gap-6">
                 
                 {/* Visual Frame */}
-                <div className="w-full flex-grow flex flex-col justify-center items-center py-4 px-2 bg-black/10 rounded-2xl border border-border/40 min-h-[140px]">
+                <div className="w-full flex-grow flex flex-col justify-center items-center py-4 px-2 bg-purple-950/15 dark:bg-purple-950/25 rounded-2xl border border-purple-500/15 min-h-[140px]">
                   {renderMobileDetails()}
                 </div>
 
@@ -367,8 +367,8 @@ export function SkillsSection() {
                         onClick={() => setActiveMobile(key)}
                         className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl transition-all duration-300 border text-left backdrop-blur-md ${
                           isActive
-                            ? "bg-primary/20 border-primary/50 text-foreground scale-[1.02] shadow-[0_0_15px_rgba(var(--primary),0.2)]"
-                            : "bg-muted/20 border-border/30 text-muted-foreground hover:text-foreground hover:bg-muted/40 hover:border-border/50"
+                            ? "bg-purple-500/20 border-purple-500/50 text-foreground scale-[1.02] shadow-[0_0_15px_rgba(168,85,247,0.25)]"
+                            : "bg-purple-950/5 border-purple-500/10 text-muted-foreground hover:text-foreground hover:bg-purple-950/20 hover:border-purple-500/30"
                         }`}
                       >
                         <div className="flex items-center gap-2">
@@ -390,15 +390,15 @@ export function SkillsSection() {
 
           {/* 3. DATABASE & BACK-END (Col Span 2, Row Span 1) */}
           <div className={`lg:col-span-2 flex flex-col ${inView ? "animate-scale-in delay-300" : "opacity-0"}`}>
-            <Card className="flex-grow border border-border/60 bg-card/60 backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:shadow-lg flex flex-col justify-between">
+            <Card className="flex-grow border border-purple-500/15 bg-purple-950/5 dark:bg-purple-950/15 backdrop-blur-md rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-purple-500/30 hover:shadow-[0_0_25px_rgba(139,92,246,0.15)] flex flex-col justify-between">
 
-              <div className="px-5 py-4 border-b border-border/50 flex items-center justify-between bg-muted/30">
+              <div className="px-5 py-4 border-b border-purple-500/15 flex items-center justify-between bg-purple-950/20 dark:bg-purple-950/30">
                 <div className="flex items-center gap-1.5">
                   <Database className="h-4 w-4 text-primary" />
                   <span className="text-xs font-bold text-foreground">Back-End &amp; Database Stack</span>
                 </div>
-                <div className="flex items-center gap-1.5 text-xs text-emerald-500 font-bold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-status-pulse" />
+                <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-bold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-status-pulse" />
                   <span>Configured &amp; Active</span>
                 </div>
               </div>
@@ -417,8 +417,8 @@ export function SkillsSection() {
                         onMouseEnter={() => setActiveBackend(key)}
                         className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl transition-all border cursor-default backdrop-blur-md ${
                           isActive
-                            ? "bg-primary/20 border-primary/45 text-foreground scale-[1.02] shadow-[0_0_15px_rgba(var(--primary),0.2)]"
-                            : "bg-muted/15 border-border/30 text-muted-foreground hover:bg-muted/35 hover:text-foreground"
+                            ? "bg-purple-500/20 border-purple-500/45 text-foreground scale-[1.02] shadow-[0_0_15px_rgba(168,85,247,0.25)]"
+                            : "bg-purple-950/5 border-purple-500/10 text-muted-foreground hover:bg-purple-950/20 hover:text-foreground"
                         }`}
                       >
                         <div className="flex items-center gap-3">
@@ -436,7 +436,7 @@ export function SkillsSection() {
                 </div>
 
                 {/* Detail view pane (2 Cols) */}
-                <div className="md:col-span-2 bg-black/10 rounded-xl border border-border/40 p-5 flex flex-col justify-center gap-3 min-h-[180px] text-center md:text-left">
+                <div className="md:col-span-2 bg-purple-950/15 dark:bg-purple-950/25 rounded-xl border border-purple-500/15 p-5 flex flex-col justify-center gap-3 min-h-[180px] text-center md:text-left">
                   <div key={activeBackend} className="space-y-1.5 animate-fade-in">
                     <p className="text-[10px] font-black text-primary uppercase tracking-widest">Database/Service</p>
                     <h4 className="text-sm font-extrabold text-foreground">{skillsData[activeBackend].name}</h4>
@@ -452,9 +452,9 @@ export function SkillsSection() {
 
           {/* 4. WORKFLOW & TOOLS (Col Span 1, Row Span 1) */}
           <div className={`flex flex-col ${inView ? "animate-scale-in delay-400" : "opacity-0"}`}>
-            <Card className="flex-grow border border-border/60 bg-card/60 backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:shadow-lg flex flex-col justify-between">
+            <Card className="flex-grow border border-purple-500/15 bg-purple-950/5 dark:bg-purple-950/15 backdrop-blur-md rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-purple-500/30 hover:shadow-[0_0_25px_rgba(139,92,246,0.15)] flex flex-col justify-between">
 
-              <div className="px-5 py-4 border-b border-border/50 flex items-center justify-between bg-muted/30">
+              <div className="px-5 py-4 border-b border-purple-500/15 flex items-center justify-between bg-purple-950/20 dark:bg-purple-950/30">
                 <div className="flex items-center gap-1.5">
                   <Terminal className="h-4 w-4 text-primary" />
                   <span className="text-xs font-bold text-foreground">Tools &amp; Utilities</span>
@@ -465,7 +465,7 @@ export function SkillsSection() {
               <div className="p-5 flex-grow flex flex-col justify-between gap-5">
                 
                 {/* SVG Git Graph visual */}
-                <div className="relative flex-grow flex items-center justify-between px-3 bg-black/10 py-5 rounded-xl border border-border/35">
+                <div className="relative flex-grow flex items-center justify-between px-3 bg-purple-950/15 dark:bg-purple-950/25 py-5 rounded-xl border border-purple-500/15">
                   
                   {(["figma", "git", "github", "firebasehosting"] as const).map((key) => {
                     const icon = key === "firebasehosting" ? icons.firebase : icons[key]
@@ -496,7 +496,7 @@ export function SkillsSection() {
                 </div>
 
                 {/* Minimal description box */}
-                <div key={activeWorkflow} className="p-4 bg-black/10 rounded-lg border border-border/40 text-xs text-center md:text-left min-h-[80px] flex flex-col justify-center animate-fade-in font-medium text-muted-foreground leading-relaxed">
+                <div key={activeWorkflow} className="p-4 bg-purple-950/15 dark:bg-purple-950/25 rounded-lg border border-purple-500/15 text-xs text-center md:text-left min-h-[80px] flex flex-col justify-center animate-fade-in font-medium text-muted-foreground leading-relaxed font-semibold">
                   {activeWorkflow === "figma" && "Figma: Creating responsive user interface wireframes, prototypes, and asset blueprints."}
                   {activeWorkflow === "git" && "Git: Managing versions, branches, tracking revisions, and local file checkpoints."}
                   {activeWorkflow === "github" && "GitHub: Managing shared remote repositories, pulling requests, and automated testing."}
@@ -509,9 +509,9 @@ export function SkillsSection() {
 
           {/* 5. AI & AUTOMATION (Col Span 3) */}
           <div className={`lg:col-span-3 flex flex-col ${inView ? "animate-scale-in delay-500" : "opacity-0"}`}>
-            <Card className="flex-grow border border-border/60 bg-card/60 backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:shadow-lg flex flex-col justify-between">
+            <Card className="flex-grow border border-purple-500/15 bg-purple-950/5 dark:bg-purple-950/15 backdrop-blur-md rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-purple-500/30 hover:shadow-[0_0_25px_rgba(139,92,246,0.15)] flex flex-col justify-between">
               
-              <div className="px-5 py-4 border-b border-border/50 flex items-center justify-between bg-muted/30">
+              <div className="px-5 py-4 border-b border-purple-500/15 flex items-center justify-between bg-purple-950/20 dark:bg-purple-950/30">
                 <div className="flex items-center gap-1.5">
                   <Sparkles className="h-4 w-4 text-purple-500 dark:text-purple-400 animate-pulse" />
                   <span className="text-xs font-bold text-foreground">AI &amp; Automation Stack</span>
@@ -527,7 +527,7 @@ export function SkillsSection() {
 
               <div className="grid grid-cols-1 md:grid-cols-5 min-h-[200px]">
                 {/* Selected AI Tool Details Left (2 Cols) */}
-                <div className="md:col-span-2 border-r border-border/40 p-5 space-y-4 bg-muted/10 flex flex-col justify-center">
+                <div className="md:col-span-2 border-r border-purple-500/20 p-5 space-y-4 bg-purple-950/10 dark:bg-purple-950/20 flex flex-col justify-center">
                   <div key={activeAI} className="space-y-2 animate-fade-in">
                     <p className="text-[9px] font-black text-purple-500 dark:text-purple-400 uppercase tracking-widest">Selected Skill</p>
                     <h3 className="text-base font-black text-foreground">{skillsData[activeAI].name}</h3>
@@ -538,7 +538,7 @@ export function SkillsSection() {
                 </div>
 
                 {/* AI Chips Right (3 Cols) */}
-                <div className="md:col-span-3 p-6 flex flex-col justify-center bg-card/30">
+                <div className="md:col-span-3 p-6 flex flex-col justify-center bg-transparent">
                   <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
                     {(["agenticai", "mcp", "prompteng", "multiagent", "claude", "gemini", "chatgpt", "higgsfield", "cursor", "whatnot"] as const).map((key) => {
                       const icon = icons[key]
@@ -551,8 +551,8 @@ export function SkillsSection() {
                           onMouseEnter={() => setActiveAI(key)}
                           className={`flex flex-col items-center justify-center gap-2 px-2 py-3.5 rounded-xl cursor-default transition-all duration-300 border text-center backdrop-blur-md ${
                             isActive
-                              ? "bg-purple-500/20 border-purple-500/50 text-foreground scale-[1.02] shadow-[0_0_15px_rgba(139,92,246,0.2)]"
-                              : "bg-muted/20 border-border/30 text-muted-foreground hover:text-foreground hover:bg-muted/40 hover:border-border/50"
+                              ? "bg-purple-500/20 border-purple-500/50 text-foreground scale-[1.02] shadow-[0_0_15px_rgba(168,85,247,0.25)]"
+                              : "bg-purple-950/5 border-purple-500/10 text-muted-foreground hover:text-foreground hover:bg-purple-950/20 hover:border-purple-500/30"
                           }`}
                         >
                           <span

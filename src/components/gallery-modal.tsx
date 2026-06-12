@@ -70,14 +70,16 @@ export function GalleryModal({ isOpen, onClose }: GalleryModalProps) {
 
       {/* Content Container */}
       <div 
-        className={`relative z-[105] w-full max-w-6xl h-full max-h-[100dvh] overflow-y-auto px-6 py-20 sm:px-12 scrollbar-hide transition-all duration-500 ease-out ${
-          isAnimating ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 translate-y-8"
+        className={`relative z-[105] w-full max-w-6xl h-full max-h-[100dvh] overflow-y-auto px-6 py-20 sm:px-12 scrollbar-hide transition-all duration-500 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] ${
+          isAnimating 
+            ? "opacity-100 [transform:perspective(1000px)_rotateX(0deg)_translateY(0)_scale(1)]" 
+            : "opacity-0 [transform:perspective(1000px)_rotateX(15deg)_translateY(40px)_scale(0.97)]"
         }`}
       >
         <div className="mx-auto">
           {/* Header */}
           <div className="mb-16 text-center">
-            <h2 className="text-4xl sm:text-5xl font-black bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 bg-clip-text text-transparent tracking-widest uppercase mb-4 flex items-center justify-center gap-4">
+            <h2 className="text-4xl sm:text-5xl font-black bg-gradient-to-r from-cyan-400 via-purple-600 to-amber-500 bg-clip-text text-transparent tracking-widest uppercase mb-4 flex items-center justify-center gap-4">
               <span className="text-purple-400/40">HIDDEN</span> COLLECTION
             </h2>
             <p className="text-purple-200/50 text-sm sm:text-base max-w-lg mx-auto font-medium">

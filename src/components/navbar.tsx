@@ -70,9 +70,9 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-3.5 py-1.5 rounded-full transition-all duration-300 ${
+                className={`px-3.5 py-1.5 rounded-full transition-[color,box-shadow,background-color] duration-300 ${
                   isActive
-                    ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold shadow-[0_0_12px_rgba(168,85,247,0.45)]"
+                    ? "bg-gradient-to-r from-primary via-purple-600 to-indigo-500 text-white font-bold shadow-[0_0_12px_rgba(168,85,247,0.45)]"
                     : "text-muted-foreground hover:text-foreground hover:bg-purple-500/10 hover:shadow-[0_0_8px_rgba(139,92,246,0.05)]"
                 }`}
               >
@@ -113,9 +113,9 @@ export function Navbar() {
                         key={item.href}
                         href={item.href}
                         onClick={() => setIsOpen(false)}
-                        className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                        className={`px-3 py-2 rounded-lg text-sm font-medium transition-[color,box-shadow,background-color] duration-300 ${
                           isActive
-                            ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold shadow-[0_0_10px_rgba(168,85,247,0.35)]"
+                            ? "bg-gradient-to-r from-primary via-purple-600 to-indigo-500 text-white font-bold shadow-[0_0_10px_rgba(168,85,247,0.35)]"
                             : "text-muted-foreground hover:text-foreground hover:bg-purple-500/10"
                         }`}
                       >

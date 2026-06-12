@@ -4,8 +4,6 @@ import * as React from "react"
 
 export function CosmicBackground() {
   const [mounted, setMounted] = React.useState(false)
-  const [scrollY, setScrollY] = React.useState(0)
-  const [windowWidth, setWindowWidth] = React.useState(1200)
   const [stars, setStars] = React.useState<Array<{
     id: number;
     top: string;
@@ -18,86 +16,155 @@ export function CosmicBackground() {
   }>>([])
   const [trailStars, setTrailStars] = React.useState<Array<{
     id: string;
-    top: string;
-    verticalPosPx: number;
-    scatterX: number;
-    scatterY: number;
+    topPx: number;
+    rightPx: number;
     size: number;
     glow: boolean;
+    color: string;
+    glowColor: string;
   }>>([])
+
+  const blackHoleRef = React.useRef<HTMLDivElement>(null)
 
   React.useEffect(() => {
     setMounted(true)
-    setWindowWidth(window.innerWidth)
     
     // Generate 350 background stars
     const generatedStars = Array.from({ length: 350 }).map((_, i) => ({
       id: i,
       top: `${Math.random() * 100}%`,
       left: `${Math.random() * 100}%`,
-      size: Math.random() * 2.5 + 0.6, // 0.6px to 3.1px
+      size: Math.random() * 2.5 + 0.6,
       delay: `${Math.random() * 6}s`,
       duration: `${Math.random() * 4 + 3}s`,
-      driftX: `${(Math.random() - 0.5) * 15}px`, // subtle slow drift over time
+      driftX: `${(Math.random() - 0.5) * 15}px`,
       driftY: `${(Math.random() - 0.5) * 15}px`,
     }))
     setStars(generatedStars)
 
-    // Generate 80 trail stars tracing the wave path
-    const generatedTrail = Array.from({ length: 80 }).map((_, i) => {
-      const pct = i / 79; // 0 to 1
-      const verticalPosPx = pct * 5500; // estimated page height
-      return {
-        id: `trail-${i}`,
-        top: `${pct * 100}%`,
-        verticalPosPx,
-        scatterX: (Math.random() - 0.5) * 70, // horizontal spread around path
-        scatterY: (Math.random() - 0.5) * 20, // vertical height scatter
-        size: Math.random() * 1.8 + 0.7, // 0.7px to 2.5px
-        glow: Math.random() > 0.4,
-      };
-    });
-    setTrailStars(generatedTrail)
+    const getInterpolatedX = (scrollYVal: number, amplitude: number, freshHeight: number) => {
+      const sections = ["about", "skills", "experience", "achievements", "projects", "contact"]
+      const tops = sections.map((id, idx) => {
+        const el = document.getElementById(id)
+        return el ? el.offsetTop : idx * freshHeight
+      })
 
+      const s = Math.max(0, scrollYVal)
+      let k = 0
+      for (let i = 0; i < tops.length - 1; i++) {
+        if (s >= tops[i] && s < tops[i+1]) {
+          k = i
+          break
+        }
+      }
+      if (s >= tops[tops.length - 1]) {
+        k = tops.length - 2
+      }
+
+      const T_k = tops[k]
+      const T_kp1 = tops[k+1]
+      const diff = T_kp1 - T_k
+      const p = diff > 0 ? Math.min(1, Math.max(0, (s - T_k) / diff)) : 0
+
+      // Target position: even index (about, experience, projects) = right (0)
+      // Odd index (skills, achievements, contact) = left (-amplitude)
+      const targetA = (k % 2 === 0) ? 0 : -amplitude
+      const targetB = ((k + 1) % 2 === 0) ? 0 : -amplitude
+
+      const cos_p = (1 - Math.cos(p * Math.PI)) / 2
+      return targetA + (targetB - targetA) * cos_p
+    }
+
+    const updateDimensions = () => {
+      const freshWidth = window.innerWidth
+      const freshHeight = window.innerHeight
+      const rightOffsetPx = freshWidth > 768 ? freshWidth * 0.06 : freshWidth * 0.02
+      const bhWidth = freshWidth > 768 ? 420 : 320
+      const amplitude = Math.max(50, freshWidth - rightOffsetPx * 2 - bhWidth)
+      const viewportYOffset = freshHeight * 0.15
+
+      // Generate 120 trail stars along the curve down the page
+      const totalStars = 120
+      const generatedTrail = Array.from({ length: totalStars }).map((_, i) => {
+        const verticalPosPx = (i / (totalStars - 1)) * 7500
+        const xTranslation = getInterpolatedX(verticalPosPx - viewportYOffset, amplitude, freshHeight)
+        const scatterX = (Math.random() - 0.5) * 80
+        const scatterY = (Math.random() - 0.5) * 30
+        
+        return {
+          id: `trail-${i}`,
+          topPx: verticalPosPx + scatterY,
+          rightPx: rightOffsetPx - (xTranslation + scatterX),
+          size: Math.random() * 3.5 + 1.2,
+          glow: Math.random() > 0.35,
+          color: Math.random() > 0.5 
+            ? "bg-cyan-400/50 dark:bg-cyan-400/60" 
+            : "bg-purple-400/50 dark:bg-purple-400/60",
+          glowColor: Math.random() > 0.5 
+            ? "rgba(34, 211, 238, 0.6)" 
+            : "rgba(168, 85, 247, 0.6)",
+        }
+      })
+      setTrailStars(generatedTrail)
+    }
+
+    // Butter-smooth scroll updates using requestAnimationFrame directly on the DOM Ref
+    let ticking = false
     const handleScroll = () => {
-      setScrollY(window.scrollY)
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY
+          const freshWidth = window.innerWidth
+          const freshHeight = window.innerHeight
+          const rightOffsetPx = freshWidth > 768 ? freshWidth * 0.06 : freshWidth * 0.02
+          const bhWidth = freshWidth > 768 ? 420 : 320
+          const amplitude = Math.max(50, freshWidth - rightOffsetPx * 2 - bhWidth)
+          
+          const x = getInterpolatedX(scrollY, amplitude, freshHeight)
+
+          if (blackHoleRef.current) {
+            blackHoleRef.current.style.transform = `translate3d(${x}px, 0px, 0)`
+          }
+          ticking = false
+        })
+        ticking = true
+      }
     }
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth)
-    }
+
+    // Initial setup
+    updateDimensions()
+    handleScroll()
 
     window.addEventListener("scroll", handleScroll, { passive: true })
-    window.addEventListener("resize", handleResize, { passive: true })
-    
-    // Trigger initial calculation
-    handleScroll()
+    window.addEventListener("resize", updateDimensions, { passive: true })
 
     return () => {
       window.removeEventListener("scroll", handleScroll)
-      window.removeEventListener("resize", handleResize)
+      window.removeEventListener("resize", updateDimensions)
     }
   }, [])
 
   if (!mounted) return null
 
-  // Calculate wavy scroll path (snake movement) - 1000px wavelength for a gentle wave
-  const amplitude = windowWidth > 1024 ? (windowWidth * 0.55) : (windowWidth * 0.3)
-  // Normalizes the wave starting point: at scrollY=0, offset is 0.
-  const x = (Math.sin(scrollY / 1000 - Math.PI / 2) + 1) * (-amplitude / 2)
-  // Add a natural slow vertical wobble
-  const y = Math.cos(scrollY / 200) * 20
+  // Server-side / Initial render position (aligns with scrollY = 0)
+  const initialWidth = typeof window !== "undefined" ? window.innerWidth : 1200
+  const initialAmp = initialWidth > 1024 ? (initialWidth * 0.55) : (initialWidth * 0.3)
+  const initialX = 0 // at scrollY = 0, cos(0) = 1, so (1-1)*amp/2 = 0
+  const initialY = 15 // cos(0) * 15 = 15
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 w-full min-h-full">
       {/* Dynamic Keyframes for 3D spinning accretion rings */}
       <style>{`
         @keyframes cosmic-spin-3d-cw {
-          0% { transform: rotateX(70deg) rotateY(12deg) rotateZ(0deg); }
-          100% { transform: rotateX(70deg) rotateY(12deg) rotateZ(360deg); }
+          0% { transform: rotateX(68deg) rotateY(8deg) rotateZ(360deg); }
+          50% { transform: rotateX(72deg) rotateY(16deg) rotateZ(180deg); }
+          100% { transform: rotateX(68deg) rotateY(8deg) rotateZ(0deg); }
         }
         @keyframes cosmic-spin-3d-ccw {
-          0% { transform: rotateX(72deg) rotateY(-10deg) rotateZ(360deg); }
-          100% { transform: rotateX(72deg) rotateY(-10deg) rotateZ(0deg); }
+          0% { transform: rotateX(74deg) rotateY(-8deg) rotateZ(0deg); }
+          50% { transform: rotateX(70deg) rotateY(-12deg) rotateZ(180deg); }
+          100% { transform: rotateX(74deg) rotateY(-8deg) rotateZ(360deg); }
         }
       `}</style>
       
@@ -121,30 +188,7 @@ export function CosmicBackground() {
         ))}
       </div>
 
-      {/* ── 1.5 DUST TRAIL PATH FOR THE BLACK HOLE ── */}
-      <div className="absolute inset-0 z-0">
-        {trailStars.map((star) => {
-          // Same wave path logic used for the black hole scroll offset
-          const waveOffset = (Math.sin(star.verticalPosPx / 1000 - Math.PI / 2) + 1) * (-amplitude / 2);
-          const rightPos = `calc(${windowWidth > 768 ? '6%' : '2%'} - ${waveOffset + star.scatterX}px)`;
-          return (
-            <div
-              key={star.id}
-              className="absolute rounded-full bg-cyan-400/30 dark:bg-cyan-300/50 animate-pulse"
-              style={{
-                top: `calc(${star.top} + ${star.scatterY}px)`,
-                right: rightPos,
-                width: `${star.size}px`,
-                height: `${star.size}px`,
-                boxShadow: star.glow ? "0 0 6px 1.5px rgba(34, 211, 238, 0.4)" : "none",
-                animationDuration: `${Math.random() * 3 + 2.5}s`,
-              }}
-            />
-          );
-        })}
-      </div>
-
-      {/* ── 2. JHIN THEME NEBULAS (Gas Clouds behind each section) ── */}
+      {/* ── 2. JHIN THEME NEBULAS ── */}
       <div className="absolute top-[3%] left-[-15%] w-[65vw] h-[65vw] rounded-full bg-purple-600/15 dark:bg-purple-500/20 blur-[150px] pointer-events-none animate-pulse" style={{ animationDuration: '16s' }} />
       <div className="absolute top-[22%] right-[-10%] w-[55vw] h-[55vw] rounded-full bg-cyan-500/12 dark:bg-cyan-400/15 blur-[130px] pointer-events-none animate-pulse" style={{ animationDuration: '14s' }} />
       <div className="absolute top-[44%] left-[-15%] w-[60vw] h-[60vw] rounded-full bg-pink-500/12 dark:bg-pink-400/15 blur-[140px] pointer-events-none animate-pulse" style={{ animationDuration: '18s' }} />
@@ -152,11 +196,30 @@ export function CosmicBackground() {
       <div className="absolute top-[80%] left-[-15%] w-[55vw] h-[55vw] rounded-full bg-cyan-500/10 dark:bg-indigo-500/15 blur-[120px] pointer-events-none animate-pulse" style={{ animationDuration: '20s' }} />
       <div className="absolute top-[92%] right-[-10%] w-[65vw] h-[65vw] rounded-full bg-pink-500/15 dark:bg-purple-500/20 blur-[150px] pointer-events-none animate-pulse" style={{ animationDuration: '15s' }} />
 
-      {/* ── 3. DETAILED ARTISTIC SVG BLACK HOLE (3D Rotating Accretion Disk & Snake-path translation) ── */}
+      {/* ── 2.5 DUST TRAIL PATH FOR THE BLACK HOLE (S-Curve Trail) ── */}
+      <div className="absolute inset-0 z-0">
+        {trailStars.map((star) => (
+          <div
+            key={star.id}
+            className={`absolute rounded-full ${star.color} animate-pulse`}
+            style={{
+              top: `${star.topPx}px`,
+              right: `${star.rightPx}px`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              boxShadow: star.glow ? `0 0 10px 2.5px ${star.glowColor}` : "none",
+              animationDuration: `${Math.random() * 3 + 2.5}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* ── 3. DETAILED ARTISTIC SVG BLACK HOLE ── */}
       <div 
+        ref={blackHoleRef}
         className="fixed top-[15%] right-[2%] md:right-[6%] w-[320px] h-[320px] md:w-[420px] md:h-[420px] pointer-events-none select-none opacity-25 dark:opacity-85 transition-opacity duration-700 z-0"
         style={{
-          transform: `translate3d(${x}px, ${y}px, 0)`,
+          transform: `translate3d(${initialX}px, ${initialY}px, 0)`,
         }}
       >
         <div className="w-full h-full relative">
@@ -191,7 +254,7 @@ export function CosmicBackground() {
             <div 
               className="absolute inset-0 [transform-style:preserve-3d]"
               style={{
-                animation: 'cosmic-spin-3d-cw 45s linear infinite',
+                animation: 'cosmic-spin-3d-cw 12s linear infinite',
               }}
             >
               <svg viewBox="0 0 200 200" className="w-full h-full">
@@ -236,7 +299,7 @@ export function CosmicBackground() {
             <div 
               className="absolute inset-0 [transform-style:preserve-3d]"
               style={{
-                animation: 'cosmic-spin-3d-ccw 22s linear infinite',
+                animation: 'cosmic-spin-3d-ccw 5s linear infinite',
               }}
             >
               <svg viewBox="0 0 200 200" className="w-full h-full">

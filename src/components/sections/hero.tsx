@@ -167,6 +167,7 @@ export function HeroSection() {
                       inset: 0,
                       backfaceVisibility: "hidden",
                       WebkitBackfaceVisibility: "hidden",
+                      pointerEvents: isFlipped ? "none" : "auto",
                     }}
                   >
                     <div className="relative z-10 flex-1 w-full rounded-xl overflow-hidden flex items-center justify-center">
@@ -196,28 +197,29 @@ export function HeroSection() {
 
                   {/* ── BACK: Profile Highlights Dashboard ── */}
                   <div
-                    className="rounded-2xl bg-[#090714] dark:bg-[#07070a] p-6 profile-card-back flex flex-col justify-between relative group/card border border-purple-900/20 dark:border-purple-500/30 transition-all duration-500 hover:border-primary/60 hover:shadow-[0_0_25px_rgba(139,92,246,0.25)] dark:hover:border-primary/50 dark:hover:shadow-[0_0_30px_rgba(139,92,246,0.35)]"
+                    className="rounded-2xl bg-card dark:bg-[#07070a] p-6 flex flex-col justify-between relative group/card border border-border/70 dark:border-white/5 transition-all duration-500 shadow-2xl hover:border-primary/60 hover:shadow-[0_0_25px_rgba(139,92,246,0.25)] dark:hover:border-primary/50 dark:hover:shadow-[0_0_30px_rgba(139,92,246,0.35)] min-h-0 overflow-hidden"
                     style={{
                       position: "absolute",
                       inset: 0,
                       backfaceVisibility: "hidden",
                       WebkitBackfaceVisibility: "hidden",
                       transform: "rotateY(180deg)",
+                      pointerEvents: isFlipped ? "auto" : "none",
                     }}
                   >
-                    <div className="flex items-center justify-between border-b border-slate-800/80 pb-3">
+                    <div className="flex items-center justify-between border-b border-slate-800/80 pb-3 shrink-0">
                       <div className="flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]"></span>
                         <span className="text-xs font-mono font-bold text-emerald-400">developer.json</span>
                       </div>
                       
-                      <div className="flex items-center gap-1.5 text-slate-400 dark:text-white/60 group-hover/card:text-slate-100 dark:group-hover/card:text-white transition-colors px-2.5 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
-                        <span className="text-[9px] font-bold uppercase tracking-wider">Return</span>
-                        <RefreshCw className="w-3 h-3" />
+                      <div className="flex items-center gap-1.5 text-slate-600 dark:text-white/60 group-hover/card:text-slate-900 dark:group-hover/card:text-white transition-colors px-3 py-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 backdrop-blur-md">
+                        <span className="text-[10px] font-bold uppercase tracking-wider">Return</span>
+                        <RefreshCw className="w-3.5 h-3.5" />
                       </div>
                     </div>
 
-                    <div className="font-mono text-[10px] sm:text-[11px] md:text-[12px] space-y-1.5 mt-5 flex-1 text-slate-300 leading-normal overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+                    <div className="font-mono text-[10px] sm:text-[11px] md:text-[12px] space-y-1.5 mt-5 flex-1 text-slate-300 leading-normal overflow-y-auto min-h-0" onClick={(e) => e.stopPropagation()}>
                       <p><span className="text-violet-400 font-bold">const</span> <span className="text-indigo-300">developer</span> = <span className="text-slate-400">{"{"}</span></p>
                       <p className="pl-4"><span className="text-indigo-300">name</span>: <span className="text-emerald-400">&quot;Railey Mitchell Q. Capitis&quot;</span><span className="text-slate-400">,</span></p>
                       <p className="pl-4"><span className="text-indigo-300">degree</span>: <span className="text-emerald-400">&quot;Bachelor of Science in Information Technology&quot;</span><span className="text-slate-400">,</span></p>
