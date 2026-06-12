@@ -16,12 +16,21 @@ export function CosmicBackground() {
     driftX: string;
     driftY: string;
   }>>([])
+  const [trailStars, setTrailStars] = React.useState<Array<{
+    id: string;
+    top: string;
+    verticalPosPx: number;
+    scatterX: number;
+    scatterY: number;
+    size: number;
+    glow: boolean;
+  }>>([])
 
   React.useEffect(() => {
     setMounted(true)
     setWindowWidth(window.innerWidth)
     
-    // Generate 350 stars to cover the entire page height densely
+    // Generate 350 background stars
     const generatedStars = Array.from({ length: 350 }).map((_, i) => ({
       id: i,
       top: `${Math.random() * 100}%`,
@@ -33,6 +42,22 @@ export function CosmicBackground() {
       driftY: `${(Math.random() - 0.5) * 15}px`,
     }))
     setStars(generatedStars)
+
+    // Generate 80 trail stars tracing the wave path
+    const generatedTrail = Array.from({ length: 80 }).map((_, i) => {
+      const pct = i / 79; // 0 to 1
+      const verticalPosPx = pct * 5500; // estimated page height
+      return {
+        id: `trail-${i}`,
+        top: `${pct * 100}%`,
+        verticalPosPx,
+        scatterX: (Math.random() - 0.5) * 70, // horizontal spread around path
+        scatterY: (Math.random() - 0.5) * 20, // vertical height scatter
+        size: Math.random() * 1.8 + 0.7, // 0.7px to 2.5px
+        glow: Math.random() > 0.4,
+      };
+    });
+    setTrailStars(generatedTrail)
 
     const handleScroll = () => {
       setScrollY(window.scrollY)
@@ -55,11 +80,10 @@ export function CosmicBackground() {
 
   if (!mounted) return null
 
-  // Calculate wavy scroll path (snake movement)
-  // The black hole swings left and right as the user scrolls
+  // Calculate wavy scroll path (snake movement) - 1000px wavelength for a gentle wave
   const amplitude = windowWidth > 1024 ? (windowWidth * 0.55) : (windowWidth * 0.3)
   // Normalizes the wave starting point: at scrollY=0, offset is 0.
-  const x = (Math.sin(scrollY / 400 - Math.PI / 2) + 1) * (-amplitude / 2)
+  const x = (Math.sin(scrollY / 1000 - Math.PI / 2) + 1) * (-amplitude / 2)
   // Add a natural slow vertical wobble
   const y = Math.cos(scrollY / 200) * 20
 
@@ -97,6 +121,29 @@ export function CosmicBackground() {
         ))}
       </div>
 
+      {/* ── 1.5 DUST TRAIL PATH FOR THE BLACK HOLE ── */}
+      <div className="absolute inset-0 z-0">
+        {trailStars.map((star) => {
+          // Same wave path logic used for the black hole scroll offset
+          const waveOffset = (Math.sin(star.verticalPosPx / 1000 - Math.PI / 2) + 1) * (-amplitude / 2);
+          const rightPos = `calc(${windowWidth > 768 ? '6%' : '2%'} - ${waveOffset + star.scatterX}px)`;
+          return (
+            <div
+              key={star.id}
+              className="absolute rounded-full bg-cyan-400/30 dark:bg-cyan-300/50 animate-pulse"
+              style={{
+                top: `calc(${star.top} + ${star.scatterY}px)`,
+                right: rightPos,
+                width: `${star.size}px`,
+                height: `${star.size}px`,
+                boxShadow: star.glow ? "0 0 6px 1.5px rgba(34, 211, 238, 0.4)" : "none",
+                animationDuration: `${Math.random() * 3 + 2.5}s`,
+              }}
+            />
+          );
+        })}
+      </div>
+
       {/* ── 2. JHIN THEME NEBULAS (Gas Clouds behind each section) ── */}
       <div className="absolute top-[3%] left-[-15%] w-[65vw] h-[65vw] rounded-full bg-purple-600/15 dark:bg-purple-500/20 blur-[150px] pointer-events-none animate-pulse" style={{ animationDuration: '16s' }} />
       <div className="absolute top-[22%] right-[-10%] w-[55vw] h-[55vw] rounded-full bg-cyan-500/12 dark:bg-cyan-400/15 blur-[130px] pointer-events-none animate-pulse" style={{ animationDuration: '14s' }} />
@@ -114,9 +161,32 @@ export function CosmicBackground() {
       >
         <div className="w-full h-full relative">
           
-          {/* 3D Accretion Rings Environment */}
+          {/* 3D Accretion Rings & Core Environment */}
           <div className="absolute inset-0 [perspective:1000px] [transform-style:preserve-3d]">
             
+            {/* 3. Static 2D Core placed at Z=0 in the 3D space */}
+            <div 
+              className="absolute inset-0 [transform-style:preserve-3d] z-10"
+              style={{
+                transform: 'translateZ(0px)',
+              }}
+            >
+              <svg viewBox="0 0 200 200" className="w-full h-full">
+                <defs>
+                  <radialGradient id="singularityGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="#000000" />
+                    <stop offset="60%" stopColor="#000000" />
+                    <stop offset="80%" stopColor="#7c3aed" stopOpacity="0.45" />
+                    <stop offset="100%" stopColor="#06b6d4" stopOpacity="0" />
+                  </radialGradient>
+                </defs>
+                
+                <circle cx="100" cy="100" r="39" fill="url(#singularityGlow)" />
+                <circle cx="100" cy="100" r="29" fill="#000000" />
+                <circle cx="100" cy="100" r="29.5" fill="none" stroke="#d8b4fe" strokeWidth="0.8" opacity="0.4" />
+              </svg>
+            </div>
+
             {/* Clockwise Outer Accretion Layer */}
             <div 
               className="absolute inset-0 [transform-style:preserve-3d]"
@@ -185,24 +255,6 @@ export function CosmicBackground() {
               </svg>
             </div>
 
-          </div>
-
-          {/* Central Singularity & Event Horizon Glow (Flat 2D, sits in front of the disc wraps) */}
-          <div className="absolute inset-0 z-10">
-            <svg viewBox="0 0 200 200" className="w-full h-full">
-              <defs>
-                <radialGradient id="singularityGlow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#000000" />
-                  <stop offset="60%" stopColor="#000000" />
-                  <stop offset="80%" stopColor="#7c3aed" stopOpacity="0.45" />
-                  <stop offset="100%" stopColor="#06b6d4" stopOpacity="0" />
-                </radialGradient>
-              </defs>
-              
-              <circle cx="100" cy="100" r="39" fill="url(#singularityGlow)" />
-              <circle cx="100" cy="100" r="29" fill="#000000" />
-              <circle cx="100" cy="100" r="29.5" fill="none" stroke="#d8b4fe" strokeWidth="0.8" opacity="0.4" />
-            </svg>
           </div>
 
           {/* 4-Pointed Celestial Star Flare (Jhin crown signature highlight) */}

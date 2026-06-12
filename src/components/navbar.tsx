@@ -72,7 +72,7 @@ export function Navbar() {
                 href={item.href}
                 className={`px-3.5 py-1.5 rounded-full transition-all duration-300 ${
                   isActive
-                    ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold shadow-[0_0_12px_rgba(168,85,247,0.45)] border border-purple-400/20"
+                    ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold shadow-[0_0_12px_rgba(168,85,247,0.45)]"
                     : "text-muted-foreground hover:text-foreground hover:bg-purple-500/10 hover:shadow-[0_0_8px_rgba(139,92,246,0.05)]"
                 }`}
               >

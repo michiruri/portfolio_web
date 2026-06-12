@@ -196,7 +196,7 @@ export function HeroSection() {
 
                   {/* ── BACK: Profile Highlights Dashboard ── */}
                   <div
-                    className="rounded-2xl bg-[#090714] dark:bg-[#07070a] p-6 profile-card-back flex flex-col justify-between border border-purple-900/20 dark:border-purple-500/30 transition-all duration-500 hover:border-primary/60 hover:shadow-[0_0_25px_rgba(139,92,246,0.25)] dark:hover:border-primary/50 dark:hover:shadow-[0_0_30px_rgba(139,92,246,0.35)]"
+                    className="rounded-2xl bg-[#090714] dark:bg-[#07070a] p-6 profile-card-back flex flex-col justify-between relative group/card border border-purple-900/20 dark:border-purple-500/30 transition-all duration-500 hover:border-primary/60 hover:shadow-[0_0_25px_rgba(139,92,246,0.25)] dark:hover:border-primary/50 dark:hover:shadow-[0_0_30px_rgba(139,92,246,0.35)]"
                     style={{
                       position: "absolute",
                       inset: 0,
@@ -217,7 +217,7 @@ export function HeroSection() {
                       </div>
                     </div>
 
-                    <div className="font-mono text-[10px] sm:text-[11px] md:text-[12px] space-y-1.5 mt-5 flex-1 text-slate-300 leading-normal overflow-y-auto">
+                    <div className="font-mono text-[10px] sm:text-[11px] md:text-[12px] space-y-1.5 mt-5 flex-1 text-slate-300 leading-normal overflow-y-auto" onClick={(e) => e.stopPropagation()}>
                       <p><span className="text-violet-400 font-bold">const</span> <span className="text-indigo-300">developer</span> = <span className="text-slate-400">{"{"}</span></p>
                       <p className="pl-4"><span className="text-indigo-300">name</span>: <span className="text-emerald-400">&quot;Railey Mitchell Q. Capitis&quot;</span><span className="text-slate-400">,</span></p>
                       <p className="pl-4"><span className="text-indigo-300">degree</span>: <span className="text-emerald-400">&quot;Bachelor of Science in Information Technology&quot;</span><span className="text-slate-400">,</span></p>
