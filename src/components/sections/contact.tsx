@@ -57,7 +57,7 @@ export function ContactSection() {
 
         {/* Unified Connected Card */}
         <div className={`max-w-3xl mx-auto ${inView ? "animate-scale-in delay-200" : "opacity-0"}`}>
-          <Card className={`border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden hover:border-primary/20 transition-all duration-500 ${isLight ? "hover:shadow-[0_0_25px_rgba(249,115,22,0.08)]" : "hover:shadow-[0_0_25px_rgba(139,92,246,0.05)]"}`}>
+          <Card className={`border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden hover:border-primary/20 transition-all duration-500 p-0 py-0 ${isLight ? "hover:shadow-[0_0_25px_rgba(249,115,22,0.08)]" : "hover:shadow-[0_0_25px_rgba(139,92,246,0.05)]"}`}>
             <div className="grid md:grid-cols-12 divide-y md:divide-y-0 md:divide-x divide-border/40 dark:divide-white/5 items-stretch">
               
               {/* Left Column: What to Expect */}

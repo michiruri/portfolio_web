@@ -272,7 +272,7 @@ export function SkillsSection() {
         <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto ${inView ? "animate-fade-up delay-100" : "opacity-0"}`}>
           
           {/* Card 1: Client-Side Console */}
-          <Card className={`border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-primary/20 dark:hover:border-primary/20 ${isLight ? "hover:shadow-[0_0_35px_rgba(249,115,22,0.08)]" : "hover:shadow-[0_0_35px_rgba(139,92,246,0.06)]"} flex flex-col justify-between min-h-[460px] md:min-h-[420px]`}>
+          <Card className={`border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-primary/20 dark:hover:border-primary/20 ${isLight ? "hover:shadow-[0_0_35px_rgba(249,115,22,0.08)]" : "hover:shadow-[0_0_35px_rgba(139,92,246,0.06)]"} flex flex-col justify-between min-h-[460px] md:min-h-[420px] p-0 py-0 gap-0`}>
             {/* Header */}
             <div className={`px-5 py-4 border-b border-border/70 dark:border-white/5 flex items-center justify-between transition-colors duration-300 ${isLight ? "bg-orange-500/[0.04]" : "bg-black/10 dark:bg-black/20"}`}>
               <div className="flex items-center gap-2">
@@ -309,7 +309,7 @@ export function SkillsSection() {
             {/* Content Body */}
             <div className="flex-grow grid grid-cols-1 md:grid-cols-5 min-h-0">
               {/* Telemetry Details Left (2 Cols) */}
-              <div className={`md:col-span-2 border-r border-border/70 dark:border-white/5 p-5 transition-colors duration-300 ${isLight ? "bg-orange-500/[0.02]" : "bg-black/5 dark:bg-black/10"} flex flex-col justify-between`}>
+              <div className={`md:col-span-2 border-b md:border-b-0 md:border-r border-border/70 dark:border-white/5 p-5 transition-colors duration-300 ${isLight ? "bg-orange-500/[0.02]" : "bg-black/5 dark:bg-black/10"} flex flex-col justify-between`}>
                 <div className="space-y-3">
                   <div className="flex items-center gap-1.5 text-[9px] font-black text-muted-foreground uppercase tracking-widest">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -380,7 +380,7 @@ export function SkillsSection() {
           </Card>
 
           {/* Card 2: Backend & Databases */}
-          <Card className={`border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-primary/20 dark:hover:border-primary/20 ${isLight ? "hover:shadow-[0_0_35px_rgba(249,115,22,0.08)]" : "hover:shadow-[0_0_35px_rgba(139,92,246,0.06)]"} flex flex-col justify-between min-h-[460px] md:min-h-[420px]`}>
+          <Card className={`border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-primary/20 dark:hover:border-primary/20 ${isLight ? "hover:shadow-[0_0_35px_rgba(249,115,22,0.08)]" : "hover:shadow-[0_0_35px_rgba(139,92,246,0.06)]"} flex flex-col justify-between min-h-[460px] md:min-h-[420px] p-0 py-0 gap-0`}>
             {/* Header */}
             <div className={`px-5 py-4 border-b border-border/70 dark:border-white/5 flex items-center justify-between transition-colors duration-300 ${isLight ? "bg-orange-500/[0.04]" : "bg-black/10 dark:bg-black/20"}`}>
               <div className="flex items-center gap-2">
@@ -396,7 +396,7 @@ export function SkillsSection() {
             {/* Content Body */}
             <div className="flex-grow grid grid-cols-1 md:grid-cols-5 min-h-0">
               {/* Telemetry Details Left (2 Cols) */}
-              <div className={`md:col-span-2 border-r border-border/70 dark:border-white/5 p-5 transition-colors duration-300 ${isLight ? "bg-orange-500/[0.02]" : "bg-black/5 dark:bg-black/10"} flex flex-col justify-between`}>
+              <div className={`md:col-span-2 border-b md:border-b-0 md:border-r border-border/70 dark:border-white/5 p-5 transition-colors duration-300 ${isLight ? "bg-orange-500/[0.02]" : "bg-black/5 dark:bg-black/10"} flex flex-col justify-between`}>
                 <div className="space-y-3">
                   <div className="flex items-center gap-1.5 text-[9px] font-black text-muted-foreground uppercase tracking-widest">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -460,7 +460,7 @@ export function SkillsSection() {
           </Card>
 
           {/* Card 3: AI & Agentic Core */}
-          <Card className={`border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-primary/20 dark:hover:border-primary/20 ${isLight ? "hover:shadow-[0_0_35px_rgba(249,115,22,0.08)]" : "hover:shadow-[0_0_35px_rgba(139,92,246,0.06)]"} flex flex-col justify-between min-h-[400px]`}>
+          <Card className={`border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-primary/20 dark:hover:border-primary/20 ${isLight ? "hover:shadow-[0_0_35px_rgba(249,115,22,0.08)]" : "hover:shadow-[0_0_35px_rgba(139,92,246,0.06)]"} flex flex-col justify-between min-h-[400px] p-0 py-0 gap-0`}>
             {/* Header */}
             <div className={`px-5 py-4 border-b border-border/70 dark:border-white/5 flex items-center justify-between transition-colors duration-300 ${isLight ? "bg-orange-500/[0.04]" : "bg-black/10 dark:bg-black/20"}`}>
               <div className="flex items-center gap-2">
@@ -479,7 +479,7 @@ export function SkillsSection() {
             {/* Content Body */}
             <div className="flex-grow grid grid-cols-1 md:grid-cols-5 min-h-0">
               {/* Telemetry Details Left (2 Cols) */}
-              <div className={`md:col-span-2 border-r border-border/70 dark:border-white/5 p-5 transition-colors duration-300 ${isLight ? "bg-orange-500/[0.02]" : "bg-black/5 dark:bg-black/10"} flex flex-col justify-between`}>
+              <div className={`md:col-span-2 border-b md:border-b-0 md:border-r border-border/70 dark:border-white/5 p-5 transition-colors duration-300 ${isLight ? "bg-orange-500/[0.02]" : "bg-black/5 dark:bg-black/10"} flex flex-col justify-between`}>
                 <div className="space-y-3">
                   <div className="flex items-center gap-1.5 text-[9px] font-black text-muted-foreground uppercase tracking-widest">
                     <span className={`w-1.5 h-1.5 rounded-full ${isLight ? "bg-primary" : "bg-purple-400"} animate-pulse`} />
@@ -547,7 +547,7 @@ export function SkillsSection() {
           </Card>
 
           {/* Card 4: Developer Systems & Ops */}
-          <Card className={`border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-primary/20 dark:hover:border-primary/20 ${isLight ? "hover:shadow-[0_0_35px_rgba(249,115,22,0.08)]" : "hover:shadow-[0_0_35px_rgba(139,92,246,0.06)]"} flex flex-col justify-between min-h-[400px]`}>
+          <Card className={`border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-primary/20 dark:hover:border-primary/20 ${isLight ? "hover:shadow-[0_0_35px_rgba(249,115,22,0.08)]" : "hover:shadow-[0_0_35px_rgba(139,92,246,0.06)]"} flex flex-col justify-between min-h-[400px] p-0 py-0 gap-0`}>
             {/* Header */}
             <div className={`px-5 py-4 border-b border-border/70 dark:border-white/5 flex items-center justify-between transition-colors duration-300 ${isLight ? "bg-orange-500/[0.04]" : "bg-black/10 dark:bg-black/20"}`}>
               <div className="flex items-center gap-2">
@@ -563,7 +563,7 @@ export function SkillsSection() {
             {/* Content Body */}
             <div className="flex-grow grid grid-cols-1 md:grid-cols-5 min-h-0">
               {/* Telemetry Details Left (2 Cols) */}
-              <div className={`md:col-span-2 border-r border-border/70 dark:border-white/5 p-5 transition-colors duration-300 ${isLight ? "bg-orange-500/[0.02]" : "bg-black/5 dark:bg-black/10"} flex flex-col justify-between`}>
+              <div className={`md:col-span-2 border-b md:border-b-0 md:border-r border-border/70 dark:border-white/5 p-5 transition-colors duration-300 ${isLight ? "bg-orange-500/[0.02]" : "bg-black/5 dark:bg-black/10"} flex flex-col justify-between`}>
                 <div className="space-y-3">
                   <div className="flex items-center gap-1.5 text-[9px] font-black text-muted-foreground uppercase tracking-widest">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />

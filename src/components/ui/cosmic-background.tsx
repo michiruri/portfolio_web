@@ -170,6 +170,18 @@ export function CosmicBackground() {
           50% { transform: rotateX(70deg) rotateY(-12deg) rotateZ(180deg); }
           100% { transform: rotateX(74deg) rotateY(-8deg) rotateZ(360deg); }
         }
+        @keyframes sun-corona-cw {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        @keyframes sun-corona-ccw {
+          0% { transform: rotate(360deg); }
+          100% { transform: rotate(0deg); }
+        }
+        @keyframes sun-pulse-subtle {
+          0%, 100% { transform: scale(1); opacity: 0.95; }
+          50% { transform: scale(1.04); opacity: 1; }
+        }
       `}</style>
       
       {/* ── 1. DENSE TWINKLING & DRIFTING STARS LAYER ── */}
@@ -227,164 +239,198 @@ export function CosmicBackground() {
         }}
       >
         <div className="w-full h-full relative">
-          
-          {/* 3D Accretion Rings & Core Environment */}
-          <div className="absolute inset-0 [perspective:1000px] [transform-style:preserve-3d]">
-            
-            {/* 3. Static 2D Core placed at Z=0 in the 3D space */}
-            <div 
-              className="absolute inset-0 [transform-style:preserve-3d] z-10"
-              style={{
-                transform: 'translateZ(0px)',
-              }}
-            >
-              <svg viewBox="0 0 200 200" className="w-full h-full">
-                <defs>
-                  <radialGradient id="singularityGlow" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#000000" />
-                    <stop offset="60%" stopColor="#000000" />
-                    <stop offset="80%" stopColor="#7c3aed" stopOpacity="0.45" />
-                    <stop offset="100%" stopColor="#06b6d4" stopOpacity="0" />
-                  </radialGradient>
-
-                  <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#ffffff" />
-                    <stop offset="40%" stopColor="#fef08a" />
-                    <stop offset="80%" stopColor="#f97316" stopOpacity="0.4" />
-                    <stop offset="100%" stopColor="#f97316" stopOpacity="0" />
-                  </radialGradient>
-                  
-                  <radialGradient id="sunCore" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#ffffff" />
-                    <stop offset="65%" stopColor="#fef08a" />
-                    <stop offset="100%" stopColor="#f97316" />
-                  </radialGradient>
-                </defs>
+          {isLight ? (
+            /* --- RENDER SUN VISUALS (NO RINGS OR 3D SLANTS) --- */
+            <svg viewBox="0 0 200 200" className="w-full h-full" style={{ filter: 'drop-shadow(0 0 35px rgba(249,115,22,0.15))' }}>
+              <defs>
+                <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
+                  <stop offset="30%" stopColor="#ffedd5" stopOpacity="0.9" />
+                  <stop offset="65%" stopColor="#f97316" stopOpacity="0.5" />
+                  <stop offset="85%" stopColor="#ea580c" stopOpacity="0.15" />
+                  <stop offset="100%" stopColor="#ea580c" stopOpacity="0" />
+                </radialGradient>
                 
-                {isLight ? (
-                  <>
-                    <circle cx="100" cy="100" r="48" fill="url(#sunGlow)" />
-                    <circle cx="100" cy="100" r="29" fill="url(#sunCore)" />
-                    <circle cx="100" cy="100" r="29.5" fill="none" stroke="#facc15" strokeWidth="1.2" opacity="0.75" />
-                  </>
-                ) : (
-                  <>
+                <radialGradient id="sunCore" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#ffffff" />
+                  <stop offset="55%" stopColor="#fef08a" />
+                  <stop offset="78%" stopColor="#f97316" />
+                  <stop offset="100%" stopColor="#ea580c" />
+                </radialGradient>
+
+                <linearGradient id="sunRayLong" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#f97316" stopOpacity="0.75" />
+                  <stop offset="50%" stopColor="#facc15" stopOpacity="0.35" />
+                  <stop offset="100%" stopColor="#fef08a" stopOpacity="0" />
+                </linearGradient>
+
+                <linearGradient id="sunRayShort" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#ea580c" stopOpacity="0.65" />
+                  <stop offset="60%" stopColor="#f97316" stopOpacity="0.25" />
+                  <stop offset="100%" stopColor="#facc15" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+
+              {/* 1. Outer Slow Rotating Corona (Clockwise) */}
+              <g 
+                style={{
+                  animation: 'sun-corona-cw 45s linear infinite',
+                  transformOrigin: '100px 100px',
+                }}
+              >
+                {Array.from({ length: 12 }).map((_, idx) => {
+                  const angle = idx * 30;
+                  return (
+                    <path
+                      key={`ray-long-${idx}`}
+                      d="M 100 8 Q 108 55 100 80 Q 92 55 100 8"
+                      fill="url(#sunRayLong)"
+                      transform={`rotate(${angle} 100 100)`}
+                    />
+                  );
+                })}
+              </g>
+
+              {/* 2. Inner/Middle Counter-Rotating Corona (Counter-Clockwise) */}
+              <g 
+                style={{
+                  animation: 'sun-corona-ccw 30s linear infinite',
+                  transformOrigin: '100px 100px',
+                }}
+              >
+                {Array.from({ length: 12 }).map((_, idx) => {
+                  const angle = idx * 30 + 15; // Offset by 15 deg to alternate
+                  return (
+                    <path
+                      key={`ray-short-${idx}`}
+                      d="M 100 20 Q 106 58 100 82 Q 94 58 100 20"
+                      fill="url(#sunRayShort)"
+                      transform={`rotate(${angle} 100 100)`}
+                    />
+                  );
+                })}
+              </g>
+
+              {/* 3. Sun core glow */}
+              <circle cx="100" cy="100" r="52" fill="url(#sunGlow)" />
+              
+              {/* 4. Main solar disk */}
+              <circle 
+                cx="100" 
+                cy="100" 
+                r="30" 
+                fill="url(#sunCore)" 
+                style={{
+                  animation: 'sun-pulse-subtle 4s ease-in-out infinite',
+                  transformOrigin: '100px 100px',
+                }}
+              />
+              <circle cx="100" cy="100" r="30.5" fill="none" stroke="#fef08a" strokeWidth="0.8" opacity="0.6" />
+            </svg>
+          ) : (
+            /* --- RENDER BLACK HOLE VISUALS (WITH 3D ACCRETION RINGS & DEBRIS) --- */
+            <>
+              {/* 3D Accretion Rings & Core Environment */}
+              <div className="absolute inset-0 [perspective:1000px] [transform-style:preserve-3d]">
+                {/* Static 2D Core placed at Z=0 in the 3D space */}
+                <div 
+                  className="absolute inset-0 [transform-style:preserve-3d] z-10"
+                  style={{
+                    transform: 'translateZ(0px)',
+                  }}
+                >
+                  <svg viewBox="0 0 200 200" className="w-full h-full">
+                    <defs>
+                      <radialGradient id="singularityGlow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stopColor="#000000" />
+                        <stop offset="60%" stopColor="#000000" />
+                        <stop offset="80%" stopColor="#7c3aed" stopOpacity="0.45" />
+                        <stop offset="100%" stopColor="#06b6d4" stopOpacity="0" />
+                      </radialGradient>
+                    </defs>
                     <circle cx="100" cy="100" r="39" fill="url(#singularityGlow)" />
                     <circle cx="100" cy="100" r="29" fill="#000000" />
                     <circle cx="100" cy="100" r="29.5" fill="none" stroke="#d8b4fe" strokeWidth="0.8" opacity="0.4" />
-                  </>
-                )}
-              </svg>
-            </div>
+                  </svg>
+                </div>
 
-            {/* Clockwise Outer Accretion Layer */}
-            <div 
-              className="absolute inset-0 [transform-style:preserve-3d]"
-              style={{
-                animation: 'cosmic-spin-3d-cw 12s linear infinite',
-              }}
-            >
-              <svg viewBox="0 0 200 200" className="w-full h-full">
-                <defs>
-                  <linearGradient id="accretionDisk" x1="0%" y1="0%" x2="100%" y2="100%">
-                    {isLight ? (
-                      <>
-                        <stop offset="0%" stopColor="#ef4444" stopOpacity="0.7" />
-                        <stop offset="35%" stopColor="#f97316" stopOpacity="0.6" />
-                        <stop offset="75%" stopColor="#facc15" stopOpacity="0.65" />
-                        <stop offset="100%" stopColor="#ea580c" stopOpacity="0.7" />
-                      </>
-                    ) : (
-                      <>
+                {/* Clockwise Outer Accretion Layer */}
+                <div 
+                  className="absolute inset-0 [transform-style:preserve-3d]"
+                  style={{
+                    animation: 'cosmic-spin-3d-cw 12s linear infinite',
+                  }}
+                >
+                  <svg viewBox="0 0 200 200" className="w-full h-full">
+                    <defs>
+                      <linearGradient id="accretionDisk" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" stopColor="#d946ef" stopOpacity="0.75" />
                         <stop offset="25%" stopColor="#8b5cf6" stopOpacity="0.6" />
                         <stop offset="65%" stopColor="#06b6d4" stopOpacity="0.55" />
                         <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.7" />
-                      </>
-                    )}
-                  </linearGradient>
-                  
-                  <linearGradient id="dustRing" x1="100%" y1="0%" x2="0%" y2="100%">
-                    {isLight ? (
-                      <>
-                        <stop offset="0%" stopColor="#f97316" stopOpacity="0.55" />
-                        <stop offset="50%" stopColor="#f59e0b" stopOpacity="0.45" />
-                        <stop offset="100%" stopColor="#facc15" stopOpacity="0.5" />
-                      </>
-                    ) : (
-                      <>
+                      </linearGradient>
+                      
+                      <linearGradient id="dustRing" x1="100%" y1="0%" x2="0%" y2="100%">
                         <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.5" />
                         <stop offset="50%" stopColor="#a855f7" stopOpacity="0.4" />
                         <stop offset="100%" stopColor="#f43f5e" stopOpacity="0.5" />
-                      </>
-                    )}
-                  </linearGradient>
-                </defs>
+                      </linearGradient>
+                    </defs>
 
-                {/* Outer disk dust clouds */}
-                <circle cx="100" cy="100" r="88" fill="url(#accretionDisk)" opacity="0.25" />
-                <circle cx="100" cy="100" r="76" fill="url(#dustRing)" opacity="0.35" />
+                    {/* Outer disk dust clouds */}
+                    <circle cx="100" cy="100" r="88" fill="url(#accretionDisk)" opacity="0.25" />
+                    <circle cx="100" cy="100" r="76" fill="url(#dustRing)" opacity="0.35" />
 
-                {/* Outer orbiting dust paths */}
-                <g opacity="0.55" stroke={isLight ? "#f59e0b" : "#f59e0b"} strokeWidth="0.5" fill="none">
-                  <circle cx="100" cy="100" r="92" strokeDasharray="6,24,10,18" />
-                  <circle cx="100" cy="100" r="82" strokeDasharray="4,15,3,12" />
-                </g>
+                    {/* Outer orbiting dust paths */}
+                    <g opacity="0.55" stroke="#f59e0b" strokeWidth="0.5" fill="none">
+                      <circle cx="100" cy="100" r="92" strokeDasharray="6,24,10,18" />
+                      <circle cx="100" cy="100" r="82" strokeDasharray="4,15,3,12" />
+                    </g>
 
-                {/* Orbiting Debris / Solar Sparks */}
-                <g fill={isLight ? "#ffedd5" : "#1e0b36"} stroke={isLight ? "#f97316" : "#4c1d95"} strokeWidth="0.5" opacity="0.85">
-                  <path d="M42 100 l3-1.5 l1 2.5 l-3 1 z" />
-                  <path d="M158 100 l2.5-1 l0.5 2 l-2 1.5 z" />
-                  <path d="M100 42 l3.5-1 l0.5 3 l-3 1.5 z" />
-                  <path d="M100 158 l2-2 l1.5 1.5 l-3 2 z" />
-                  <path d="M60 60 l1.5-1.5 l1.5 1.5 l-1.5 2.5 z" />
-                  <path d="M140 140 l2.5-1 l1 2 l-3.5 1 z" />
-                </g>
-              </svg>
-            </div>
+                    {/* Orbiting Debris / Solar Sparks */}
+                    <g fill="#1e0b36" stroke="#4c1d95" strokeWidth="0.5" opacity="0.85">
+                      <path d="M42 100 l3-1.5 l1 2.5 l-3 1 z" />
+                      <path d="M158 100 l2.5-1 l0.5 2 l-2 1.5 z" />
+                      <path d="M100 42 l3.5-1 l0.5 3 l-3 1.5 z" />
+                      <path d="M100 158 l2-2 l1.5 1.5 l-3 2 z" />
+                      <path d="M60 60 l1.5-1.5 l1.5 1.5 l-1.5 2.5 z" />
+                      <path d="M140 140 l2.5-1 l1 2 l-3.5 1 z" />
+                    </g>
+                  </svg>
+                </div>
 
-            {/* Counter-Clockwise Inner Accretion Layer */}
-            <div 
-              className="absolute inset-0 [transform-style:preserve-3d]"
-              style={{
-                animation: 'cosmic-spin-3d-ccw 5s linear infinite',
-              }}
-            >
-              <svg viewBox="0 0 200 200" className="w-full h-full">
-                <defs>
-                  <linearGradient id="accretionDiskInner" x1="0%" y1="0%" x2="100%" y2="100%">
-                    {isLight ? (
-                      <>
-                        <stop offset="0%" stopColor="#f97316" stopOpacity="0.85" />
-                        <stop offset="50%" stopColor="#facc15" stopOpacity="0.75" />
-                        <stop offset="100%" stopColor="#eab308" stopOpacity="0.8" />
-                      </>
-                    ) : (
-                      <>
+                {/* Counter-Clockwise Inner Accretion Layer */}
+                <div 
+                  className="absolute inset-0 [transform-style:preserve-3d]"
+                  style={{
+                    animation: 'cosmic-spin-3d-ccw 5s linear infinite',
+                  }}
+                >
+                  <svg viewBox="0 0 200 200" className="w-full h-full">
+                    <defs>
+                      <linearGradient id="accretionDiskInner" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" stopColor="#d946ef" stopOpacity="0.8" />
                         <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.7" />
                         <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.75" />
-                      </>
-                    )}
-                  </linearGradient>
-                </defs>
+                      </linearGradient>
+                    </defs>
 
-                {/* Inner hot gas ring */}
-                <circle cx="100" cy="100" r="62" fill="none" stroke="url(#accretionDiskInner)" strokeWidth="4.5" opacity="0.85" />
-                {/* Active core cyan / solar orange ring */}
-                <circle cx="100" cy="100" r="52" fill="none" stroke={isLight ? "#fb923c" : "#22d3ee"} strokeWidth="2.5" opacity="0.9" strokeDasharray="70,35" />
-              </svg>
-            </div>
+                    {/* Inner hot gas ring */}
+                    <circle cx="100" cy="100" r="62" fill="none" stroke="url(#accretionDiskInner)" strokeWidth="4.5" opacity="0.85" />
+                    {/* Active core cyan ring */}
+                    <circle cx="100" cy="100" r="52" fill="none" stroke="#22d3ee" strokeWidth="2.5" opacity="0.9" strokeDasharray="70,35" />
+                  </svg>
+                </div>
+              </div>
 
-          </div>
-
-          {/* 4-Pointed Celestial Star Flare / Solar Corona flare */}
-          <div className="absolute top-[37%] left-[33%] w-10 h-10 pointer-events-none select-none animate-pulse z-20">
-            <svg viewBox="0 0 24 24" className={`w-full h-full ${isLight ? "text-amber-200" : "text-cyan-200"}`}>
-              <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5Z" fill="currentColor" />
-            </svg>
-          </div>
-
+              {/* 4-Pointed Celestial Star Flare */}
+              <div className="absolute top-[37%] left-[33%] w-10 h-10 pointer-events-none select-none animate-pulse z-20">
+                <svg viewBox="0 0 24 24" className="w-full h-full text-cyan-200">
+                  <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5Z" fill="currentColor" />
+                </svg>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
