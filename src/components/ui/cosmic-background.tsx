@@ -1,9 +1,13 @@
 "use client"
 
 import * as React from "react"
+import { useTheme } from "next-themes"
 
 export function CosmicBackground() {
   const [mounted, setMounted] = React.useState(false)
+  const { resolvedTheme } = useTheme()
+  const isLight = mounted && resolvedTheme === "light"
+
   const [stars, setStars] = React.useState<Array<{
     id: number;
     top: string;
@@ -97,12 +101,12 @@ export function CosmicBackground() {
           rightPx: rightOffsetPx - (xTranslation + scatterX),
           size: Math.random() * 3.5 + 1.2,
           glow: Math.random() > 0.35,
-          color: Math.random() > 0.5 
-            ? "bg-cyan-400/50 dark:bg-cyan-400/60" 
-            : "bg-purple-400/50 dark:bg-purple-400/60",
-          glowColor: Math.random() > 0.5 
-            ? "rgba(34, 211, 238, 0.6)" 
-            : "rgba(168, 85, 247, 0.6)",
+          color: resolvedTheme === "light"
+            ? (Math.random() > 0.5 ? "bg-amber-400/60" : "bg-orange-400/60")
+            : (Math.random() > 0.5 ? "bg-cyan-400/50 dark:bg-cyan-400/60" : "bg-purple-400/50 dark:bg-purple-400/60"),
+          glowColor: resolvedTheme === "light"
+            ? (Math.random() > 0.5 ? "rgba(245, 158, 11, 0.45)" : "rgba(239, 68, 68, 0.4)")
+            : (Math.random() > 0.5 ? "rgba(34, 211, 238, 0.6)" : "rgba(168, 85, 247, 0.6)"),
         }
       })
       setTrailStars(generatedTrail)
@@ -142,15 +146,15 @@ export function CosmicBackground() {
       window.removeEventListener("scroll", handleScroll)
       window.removeEventListener("resize", updateDimensions)
     }
-  }, [])
+  }, [resolvedTheme, mounted])
 
   if (!mounted) return null
 
   // Server-side / Initial render position (aligns with scrollY = 0)
   const initialWidth = typeof window !== "undefined" ? window.innerWidth : 1200
   const initialAmp = initialWidth > 1024 ? (initialWidth * 0.55) : (initialWidth * 0.3)
-  const initialX = 0 // at scrollY = 0, cos(0) = 1, so (1-1)*amp/2 = 0
-  const initialY = 15 // cos(0) * 15 = 15
+  const initialX = 0
+  const initialY = 15
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 w-full min-h-full">
@@ -169,11 +173,11 @@ export function CosmicBackground() {
       `}</style>
       
       {/* ── 1. DENSE TWINKLING & DRIFTING STARS LAYER ── */}
-      <div className="absolute inset-0 opacity-50 dark:opacity-85 transition-opacity duration-500">
+      <div className={`absolute inset-0 transition-opacity duration-500 ${isLight ? "opacity-35" : "opacity-85"}`}>
         {stars.map((star) => (
           <div
             key={star.id}
-            className="absolute rounded-full bg-white animate-pulse"
+            className={`absolute rounded-full animate-pulse ${isLight ? "bg-amber-400" : "bg-white"}`}
             style={{
               top: star.top,
               left: star.left,
@@ -181,22 +185,22 @@ export function CosmicBackground() {
               height: `${star.size}px`,
               animationDelay: star.delay,
               animationDuration: star.duration,
-              boxShadow: star.size > 2 ? "0 0 6px 1.5px rgba(255, 255, 255, 0.9)" : "none",
+              boxShadow: star.size > 2 ? (isLight ? "0 0 6px 1.5px rgba(245, 158, 11, 0.5)" : "0 0 6px 1.5px rgba(255, 255, 255, 0.9)") : "none",
               transform: `translate(${star.driftX}, ${star.driftY})`,
             }}
           />
         ))}
       </div>
 
-      {/* ── 2. JHIN THEME NEBULAS ── */}
-      <div className="absolute top-[3%] left-[-15%] w-[65vw] h-[65vw] rounded-full bg-purple-600/15 dark:bg-purple-500/20 blur-[150px] pointer-events-none animate-pulse" style={{ animationDuration: '16s' }} />
-      <div className="absolute top-[22%] right-[-10%] w-[55vw] h-[55vw] rounded-full bg-cyan-500/12 dark:bg-cyan-400/15 blur-[130px] pointer-events-none animate-pulse" style={{ animationDuration: '14s' }} />
-      <div className="absolute top-[44%] left-[-15%] w-[60vw] h-[60vw] rounded-full bg-pink-500/12 dark:bg-pink-400/15 blur-[140px] pointer-events-none animate-pulse" style={{ animationDuration: '18s' }} />
-      <div className="absolute top-[65%] right-[-5%] w-[50vw] h-[50vw] rounded-full bg-amber-500/10 dark:bg-purple-500/15 blur-[130px] pointer-events-none animate-pulse" style={{ animationDuration: '12s' }} />
-      <div className="absolute top-[80%] left-[-15%] w-[55vw] h-[55vw] rounded-full bg-cyan-500/10 dark:bg-indigo-500/15 blur-[120px] pointer-events-none animate-pulse" style={{ animationDuration: '20s' }} />
-      <div className="absolute top-[92%] right-[-10%] w-[65vw] h-[65vw] rounded-full bg-pink-500/15 dark:bg-purple-500/20 blur-[150px] pointer-events-none animate-pulse" style={{ animationDuration: '15s' }} />
+      {/* ── 2. JHIN THEME NEBULAS / SOLAR ORBS ── */}
+      <div className={`absolute top-[3%] left-[-15%] w-[65vw] h-[65vw] rounded-full ${isLight ? "bg-orange-500/8" : "bg-purple-600/15 dark:bg-purple-500/20"} blur-[150px] pointer-events-none animate-pulse`} style={{ animationDuration: '16s' }} />
+      <div className={`absolute top-[22%] right-[-10%] w-[55vw] h-[55vw] rounded-full ${isLight ? "bg-amber-500/8" : "bg-cyan-500/12 dark:bg-cyan-400/15"} blur-[130px] pointer-events-none animate-pulse`} style={{ animationDuration: '14s' }} />
+      <div className={`absolute top-[44%] left-[-15%] w-[60vw] h-[60vw] rounded-full ${isLight ? "bg-yellow-500/6" : "bg-pink-500/12 dark:bg-pink-400/15"} blur-[140px] pointer-events-none animate-pulse`} style={{ animationDuration: '18s' }} />
+      <div className={`absolute top-[65%] right-[-5%] w-[50vw] h-[50vw] rounded-full ${isLight ? "bg-orange-500/8" : "bg-amber-500/10 dark:bg-purple-500/15"} blur-[130px] pointer-events-none animate-pulse`} style={{ animationDuration: '12s' }} />
+      <div className={`absolute top-[80%] left-[-15%] w-[55vw] h-[55vw] rounded-full ${isLight ? "bg-yellow-500/6" : "bg-cyan-500/10 dark:bg-indigo-500/15"} blur-[120px] pointer-events-none animate-pulse`} style={{ animationDuration: '20s' }} />
+      <div className={`absolute top-[92%] right-[-10%] w-[65vw] h-[65vw] rounded-full ${isLight ? "bg-red-500/8" : "bg-pink-500/15 dark:bg-purple-500/20"} blur-[150px] pointer-events-none animate-pulse`} style={{ animationDuration: '15s' }} />
 
-      {/* ── 2.5 DUST TRAIL PATH FOR THE BLACK HOLE (S-Curve Trail) ── */}
+      {/* ── 2.5 DUST TRAIL PATH FOR THE BLACK HOLE / SUN ── */}
       <div className="absolute inset-0 z-0">
         {trailStars.map((star) => (
           <div
@@ -214,10 +218,10 @@ export function CosmicBackground() {
         ))}
       </div>
 
-      {/* ── 3. DETAILED ARTISTIC SVG BLACK HOLE ── */}
+      {/* ── 3. DETAILED ARTISTIC SVG BLACK HOLE / SUN ── */}
       <div 
         ref={blackHoleRef}
-        className="fixed top-[15%] right-[2%] md:right-[6%] w-[320px] h-[320px] md:w-[420px] md:h-[420px] pointer-events-none select-none opacity-25 dark:opacity-85 transition-opacity duration-700 z-0"
+        className={`fixed top-[15%] right-[2%] md:right-[6%] w-[320px] h-[320px] md:w-[420px] md:h-[420px] pointer-events-none select-none transition-opacity duration-700 z-0 ${isLight ? "opacity-45" : "opacity-85"}`}
         style={{
           transform: `translate3d(${initialX}px, ${initialY}px, 0)`,
         }}
@@ -242,11 +246,34 @@ export function CosmicBackground() {
                     <stop offset="80%" stopColor="#7c3aed" stopOpacity="0.45" />
                     <stop offset="100%" stopColor="#06b6d4" stopOpacity="0" />
                   </radialGradient>
+
+                  <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="#ffffff" />
+                    <stop offset="40%" stopColor="#fef08a" />
+                    <stop offset="80%" stopColor="#f97316" stopOpacity="0.4" />
+                    <stop offset="100%" stopColor="#f97316" stopOpacity="0" />
+                  </radialGradient>
+                  
+                  <radialGradient id="sunCore" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="#ffffff" />
+                    <stop offset="65%" stopColor="#fef08a" />
+                    <stop offset="100%" stopColor="#f97316" />
+                  </radialGradient>
                 </defs>
                 
-                <circle cx="100" cy="100" r="39" fill="url(#singularityGlow)" />
-                <circle cx="100" cy="100" r="29" fill="#000000" />
-                <circle cx="100" cy="100" r="29.5" fill="none" stroke="#d8b4fe" strokeWidth="0.8" opacity="0.4" />
+                {isLight ? (
+                  <>
+                    <circle cx="100" cy="100" r="48" fill="url(#sunGlow)" />
+                    <circle cx="100" cy="100" r="29" fill="url(#sunCore)" />
+                    <circle cx="100" cy="100" r="29.5" fill="none" stroke="#facc15" strokeWidth="1.2" opacity="0.75" />
+                  </>
+                ) : (
+                  <>
+                    <circle cx="100" cy="100" r="39" fill="url(#singularityGlow)" />
+                    <circle cx="100" cy="100" r="29" fill="#000000" />
+                    <circle cx="100" cy="100" r="29.5" fill="none" stroke="#d8b4fe" strokeWidth="0.8" opacity="0.4" />
+                  </>
+                )}
               </svg>
             </div>
 
@@ -260,16 +287,37 @@ export function CosmicBackground() {
               <svg viewBox="0 0 200 200" className="w-full h-full">
                 <defs>
                   <linearGradient id="accretionDisk" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#d946ef" stopOpacity="0.75" />
-                    <stop offset="25%" stopColor="#8b5cf6" stopOpacity="0.6" />
-                    <stop offset="65%" stopColor="#06b6d4" stopOpacity="0.55" />
-                    <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.7" />
+                    {isLight ? (
+                      <>
+                        <stop offset="0%" stopColor="#ef4444" stopOpacity="0.7" />
+                        <stop offset="35%" stopColor="#f97316" stopOpacity="0.6" />
+                        <stop offset="75%" stopColor="#facc15" stopOpacity="0.65" />
+                        <stop offset="100%" stopColor="#ea580c" stopOpacity="0.7" />
+                      </>
+                    ) : (
+                      <>
+                        <stop offset="0%" stopColor="#d946ef" stopOpacity="0.75" />
+                        <stop offset="25%" stopColor="#8b5cf6" stopOpacity="0.6" />
+                        <stop offset="65%" stopColor="#06b6d4" stopOpacity="0.55" />
+                        <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.7" />
+                      </>
+                    )}
                   </linearGradient>
                   
                   <linearGradient id="dustRing" x1="100%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.5" />
-                    <stop offset="50%" stopColor="#a855f7" stopOpacity="0.4" />
-                    <stop offset="100%" stopColor="#f43f5e" stopOpacity="0.5" />
+                    {isLight ? (
+                      <>
+                        <stop offset="0%" stopColor="#f97316" stopOpacity="0.55" />
+                        <stop offset="50%" stopColor="#f59e0b" stopOpacity="0.45" />
+                        <stop offset="100%" stopColor="#facc15" stopOpacity="0.5" />
+                      </>
+                    ) : (
+                      <>
+                        <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.5" />
+                        <stop offset="50%" stopColor="#a855f7" stopOpacity="0.4" />
+                        <stop offset="100%" stopColor="#f43f5e" stopOpacity="0.5" />
+                      </>
+                    )}
                   </linearGradient>
                 </defs>
 
@@ -278,13 +326,13 @@ export function CosmicBackground() {
                 <circle cx="100" cy="100" r="76" fill="url(#dustRing)" opacity="0.35" />
 
                 {/* Outer orbiting dust paths */}
-                <g opacity="0.55" stroke="#f59e0b" strokeWidth="0.5" fill="none">
+                <g opacity="0.55" stroke={isLight ? "#f59e0b" : "#f59e0b"} strokeWidth="0.5" fill="none">
                   <circle cx="100" cy="100" r="92" strokeDasharray="6,24,10,18" />
                   <circle cx="100" cy="100" r="82" strokeDasharray="4,15,3,12" />
                 </g>
 
-                {/* Orbiting Debris / Asteroids from Jhin Splash Art */}
-                <g fill="#1e0b36" stroke="#4c1d95" strokeWidth="0.5" opacity="0.85">
+                {/* Orbiting Debris / Solar Sparks */}
+                <g fill={isLight ? "#ffedd5" : "#1e0b36"} stroke={isLight ? "#f97316" : "#4c1d95"} strokeWidth="0.5" opacity="0.85">
                   <path d="M42 100 l3-1.5 l1 2.5 l-3 1 z" />
                   <path d="M158 100 l2.5-1 l0.5 2 l-2 1.5 z" />
                   <path d="M100 42 l3.5-1 l0.5 3 l-3 1.5 z" />
@@ -305,24 +353,34 @@ export function CosmicBackground() {
               <svg viewBox="0 0 200 200" className="w-full h-full">
                 <defs>
                   <linearGradient id="accretionDiskInner" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#d946ef" stopOpacity="0.8" />
-                    <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.7" />
-                    <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.75" />
+                    {isLight ? (
+                      <>
+                        <stop offset="0%" stopColor="#f97316" stopOpacity="0.85" />
+                        <stop offset="50%" stopColor="#facc15" stopOpacity="0.75" />
+                        <stop offset="100%" stopColor="#eab308" stopOpacity="0.8" />
+                      </>
+                    ) : (
+                      <>
+                        <stop offset="0%" stopColor="#d946ef" stopOpacity="0.8" />
+                        <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.7" />
+                        <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.75" />
+                      </>
+                    )}
                   </linearGradient>
                 </defs>
 
                 {/* Inner hot gas ring */}
                 <circle cx="100" cy="100" r="62" fill="none" stroke="url(#accretionDiskInner)" strokeWidth="4.5" opacity="0.85" />
-                {/* Active core cyan ring */}
-                <circle cx="100" cy="100" r="52" fill="none" stroke="#22d3ee" strokeWidth="2.5" opacity="0.9" strokeDasharray="70,35" />
+                {/* Active core cyan / solar orange ring */}
+                <circle cx="100" cy="100" r="52" fill="none" stroke={isLight ? "#fb923c" : "#22d3ee"} strokeWidth="2.5" opacity="0.9" strokeDasharray="70,35" />
               </svg>
             </div>
 
           </div>
 
-          {/* 4-Pointed Celestial Star Flare (Jhin crown signature highlight) */}
+          {/* 4-Pointed Celestial Star Flare / Solar Corona flare */}
           <div className="absolute top-[37%] left-[33%] w-10 h-10 pointer-events-none select-none animate-pulse z-20">
-            <svg viewBox="0 0 24 24" className="w-full h-full text-cyan-200 shadow-cyan-400/50">
+            <svg viewBox="0 0 24 24" className={`w-full h-full ${isLight ? "text-amber-200" : "text-cyan-200"}`}>
               <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5Z" fill="currentColor" />
             </svg>
           </div>

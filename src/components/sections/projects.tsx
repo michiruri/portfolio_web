@@ -1,10 +1,12 @@
 "use client"
 
+import * as React from "react"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ExternalLink, Monitor, Phone, Rocket, Shield, Terminal } from "lucide-react"
 import { GithubIcon } from "@/components/icons"
 import { useInView } from "@/hooks/use-in-view"
+import { useTheme } from "next-themes"
 
 // ── 1. PRODUCTS & SAAS (THE FOUNDER TIER) ────────────────────────────────────
 const saasProjects = [
@@ -61,13 +63,18 @@ type Project = {
   image?: string
 }
 
-function ProjectCard({ project }: { project: Project }) {
-  const glowColor = 
-    project.type === "web" 
-      ? "from-primary/20 to-cyan-500/20" 
-      : project.type === "mobile" 
-      ? "from-purple-500/20 to-primary/20" 
-      : "from-primary/25 via-purple-500/20 to-cyan-500/25"
+function ProjectCard({ project, isLight }: { project: Project; isLight: boolean }) {
+  const glowColor = isLight
+    ? project.type === "web"
+      ? "from-primary/20 to-amber-500/20"
+      : project.type === "mobile"
+      ? "from-orange-500/20 to-primary/20"
+      : "from-primary/25 via-orange-500/20 to-amber-500/25"
+    : project.type === "web" 
+    ? "from-primary/20 to-cyan-500/20" 
+    : project.type === "mobile" 
+    ? "from-purple-500/20 to-primary/20" 
+    : "from-primary/25 via-purple-500/20 to-cyan-500/25"
   
   return (
     <div className="relative h-full group/card">
@@ -93,8 +100,8 @@ function ProjectCard({ project }: { project: Project }) {
           <CardTitle className="text-lg font-extrabold transition-colors group-hover:text-primary">{project.title}</CardTitle>
           
           {/* Image Preview Placeholder (after the title and before the description) */}
-          <div className="aspect-[16/9] w-full rounded-xl bg-black/40 border border-border/70 dark:border-white/5 flex items-center justify-center relative overflow-hidden my-3 group-hover/card:border-primary/35 transition-all">
-            <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/5 to-cyan-500/5 opacity-50 pointer-events-none" />
+          <div className={`aspect-[16/9] w-full rounded-xl ${isLight ? "bg-orange-500/5" : "bg-black/40"} border border-border/70 dark:border-white/5 flex items-center justify-center relative overflow-hidden my-3 group-hover/card:border-primary/35 transition-all`}>
+            <div className={`absolute inset-0 bg-gradient-to-tr ${isLight ? "from-orange-500/10 to-amber-500/10" : "from-purple-500/5 to-cyan-500/5"} opacity-50 pointer-events-none`} />
             <span className="text-[9px] font-bold tracking-widest uppercase text-muted-foreground/50 group-hover/card:text-primary/60 transition-colors z-10">
               [ {project.title} Preview Placeholder ]
             </span>
@@ -171,6 +178,13 @@ const CARD_DELAYS = ["delay-100", "delay-200", "delay-300", "delay-400"]
 
 export function ProjectsSection() {
   const { ref, inView } = useInView()
+  const [mounted, setMounted] = React.useState(false)
+  const { resolvedTheme } = useTheme()
+  const isLight = mounted && resolvedTheme === "light"
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
 
   return (
     <section
@@ -194,23 +208,23 @@ export function ProjectsSection() {
         <div className="mb-20">
           <div className={`flex items-center gap-3 mb-6 ${inView ? "animate-fade-up delay-100" : "opacity-0"}`}>
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center border border-cyan-500/20 text-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.15)]">
+              <div className={`w-8 h-8 rounded-lg flex items-center justify-center border transition-all duration-300 ${isLight ? "bg-amber-500/10 border-amber-500/20 text-amber-600 shadow-[0_0_10px_rgba(245,158,11,0.15)]" : "bg-cyan-500/10 border-cyan-500/20 text-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.15)]"}`}>
                 <Rocket className="h-4 w-4" />
               </div>
               <div>
                 <div className="flex flex-wrap items-center gap-2">
                   <h3 className="text-base font-black tracking-tight text-foreground leading-none">Products &amp; SaaS</h3>
-                  <span className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/25">The Founder Tier</span>
+                  <span className={`inline-flex items-center rounded-full text-[9px] font-black uppercase tracking-widest px-2 py-0.5 border transition-all duration-300 ${isLight ? "bg-amber-500/10 text-amber-600 border-amber-500/25" : "bg-cyan-500/10 text-cyan-400 border-cyan-500/25"}`}>The Founder Tier</span>
                 </div>
                 <p className="text-xs text-muted-foreground font-semibold mt-1">Complete, revenue-generating platforms built for B2B/SMEs.</p>
               </div>
             </div>
-            <div className="flex-1 h-px bg-purple-500/10" />
+            <div className={`flex-1 h-px transition-colors duration-300 ${isLight ? "bg-orange-500/15" : "bg-purple-500/10"}`} />
           </div>
 
           <div className="max-w-2xl mx-auto">
             <div className={inView ? "animate-scale-in delay-200" : "opacity-0"}>
-              <ProjectCard project={saasProjects[0]} />
+              <ProjectCard project={saasProjects[0]} isLight={isLight} />
             </div>
           </div>
         </div>
@@ -219,23 +233,23 @@ export function ProjectsSection() {
         <div className="mb-20">
           <div className={`flex items-center gap-3 mb-6 ${inView ? "animate-fade-up delay-200" : "opacity-0"}`}>
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center border border-purple-500/20 text-purple-400 shadow-[0_0_10px_rgba(168,85,247,0.15)]">
+              <div className={`w-8 h-8 rounded-lg flex items-center justify-center border transition-all duration-300 ${isLight ? "bg-orange-500/10 border-orange-500/20 text-orange-600 shadow-[0_0_10px_rgba(249,115,22,0.15)]" : "bg-purple-500/10 border-purple-500/20 text-purple-400 shadow-[0_0_10px_rgba(168,85,247,0.15)]"}`}>
                 <Shield className="h-4 w-4" />
               </div>
               <div>
                 <div className="flex flex-wrap items-center gap-2">
                   <h3 className="text-base font-black tracking-tight text-foreground leading-none">Professional Engagements</h3>
-                  <span className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/25">The Architect Tier</span>
+                  <span className={`inline-flex items-center rounded-full text-[9px] font-black uppercase tracking-widest px-2 py-0.5 border transition-all duration-300 ${isLight ? "bg-orange-500/10 text-orange-600 border-orange-500/25" : "bg-purple-500/10 text-purple-400 border-purple-500/25"}`}>The Architect Tier</span>
                 </div>
                 <p className="text-xs text-muted-foreground font-semibold mt-1">Production systems engineered as the sole developer for client scale.</p>
               </div>
             </div>
-            <div className="flex-1 h-px bg-purple-500/10" />
+            <div className={`flex-1 h-px transition-colors duration-300 ${isLight ? "bg-orange-500/15" : "bg-purple-500/10"}`} />
           </div>
 
           <div className="max-w-2xl mx-auto">
             <div className={inView ? "animate-scale-in delay-300" : "opacity-0"}>
-              <ProjectCard project={professionalProjects[0]} />
+              <ProjectCard project={professionalProjects[0]} isLight={isLight} />
             </div>
           </div>
         </div>
@@ -244,18 +258,18 @@ export function ProjectsSection() {
         <div>
           <div className={`flex items-center gap-3 mb-6 ${inView ? "animate-fade-up delay-300" : "opacity-0"}`}>
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center border border-amber-500/20 text-amber-400 shadow-[0_0_10px_rgba(245,158,11,0.15)]">
+              <div className={`w-8 h-8 rounded-lg flex items-center justify-center border transition-all duration-300 ${isLight ? "bg-amber-500/10 border-amber-500/20 text-amber-600 shadow-[0_0_10px_rgba(245,158,11,0.15)]" : "bg-amber-500/10 border-amber-500/20 text-amber-400 shadow-[0_0_10px_rgba(245,158,11,0.15)]"}`}>
                 <Terminal className="h-4 w-4" />
               </div>
               <div>
                 <div className="flex flex-wrap items-center gap-2">
                   <h3 className="text-base font-black tracking-tight text-foreground leading-none">Technical Experiments</h3>
-                  <span className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/25">The Playground</span>
+                  <span className={`inline-flex items-center rounded-full text-[9px] font-black uppercase tracking-widest px-2 py-0.5 border transition-all duration-300 ${isLight ? "bg-amber-500/10 text-amber-600 border-amber-500/25" : "bg-amber-500/10 text-amber-400 border-amber-500/25"}`}>The Playground</span>
                 </div>
                 <p className="text-xs text-muted-foreground font-semibold mt-1">Explorations in complex component designs, states, and algorithms.</p>
               </div>
             </div>
-            <div className="flex-1 h-px bg-purple-500/10" />
+            <div className={`flex-1 h-px transition-colors duration-300 ${isLight ? "bg-orange-500/15" : "bg-purple-500/10"}`} />
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -264,7 +278,7 @@ export function ProjectsSection() {
                 key={idx}
                 className={inView ? `animate-scale-in ${CARD_DELAYS[idx + 2] ?? "delay-400"}` : "opacity-0"}
               >
-                <ProjectCard project={project} />
+                <ProjectCard project={project} isLight={isLight} />
               </div>
             ))}
           </div>

@@ -3,7 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { Menu, FileText, Code2 } from "lucide-react"
-import { usePathname } from "next/navigation"
+import { useTheme } from "next-themes"
 
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -19,11 +19,16 @@ const navItems = [
 ]
 
 export function Navbar() {
+  const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = React.useState(false)
   const [isOpen, setIsOpen] = React.useState(false)
   const [activeSection, setActiveSection] = React.useState("about")
 
+  const isLight = mounted && resolvedTheme === "light"
+
   // Highlight active nav item based on scroll position
   React.useEffect(() => {
+    setMounted(true)
     const sectionIds = navItems.map((i) => i.href.replace("#", ""))
     const observer = new IntersectionObserver(
       (entries) => {
@@ -43,13 +48,13 @@ export function Navbar() {
   }, [])
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-purple-500/10 bg-background/40 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_30px_rgba(139,92,246,0.03)]">
+    <header className={`sticky top-0 z-50 w-full border-b bg-background/40 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.03)] transition-all duration-300 ${isLight ? "border-orange-500/10 shadow-[0_4px_30px_rgba(234,88,12,0.03)]" : "border-purple-500/10 dark:shadow-[0_4px_30px_rgba(139,92,246,0.03)]"}`}>
       <div className="mx-auto flex h-14 max-w-7xl items-center px-4 sm:px-6 lg:px-8">
 
         {/* Left: Logo / Name */}
         <div className="flex-1 flex items-center">
           <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="w-6 h-6 rounded-lg bg-primary/10 border border-primary/25 flex items-center justify-center text-primary group-hover:scale-105 group-hover:shadow-[0_0_12px_rgba(139,92,246,0.5)] group-hover:border-primary/50 transition-all shrink-0">
+            <div className={`w-6 h-6 rounded-lg bg-primary/10 border border-primary/25 flex items-center justify-center text-primary group-hover:scale-105 group-hover:border-primary/50 transition-all shrink-0 ${isLight ? "group-hover:shadow-[0_0_12px_rgba(249,115,22,0.4)]" : "group-hover:shadow-[0_0_12px_rgba(139,92,246,0.5)]"}`}>
               <Code2 className="h-3.5 w-3.5" />
             </div>
             <span className="hidden sm:block text-xs font-black text-foreground tracking-tight leading-snug">
@@ -72,7 +77,11 @@ export function Navbar() {
                 href={item.href}
                 className={`px-3.5 py-1.5 rounded-full transition-[color,box-shadow,background-color] duration-300 ${
                   isActive
-                    ? "bg-gradient-to-r from-primary via-purple-600 to-indigo-500 text-white font-bold shadow-[0_0_12px_rgba(168,85,247,0.45)]"
+                    ? isLight
+                      ? "bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 text-white font-bold shadow-[0_0_12px_rgba(249,115,22,0.35)]"
+                      : "bg-gradient-to-r from-primary via-purple-600 to-indigo-500 text-white font-bold shadow-[0_0_12px_rgba(168,85,247,0.45)]"
+                    : isLight
+                    ? "text-muted-foreground hover:text-foreground hover:bg-orange-500/10 hover:shadow-[0_0_8px_rgba(234,88,12,0.05)]"
                     : "text-muted-foreground hover:text-foreground hover:bg-purple-500/10 hover:shadow-[0_0_8px_rgba(139,92,246,0.05)]"
                 }`}
               >
@@ -89,7 +98,7 @@ export function Navbar() {
           {/* Resume button — matching height of ThemeToggle (h-9) */}
           <Button
             variant="outline"
-            className="hidden sm:inline-flex h-9 gap-1.5 cursor-pointer px-4 font-bold text-xs hover:scale-105 transition-all duration-300 hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] border-primary/30 text-primary hover:text-primary hover:border-primary/60 bg-primary/5 hover:bg-primary/10"
+            className={`hidden sm:inline-flex h-9 gap-1.5 cursor-pointer px-4 font-bold text-xs hover:scale-105 transition-all duration-300 ${isLight ? "hover:shadow-[0_0_15px_rgba(249,115,22,0.15)]" : "hover:shadow-[0_0_15px_rgba(139,92,246,0.15)]"} border-primary/30 text-primary hover:text-primary hover:border-primary/60 bg-primary/5 hover:bg-primary/10`}
             render={<a href="/resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download Resume" />}
             nativeButton={false}
           >
@@ -104,7 +113,7 @@ export function Navbar() {
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Toggle Menu</span>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[240px] sm:w-[300px] p-6 bg-background/90 backdrop-blur-md border-l border-purple-500/15">
+              <SheetContent side="right" className={`w-[240px] sm:w-[300px] p-6 bg-background/90 backdrop-blur-md border-l ${isLight ? "border-orange-500/15" : "border-purple-500/15"}`}>
                 <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                 <nav className="flex flex-col gap-2 mt-8">
                   {navItems.map((item) => {
@@ -116,7 +125,11 @@ export function Navbar() {
                         onClick={() => setIsOpen(false)}
                         className={`px-3 py-2 rounded-lg text-sm font-medium transition-[color,box-shadow,background-color] duration-300 ${
                           isActive
-                            ? "bg-gradient-to-r from-primary via-purple-600 to-indigo-500 text-white font-bold shadow-[0_0_10px_rgba(168,85,247,0.35)]"
+                            ? isLight
+                              ? "bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 text-white font-bold shadow-[0_0_10px_rgba(249,115,22,0.3)]"
+                              : "bg-gradient-to-r from-primary via-purple-600 to-indigo-500 text-white font-bold shadow-[0_0_10px_rgba(168,85,247,0.35)]"
+                            : isLight
+                            ? "text-muted-foreground hover:text-foreground hover:bg-orange-500/10"
                             : "text-muted-foreground hover:text-foreground hover:bg-purple-500/10"
                         }`}
                       >
@@ -129,7 +142,7 @@ export function Navbar() {
                     href="/resume.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-sm font-bold border border-primary/30 bg-primary/5 text-primary hover:bg-primary/10 hover:border-primary/60 hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] transition-all"
+                    className={`mt-4 flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-sm font-bold border border-primary/30 bg-primary/5 text-primary hover:bg-primary/10 hover:border-primary/60 ${isLight ? "hover:shadow-[0_0_15px_rgba(249,115,22,0.15)]" : "hover:shadow-[0_0_15px_rgba(139,92,246,0.15)]"} transition-all`}
                   >
                     <FileText className="h-4 w-4" />
                     Resume

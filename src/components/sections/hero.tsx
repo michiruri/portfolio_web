@@ -1,8 +1,9 @@
 "use client"
 
 import * as React from "react"
+import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Code2, GraduationCap, MapPin, Sparkles, Palette, EyeOff, RefreshCw } from "lucide-react"
+import { ArrowRight, Code2, GraduationCap, MapPin, Sparkles, EyeOff, RefreshCw } from "lucide-react"
 import { useInView } from "@/hooks/use-in-view"
 import { GalleryModal } from "@/components/gallery-modal"
 
@@ -17,8 +18,16 @@ const badges = [
 
 export function HeroSection() {
   const { ref, inView } = useInView()
+  const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = React.useState(false)
   const [isFlipped, setIsFlipped] = React.useState(false)
   const [isGalleryOpen, setIsGalleryOpen] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const isLight = mounted && resolvedTheme === "light"
 
   return (
     <section
@@ -27,8 +36,8 @@ export function HeroSection() {
       ref={ref}
     >
       {/* Background Glowing Orbs */}
-      <div className="absolute top-20 -left-20 w-96 h-96 bg-primary/20 rounded-full blur-[120px] pointer-events-none mix-blend-screen animate-pulse" />
-      <div className="absolute bottom-10 -right-20 w-[30rem] h-[30rem] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen animate-pulse" style={{ animationDelay: '2s' }} />
+      <div className={`absolute top-20 -left-20 w-96 h-96 rounded-full blur-[120px] pointer-events-none mix-blend-screen animate-pulse ${isLight ? "bg-orange-500/10" : "bg-primary/20"}`} />
+      <div className={`absolute bottom-10 -right-20 w-[30rem] h-[30rem] rounded-full blur-[120px] pointer-events-none mix-blend-screen animate-pulse ${isLight ? "bg-yellow-500/8" : "bg-indigo-500/10"}`} style={{ animationDelay: '2s' }} />
       
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
@@ -55,7 +64,7 @@ export function HeroSection() {
               </span>
 
               {/* Line 2 — last names, primary accent gradient */}
-              <span className="text-5xl sm:text-6xl md:text-7xl font-extrabold bg-gradient-to-r from-primary via-purple-600 to-indigo-500 bg-clip-text text-transparent block leading-[0.95] tracking-tight mb-4">
+              <span className={`text-5xl sm:text-6xl md:text-7xl font-extrabold bg-clip-text text-transparent block leading-[0.95] tracking-tight mb-4 ${isLight ? "bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500" : "bg-gradient-to-r from-primary via-purple-600 to-indigo-500"}`}>
                 Quimson Capitis
               </span>
 
@@ -88,7 +97,7 @@ export function HeroSection() {
             <div className={`mt-8 flex flex-col sm:flex-row justify-center lg:justify-start gap-4 ${inView ? "animate-fade-up delay-400" : "opacity-0"}`}>
               <Button
                 size="lg"
-                className="group cursor-pointer gap-2 hover:scale-105 transition-all duration-300 hover:shadow-[0_0_20px_rgba(139,92,246,0.3)] relative overflow-hidden"
+                className={`group cursor-pointer gap-2 hover:scale-105 transition-all duration-300 ${isLight ? "hover:shadow-[0_0_20px_rgba(249,115,22,0.3)]" : "hover:shadow-[0_0_20px_rgba(139,92,246,0.3)]"} relative overflow-hidden`}
                 render={<a href="#projects" />}
                 nativeButton={false}
               >
@@ -101,7 +110,7 @@ export function HeroSection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="cursor-pointer font-bold text-sm hover:scale-105 transition-all duration-300 hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] border-primary/30 text-primary hover:text-primary hover:border-primary/60 bg-primary/5 hover:bg-primary/10"
+                className={`cursor-pointer font-bold text-sm hover:scale-105 transition-all duration-300 ${isLight ? "hover:shadow-[0_0_15px_rgba(249,115,22,0.15)] hover:border-primary/60" : "hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] hover:border-primary/60"} border-primary/30 text-primary bg-primary/5 hover:bg-primary/10`}
                 render={<a href="#contact" />}
                 nativeButton={false}
               >
@@ -111,7 +120,7 @@ export function HeroSection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="cursor-pointer font-bold text-sm hover:scale-105 transition-all duration-300 hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] border-primary/20 text-primary hover:text-primary hover:border-primary/50 bg-primary/5 hover:bg-primary/10"
+                className={`cursor-pointer font-bold text-sm hover:scale-105 transition-all duration-300 ${isLight ? "hover:shadow-[0_0_15px_rgba(249,115,22,0.15)] hover:border-primary/50" : "hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] hover:border-primary/50"} border-primary/20 text-primary bg-primary/5 hover:bg-primary/10`}
                 onClick={() => setIsGalleryOpen(true)}
               >
                 <EyeOff className="h-4 w-4 mr-2" />
@@ -145,8 +154,8 @@ export function HeroSection() {
                 style={{ perspective: "1000px" }}
                 onClick={() => setIsFlipped((prev) => !prev)}
               >
-                {/* Static Cosmic Purple Glow behind the card */}
-                <div className="absolute inset-4 bg-gradient-to-tr from-purple-600/30 via-indigo-600/20 to-purple-600/30 rounded-2xl blur-3xl opacity-80 pointer-events-none transition-all duration-500 group-hover/wrapper:scale-105 group-hover/wrapper:opacity-95 dark:from-purple-500/15 dark:via-indigo-500/10 dark:to-purple-500/15" />
+                {/* Static Cosmic Glow behind the card */}
+                <div className={`absolute inset-4 rounded-2xl blur-3xl opacity-80 pointer-events-none transition-all duration-500 group-hover/wrapper:scale-105 group-hover/wrapper:opacity-95 ${isLight ? "bg-gradient-to-tr from-orange-500/20 via-amber-500/10 to-yellow-500/20" : "bg-gradient-to-tr from-purple-600/30 via-indigo-600/20 to-purple-600/30 dark:from-purple-500/15 dark:via-indigo-500/10 dark:to-purple-500/15"}`} />
 
                 {/* Inner — rotates on flip, always sized to parent */}
                 <div
@@ -161,7 +170,7 @@ export function HeroSection() {
 
                   {/* ── FRONT: Profile Photo ── */}
                   <div
-                    className="rounded-2xl p-4 flex flex-col justify-between relative group/card bg-card border border-border/70 dark:bg-[#07070a] dark:border-white/5 transition-all duration-500 shadow-2xl hover:border-primary/60 hover:shadow-[0_0_25px_rgba(139,92,246,0.25)] dark:hover:border-primary/50 dark:hover:shadow-[0_0_30px_rgba(139,92,246,0.35)]"
+                    className={`rounded-2xl p-4 flex flex-col justify-between relative group/card bg-card border border-border/70 dark:bg-[#07070a] dark:border-white/5 transition-all duration-500 shadow-2xl hover:border-primary/60 dark:hover:border-primary/50 ${isLight ? "hover:shadow-[0_0_25px_rgba(249,115,22,0.2)]" : "hover:shadow-[0_0_25px_rgba(139,92,246,0.25)] dark:hover:shadow-[0_0_30px_rgba(139,92,246,0.35)]"}`}
                     style={{
                       position: "absolute",
                       inset: 0,
@@ -197,7 +206,7 @@ export function HeroSection() {
 
                   {/* ── BACK: Profile Highlights Dashboard ── */}
                   <div
-                    className="rounded-2xl bg-card dark:bg-[#07070a] p-6 flex flex-col justify-between relative group/card border border-border/70 dark:border-white/5 transition-all duration-500 shadow-2xl hover:border-primary/60 hover:shadow-[0_0_25px_rgba(139,92,246,0.25)] dark:hover:border-primary/50 dark:hover:shadow-[0_0_30px_rgba(139,92,246,0.35)] min-h-0 overflow-hidden"
+                    className={`rounded-2xl bg-card dark:bg-[#07070a] p-6 flex flex-col justify-between relative group/card border border-border/70 dark:border-white/5 transition-all duration-500 shadow-2xl hover:border-primary/60 dark:hover:border-primary/50 min-h-0 overflow-hidden ${isLight ? "hover:shadow-[0_0_25px_rgba(249,115,22,0.2)]" : "hover:shadow-[0_0_25px_rgba(139,92,246,0.25)] dark:hover:shadow-[0_0_30px_rgba(139,92,246,0.35)]"}`}
                     style={{
                       position: "absolute",
                       inset: 0,
@@ -248,21 +257,17 @@ export function HeroSection() {
                       <p className="pl-4"><span className="text-indigo-300">likes</span>: <span className="text-slate-400">[</span></p>
                       <p className="pl-8">
                         <span className="text-emerald-400">&quot;cats&quot;</span><span className="text-slate-400">,</span>{" "}
-                        <span className="text-emerald-400">&quot;coffee&quot;</span><span className="text-slate-400">,</span>{" "}
-                        <span className="text-emerald-400">&quot;matcha&quot;</span><span className="text-slate-400">,</span>{" "}
-                        <span className="text-emerald-400">&quot;wife&quot;</span>
+                        <span className="text-emerald-400">&quot;open-source&quot;</span><span className="text-slate-400">,</span>{" "}
+                        <span className="text-emerald-400">&quot;anime&quot;</span>
                       </p>
                       <p className="pl-4"><span className="text-slate-400">]</span></p>
-                      <p><span className="text-slate-400">{"}"}</span></p>
-                    </div>
-
-                    <div className="flex items-center gap-2 border-t border-slate-800/80 pt-4 text-xs font-mono text-slate-400">
-                      <Code2 className="h-4 w-4 text-emerald-400" />
-                      <span>unique &amp; personalized</span>
+                      <p><span className="text-slate-400">{"};"}</span></p>
                     </div>
                   </div>
+
                 </div>
               </div>
+
             </div>
           </div>
 
