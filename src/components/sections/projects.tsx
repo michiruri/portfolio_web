@@ -100,7 +100,7 @@ function ProjectCard({ project }: { project: Project }) {
             </span>
           </div>
 
-          <CardDescription className="mt-2 text-xs font-semibold text-muted-foreground leading-relaxed">
+          <CardDescription className="mt-2 text-xs font-semibold text-muted-foreground leading-relaxed text-justify">
             {project.description}
           </CardDescription>
         </CardHeader>
@@ -116,7 +116,52 @@ function ProjectCard({ project }: { project: Project }) {
             ))}
           </div>
         </CardContent>
-        {/* Actions are left blank (hidden) for now */}
+        <CardFooter className="pt-4 border-t border-border/50 dark:border-white/5 flex gap-3.5 bg-muted/10 rounded-b-2xl mt-auto">
+          {project.github && project.demo ? (
+            <>
+              <Button
+                variant="outline"
+                size="sm"
+                className="flex-grow gap-1.5 hover:scale-105 transition-all duration-300 cursor-pointer"
+                render={<a href="#" onClick={(e) => e.preventDefault()} />}
+                nativeButton={false}
+              >
+                <GithubIcon className="h-4 w-4" />
+                Code
+              </Button>
+              <Button
+                size="sm"
+                className="flex-grow gap-1.5 hover:scale-105 transition-all duration-300 cursor-pointer bg-primary text-primary-foreground hover:bg-primary/90"
+                render={<a href="#" onClick={(e) => e.preventDefault()} />}
+                nativeButton={false}
+              >
+                <ExternalLink className="h-4 w-4" />
+                Demo
+              </Button>
+            </>
+          ) : project.demo ? (
+            <Button
+              size="sm"
+              className="w-full gap-1.5 hover:scale-105 transition-all duration-300 cursor-pointer bg-primary text-primary-foreground hover:bg-primary/90"
+              render={<a href="#" onClick={(e) => e.preventDefault()} />}
+              nativeButton={false}
+            >
+              <ExternalLink className="h-4 w-4" />
+              Live Product
+            </Button>
+          ) : (
+            <Button
+              variant="outline"
+              size="sm"
+              className="w-full gap-1.5 hover:scale-105 transition-all duration-300 cursor-pointer"
+              render={<a href="#" onClick={(e) => e.preventDefault()} />}
+              nativeButton={false}
+            >
+              <GithubIcon className="h-4 w-4" />
+              Source Code
+            </Button>
+          )}
+        </CardFooter>
       </Card>
     </div>
   )

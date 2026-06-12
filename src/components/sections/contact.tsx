@@ -57,7 +57,7 @@ export function ContactSection() {
                   {/* Heading */}
                   <div>
                     <h3 className="text-sm font-extrabold text-foreground tracking-tight leading-tight">What to Expect</h3>
-                    <p className="text-xs text-muted-foreground font-semibold mt-1.5 leading-relaxed">
+                    <p className="text-xs text-muted-foreground font-semibold mt-1.5 leading-relaxed text-justify">
                       I value direct communication and respect your time. Here is what to expect:
                     </p>
                   </div>
@@ -68,7 +68,7 @@ export function ContactSection() {
                       <MapPin className="h-4 w-4 shrink-0 text-primary mt-0.5" />
                       <div>
                         <h4 className="text-foreground font-bold">Location &amp; Timezone</h4>
-                        <p className="text-[11px] text-muted-foreground mt-0.5">
+                        <p className="text-[11px] text-muted-foreground mt-0.5 text-justify">
                           Pangasinan, PH (GMT+8). Active 9:00 AM - 10:00 PM.
                         </p>
                       </div>
@@ -78,7 +78,7 @@ export function ContactSection() {
                       <Clock className="h-4 w-4 shrink-0 text-primary mt-0.5" />
                       <div>
                         <h4 className="text-foreground font-bold">Response Time</h4>
-                        <p className="text-[11px] text-muted-foreground mt-0.5">
+                        <p className="text-[11px] text-muted-foreground mt-0.5 text-justify">
                           Daily inbox review. Response in 12-24 hours.
                         </p>
                       </div>
@@ -88,7 +88,7 @@ export function ContactSection() {
                       <Sparkles className="h-4 w-4 shrink-0 text-primary mt-0.5" />
                       <div>
                         <h4 className="text-foreground font-bold">Availability</h4>
-                        <p className="text-[11px] text-muted-foreground mt-0.5">
+                        <p className="text-[11px] text-muted-foreground mt-0.5 text-justify">
                           Open to contracts, consulting, or full-time.
                         </p>
                       </div>
@@ -160,7 +160,7 @@ export function ContactSection() {
                     {/* Heading matching Left Column */}
                     <div>
                       <h3 className="text-sm font-extrabold text-foreground tracking-tight leading-tight">Send a Message</h3>
-                      <p className="text-xs text-muted-foreground font-semibold mt-2 leading-relaxed">
+                      <p className="text-xs text-muted-foreground font-semibold mt-2 leading-relaxed text-justify">
                         Have a project, a contract to discuss, or a simple question?
                         Send me a message and let's get to work.
                       </p>
