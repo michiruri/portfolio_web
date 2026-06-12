@@ -31,7 +31,7 @@ export function Footer() {
               <User className="w-4 h-4" /> Profile
             </span>
             <p className="text-[14px] font-medium text-white/70 leading-relaxed max-w-xs">
-              Building robust enterprise systems by day. Crafting intuitive, design-forward digital experiences by night.
+              Full-stack by nature, custom-built by choice — efficient, personalized, and straight to the point.
             </p>
           </div>
 

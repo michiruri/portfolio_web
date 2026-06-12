@@ -2,11 +2,11 @@
 
 import * as React from "react"
 import { Card } from "@/components/ui/card"
-import { Database, Globe, Terminal, GitFork, Sparkles } from "lucide-react"
+import { Database, Globe, Terminal, Sparkles } from "lucide-react"
 import { useInView } from "@/hooks/use-in-view"
 
 // ── Tech Icons SVG Map ───────────────────────────────────────────────────
-const icons: Record<string, { svg: string; color: string; label: string; isMulticolor?: boolean }> = {
+const icons: Record<string, { svg: string; color: string; label: string; isMulticolor?: boolean; viewBox?: string }> = {
   html5: {
     label: "HTML5",
     color: "#E34F26",
@@ -35,7 +35,7 @@ const icons: Record<string, { svg: string; color: string; label: string; isMulti
   nextjs: {
     label: "Next.js",
     color: "#ffffff",
-    svg: `<path d="M11.5725 0c-.1763 0-.3098.0013-.3584.0067-.0516.0053-.2159.021-.3636.3094L.3598 13.0152c-.0791.1215-.1209.257-.1209.397v3.2963c0 .202.1674.3657.3736.3657h.0164c.0543 0 .1104-.014.1608-.0401l11.2895-5.7786c.1131-.0579.1841-.1735.1841-.3004V.3567C12.0633.159 11.9031 0 11.5725 0zM8.8354 17.1392l-.5468.2804V.3567l.5468.2804v16.5021zm3.0918-3.2017l-1.5455-.7903V3.8508l1.5455-.7903v11.8762zm4.3047 2.2007H16.023V.3567h.2089v15.784zm2.1166-1.0838l-1.5455.7903V3.8508l1.5455.7903v11.2053z"/>`,
+    svg: `<path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm2-14.25v4.5l-5.25-5.25H7.5v8.5h1.5V9.75l5.25 5.25h1.25V7.75h-1.5z"/>`,
   },
   tailwind: {
     label: "Tailwind CSS",
@@ -50,7 +50,7 @@ const icons: Record<string, { svg: string; color: string; label: string; isMulti
   firebase: {
     label: "Firebase",
     color: "#FFCA28",
-    svg: `<path d="M3.89 15.672L6.255.461A.542.542 0 0 1 7.27.288l2.543 4.771zm16.794 3.692l-2.25-14a.54.54 0 0 0-.919-.295L3.316 19.365l7.856 4.427a1.621 1.621 0 0 0 1.588 0zM14.214 6.204l-1.804-3.37a.542.542 0 0 0-.976 0L3.324 19.232z"/>`,
+    svg: `<path d="M2.28 15.063L4.252 2.381a.453.453 0 0 1 .847-.145l2.12 3.979-4.938 8.848zM16.281 18.14L14.404 6.469a.454.454 0 0 0-.766-.246L1.802 18.14l6.55 3.691c.411.23.912.23 1.323 0l6.606-3.691zM10.957 7.955L9.44 5.052a.452.452 0 0 0-.8 0l-6.66 11.937 8.977-9.034zM10.74 22.176l-1.397.781c-.41.229-.912.229-1.322 0L2.12 19.539l7.95-7.986 8.528 8.528-7.858 2.095z"/>`,
   },
   nodejs: {
     label: "Node.js",
@@ -111,12 +111,13 @@ const icons: Record<string, { svg: string; color: string; label: string; isMulti
   mcp: {
     label: "MCP",
     color: "#3b82f6",
-    svg: `<path d="M4 4h16v4H4V4zm0 6h16v4H4v-4zm0 6h16v4H4v-4zM8 6h.01M8 12h.01M8 18h.01M16 6h2v0M16 12h2v0M16 18h2v0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>`
+    viewBox: "0 0 200 200",
+    svg: `<path d="M25 97.8528L92.8823 29.9706C102.255 20.598 117.451 20.598 126.823 29.9706V29.9706C136.196 39.3431 136.196 54.5391 126.823 63.9117L75.5581 115.177" stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none"/><path d="M76.2653 114.47L126.823 63.9117C136.196 54.5391 151.392 54.5391 160.765 63.9117L161.118 64.2652C170.491 73.6378 170.491 88.8338 161.118 98.2063L99.7248 159.6C96.6006 162.724 96.6006 167.789 99.7248 170.913L112.331 183.52" stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none"/><path d="M109.853 46.9411L59.6482 97.1457C50.2757 106.518 50.2757 121.714 59.6482 131.087V131.087C69.0208 140.459 84.2168 140.459 93.5894 131.087L143.794 80.8822" stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none"/>`
   },
   prompteng: {
     label: "Prompt Engineering",
     color: "#f59e0b",
-    svg: `<path d="M2 17l10-10 4 4L6 21H2v-4zm18.5-11.5a2.12 2.12 0 0 0-3-3l-2.5 2.5l3 3l2.5-2.5zM19 13.5l1.5.5l-1.5.5l-.5 1.5l-.5-1.5l-1.5-.5l1.5-.5l.5-1.5l.5 1.5zM7 3.5l1 .5l-1 .5l-.5 1l-.5-1l-1-.5l1-.5l.5-1l.5 1z"/>`
+    svg: `<path d="M2 17l10-10 4 4L6 21H2v-4zm18.5-11.5a2.12 2.12 0 0 0-3-3l-2.5 2.5l3 3l2.5-2.5zM19 13.5l1.5.5l-1.5.5l-.5 1.5l-.5-1.5l-1.5-.5l1.5-.5l.5-1.5l.5 1.5zM7 3.5l1 .5l-1 .5l-.5 1l-.5-1-1-.5l1-.5l.5-1l.5 1z"/>`
   },
   multiagent: {
     label: "Multi-Agent Systems",
@@ -126,17 +127,17 @@ const icons: Record<string, { svg: string; color: string; label: string; isMulti
   claude: {
     label: "Claude",
     color: "#d97706",
-    svg: `<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm-1 15.5V14H9v-2h2V9.5c0-1.38 1.12-2.5 2.5-2.5H15v2h-1.5c-.28 0-.5.22-.5.5V12h2v2h-2v3.5h-2z"/>`
+    svg: `<path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/>`,
   },
   gemini: {
     label: "Gemini",
     color: "#60a5fa",
-    svg: `<path d="M12 2c0 5.523 4.477 10 10 10c-5.523 0-10 4.477-10 10c0-5.523-4.477-10-10-10c5.523 0 10-4.477 10-10zm-6 14c0 2.209 1.791 4 4 4c-2.209 0-4 1.791-4 4c0-2.209-1.791-4-4-4c2.209 0 4-1.791 4-4z"/>`
+    svg: `<path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/>`,
   },
   chatgpt: {
     label: "ChatGPT",
     color: "#10b981",
-    svg: `<path d="M20.1 11.2a5.2 5.2 0 0 0-3-4.7a5.2 5.2 0 0 0-7.3-3.1a5.2 5.2 0 0 0-5.3 4.3a5.2 5.2 0 0 0 .8 5.7a5.2 5.2 0 0 0 3 4.7a5.2 5.2 0 0 0 7.3 3.1a5.2 5.2 0 0 0 5.3-4.3a5.2 5.2 0 0 0-.8-5.7zm-2.8 3.8a3.2 3.2 0 0 1-1.7.5a3.2 3.2 0 0 1-1.1-.2l-3.3-1.9v-2.3l3-1.7a1.2 1.2 0 0 0 .6-1v-2.3a3.2 3.2 0 0 1 1.7.5a3.2 3.2 0 0 1 1.1 1l-1.9 1.1a1.2 1.2 0 0 0-.6 1v3.5a1.2 1.2 0 0 0 .7 1.3zm-7-9.5a3.2 3.2 0 0 1 1.7-.5a3.2 3.2 0 0 1 1.1.2l3.3 1.9v2.3l-3 1.7a1.2 1.2 0 0 0-.6 1v2.3a3.2 3.2 0 0 1-1.7-.5a3.2 3.2 0 0 1-1.1-1l1.9-1.1a1.2 1.2 0 0 0 .6-1V8.5a1.2 1.2 0 0 0-.7-1.3z"/>`
+    svg: `<path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/>`,
   },
   higgsfield: {
     label: "Higgsfield",
@@ -146,7 +147,7 @@ const icons: Record<string, { svg: string; color: string; label: string; isMulti
   cursor: {
     label: "Cursor",
     color: "#38bdf8",
-    svg: `<path d="M4 15V2l9 9H7.8l-3.8 4zm5.5-2.5L14 20l2.5-1.5l-4.5-8L9.5 12.5z" fill="currentColor"/>`
+    svg: `<path d="M22.106 5.68L12.5.135a.998.998 0 00-.998 0L1.893 5.68a.84.84 0 00-.419.726v11.186c0 .3.16.577.42.727l9.607 5.547a.999.999 0 00.998 0l9.608-5.547a.84.84 0 00.42-.727V6.407a.84.84 0 00-.42-.726zm-.603 1.176L12.228 22.92c-.063.108-.228.064-.228-.061V12.34a.59.59 0 00-.295-.51l-9.11-5.26c-.107-.062-.063-.228.062-.228h18.55c.264 0 .428.286.296.514z"/>`
   },
   whatnot: {
     label: "Other Agents",
@@ -189,14 +190,14 @@ const skillsData = {
   gemini: { name: "Gemini (Google)", desc: "Google Gemini high-token context queries, multimodal reasoning integration, function calling, and structured text inputs." },
   chatgpt: { name: "ChatGPT (OpenAI)", desc: "OpenAI GPT model integration, custom GPT configurations, tool calls execution, and prompt completions API routines." },
   higgsfield: { name: "Higgsfield AI", desc: "AI video generation models, camera motion controls, custom style parameters, and high-fidelity video creations." },
-  cursor: { name: "Cursor AI", desc: "AI-assisted codebase indexing, codebase chat interactions, prompt editing, and cursor composer multi-file refactoring." },
+  cursor: { name: "Cursor", desc: "AI-assisted codebase indexing, codebase chat interactions, prompt editing, and cursor composer multi-file refactoring." },
   whatnot: { name: "Agentic Tools", desc: "Automated coding assistants, Windsurf agentic ide workflows, v0 UI prototyping, and AI code generation pipelines." }
 }
 
-const TechIcon = ({ svg, label, isMulticolor }: { svg: string; label: string; isMulticolor?: boolean }) => (
+const TechIcon = ({ svg, label, isMulticolor, viewBox = "0 0 24 24" }: { svg: string; label: string; isMulticolor?: boolean; viewBox?: string }) => (
   <span title={label} className="inline-flex shrink-0" aria-label={label}>
     <svg
-      viewBox="0 0 24 24"
+      viewBox={viewBox}
       className="h-5 w-5"
       fill={isMulticolor ? undefined : "currentColor"}
       aria-hidden="true"
@@ -289,7 +290,7 @@ export function SkillsSection() {
                   <div>
                     <h3 className="text-base font-black text-foreground tracking-tight flex items-center gap-2">
                       <span style={{ color: icons[activeClientTool]?.color }}>
-                        <TechIcon svg={icons[activeClientTool]?.svg} label={icons[activeClientTool]?.label} isMulticolor={icons[activeClientTool]?.isMulticolor} />
+                        <TechIcon svg={icons[activeClientTool]?.svg} label={icons[activeClientTool]?.label} isMulticolor={icons[activeClientTool]?.isMulticolor} viewBox={icons[activeClientTool]?.viewBox} />
                       </span>
                       {skillsData[activeClientTool as keyof typeof skillsData]?.name}
                     </h3>
@@ -339,7 +340,7 @@ export function SkillsSection() {
                           className={isSpecialColor ? "text-foreground" : ""}
                           style={isSpecialColor ? undefined : { color: icon.color }}
                         >
-                          <TechIcon svg={icon.svg} label={icon.label} isMulticolor={icon.isMulticolor} />
+                          <TechIcon svg={icon.svg} label={icon.label} isMulticolor={icon.isMulticolor} viewBox={icon.viewBox} />
                         </span>
                         <span className="text-xs font-bold leading-none">{icon.label}</span>
                       </div>
@@ -376,7 +377,7 @@ export function SkillsSection() {
                   <div>
                     <h3 className="text-base font-black text-foreground tracking-tight flex items-center gap-2">
                       <span style={{ color: icons[activeBackend]?.color }}>
-                        <TechIcon svg={icons[activeBackend]?.svg} label={icons[activeBackend]?.label} />
+                        <TechIcon svg={icons[activeBackend]?.svg} label={icons[activeBackend]?.label} viewBox={icons[activeBackend]?.viewBox} />
                       </span>
                       {skillsData[activeBackend as keyof typeof skillsData]?.name}
                     </h3>
@@ -419,7 +420,7 @@ export function SkillsSection() {
                         }`}
                       >
                         <span style={{ color: icon.color }}>
-                          <TechIcon svg={icon.svg} label={icon.label} />
+                          <TechIcon svg={icon.svg} label={icon.label} viewBox={icon.viewBox} />
                         </span>
                         <span className="text-xs font-bold leading-none">{icon.label}</span>
                       </div>
@@ -459,7 +460,7 @@ export function SkillsSection() {
                   <div>
                     <h3 className="text-base font-black text-foreground tracking-tight flex items-center gap-2">
                       <span style={{ color: icons[activeAI]?.color }}>
-                        <TechIcon svg={icons[activeAI]?.svg} label={icons[activeAI]?.label} />
+                        <TechIcon svg={icons[activeAI]?.svg} label={icons[activeAI]?.label} viewBox={icons[activeAI]?.viewBox} />
                       </span>
                       {skillsData[activeAI as keyof typeof skillsData]?.name}
                     </h3>
@@ -506,7 +507,7 @@ export function SkillsSection() {
                           className={`${isSpecialColor ? "text-foreground" : ""} transition-transform duration-300 ${isActive || isHovered ? "scale-110" : ""}`}
                           style={isSpecialColor ? undefined : { color: icon.color }}
                         >
-                          <TechIcon svg={icon.svg} label={icon.label} />
+                          <TechIcon svg={icon.svg} label={icon.label} viewBox={icon.viewBox} />
                         </span>
                         <span className="text-[9px] font-bold leading-tight select-none">{icon.label}</span>
                       </div>
@@ -517,80 +518,87 @@ export function SkillsSection() {
             </div>
           </Card>
 
-          {/* Card 4: Workflow & Systems Pipeline */}
+          {/* Card 4: Developer Systems & Ops */}
           <Card className="border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl overflow-hidden relative group transition-all duration-300 hover:border-primary/20 dark:hover:border-primary/20 hover:shadow-[0_0_35px_rgba(139,92,246,0.06)] flex flex-col justify-between min-h-[400px]">
             {/* Header */}
             <div className="px-5 py-4 border-b border-border/70 dark:border-white/5 flex items-center justify-between bg-black/10 dark:bg-black/20">
               <div className="flex items-center gap-2">
                 <Terminal className="h-4 w-4 text-primary animate-pulse" />
-                <span className="text-xs font-bold text-foreground tracking-wide uppercase">Workflow &amp; Operations</span>
+                <span className="text-xs font-bold text-foreground tracking-wide uppercase">Developer Systems &amp; Ops</span>
               </div>
-              <div className="flex gap-1 items-center">
-                <GitFork className="h-3.5 w-3.5 text-muted-foreground animate-[spin_8s_linear_infinite]" />
+              <div className="flex items-center gap-1.5 text-[10px] text-emerald-400 font-bold">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>ACTIVE</span>
               </div>
             </div>
 
             {/* Content Body */}
-            <div className="p-5 flex-grow flex flex-col justify-between gap-4">
-              {/* Interactive pipeline flow mapping */}
-              <div className="relative w-full flex items-center justify-between px-6 py-6 bg-black/10 dark:bg-black/20 rounded-xl border border-border/70 dark:border-white/5 overflow-hidden">
-                {/* Glowing pipeline line in background */}
-                <div className="absolute top-1/2 left-10 right-10 h-[2px] bg-border dark:bg-white/5 -translate-y-1/2 z-0" />
-                
-                {/* Dynamic progress highlight bar based on step hover/active */}
-                <div
-                  className="absolute top-1/2 left-10 h-[2px] bg-gradient-to-r from-orange-500 via-red-500 to-amber-500 -translate-y-1/2 z-0 transition-all duration-500 origin-left"
-                  style={{
-                    width: activeWorkflow === "figma" ? "0%" :
-                           activeWorkflow === "git" ? "33%" :
-                           activeWorkflow === "github" ? "66%" : "100%"
-                  }}
-                />
-
-                {(["figma", "git", "github", "firebasehosting"] as const).map((key) => {
-                  const icon = key === "firebasehosting" ? icons.firebase : icons[key]
-                  const isActive = activeWorkflow === key
-                  const isHovered = hoveredSkill === key
-                  
-                  // Compute positions & styles based on activation
-                  const colors = {
-                    figma: "border-orange-500 text-orange-500 bg-orange-500/10 hover:shadow-orange-500/20",
-                    git: "border-red-500 text-red-500 bg-red-500/10 hover:shadow-red-500/20",
-                    github: "border-foreground text-foreground bg-foreground/10 hover:shadow-foreground/20",
-                    firebasehosting: "border-amber-500 text-amber-500 bg-amber-500/10 hover:shadow-amber-500/20"
-                  }
-
-                  return (
-                    <button
-                      key={key}
-                      onMouseEnter={() => {
-                        setActiveWorkflow(key)
-                        setHoveredSkill(key)
-                      }}
-                      onMouseLeave={() => setHoveredSkill(null)}
-                      className={`relative z-10 w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all duration-300 shadow-md ${
-                        colors[key]
-                      } ${
-                        isActive || isHovered
-                          ? "scale-110 ring-2 ring-primary/45 border-opacity-100 shadow-[0_0_15px_rgba(139,92,246,0.15)]"
-                          : "scale-100 opacity-60 hover:opacity-100 border-opacity-40"
-                      }`}
-                    >
-                      <TechIcon svg={icon.svg} label={icon.label} isMulticolor={icon.isMulticolor} />
-                    </button>
-                  )
-                })}
+            <div className="flex-grow grid grid-cols-1 md:grid-cols-5 min-h-0">
+              {/* Telemetry Details Left (2 Cols) */}
+              <div className="md:col-span-2 border-r border-border/70 dark:border-white/5 p-5 bg-black/5 dark:bg-black/10 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-1.5 text-[9px] font-black text-muted-foreground uppercase tracking-widest">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>System Module</span>
+                  </div>
+                  <div>
+                    <h3 className="text-base font-black text-foreground tracking-tight flex items-center gap-2">
+                      <span style={{ color: activeWorkflow === "firebasehosting" ? icons.firebase?.color : icons[activeWorkflow]?.color }}>
+                        <TechIcon
+                          svg={activeWorkflow === "firebasehosting" ? icons.firebase?.svg : icons[activeWorkflow]?.svg}
+                          label={activeWorkflow === "firebasehosting" ? icons.firebase?.label : icons[activeWorkflow]?.label}
+                          isMulticolor={activeWorkflow === "firebasehosting" ? icons.firebase?.isMulticolor : icons[activeWorkflow]?.isMulticolor}
+                          viewBox={activeWorkflow === "firebasehosting" ? icons.firebase?.viewBox : icons[activeWorkflow]?.viewBox}
+                        />
+                      </span>
+                      {skillsData[activeWorkflow as keyof typeof skillsData]?.name}
+                    </h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed mt-2 font-medium">
+                      {skillsData[activeWorkflow as keyof typeof skillsData]?.desc}
+                    </p>
+                  </div>
+                </div>
+                <div className="pt-4 border-t border-border/40 dark:border-white/5 font-mono text-[9px] text-muted-foreground/60 space-y-1">
+                  <div>[SYSTEM_STATUS]: OPERATIONAL</div>
+                  <div>[MODULE_REF]: {activeWorkflow.toUpperCase()}</div>
+                </div>
               </div>
 
-              {/* Terminal Logs Output Box */}
-              <div className="p-4 bg-black/20 dark:bg-black/35 rounded-xl border border-border/70 dark:border-white/5 font-mono text-[11px] min-h-[110px] flex flex-col justify-center">
-                <div className="flex items-center gap-1.5 text-emerald-400 mb-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>PIPELINE_DEVOPS: RUNNING</span>
+              {/* Chips Grid Right (3 Cols) */}
+              <div className="md:col-span-3 p-5 flex flex-col justify-center">
+                <div className="grid grid-cols-2 gap-2.5">
+                  {(["figma", "git", "github", "firebasehosting"] as const).map((key) => {
+                    const icon = key === "firebasehosting" ? icons.firebase : icons[key]
+                    const isActive = activeWorkflow === key
+                    const isHovered = hoveredSkill === key
+
+                    return (
+                      <div
+                        key={key}
+                        onMouseEnter={() => {
+                          setActiveWorkflow(key)
+                          setHoveredSkill(key)
+                        }}
+                        onMouseLeave={() => setHoveredSkill(null)}
+                        style={{
+                          borderColor: isHovered || isActive ? icon.color : undefined,
+                          boxShadow: isHovered || isActive ? `0 0 15px ${icon.color}20` : undefined,
+                          backgroundColor: isHovered || isActive ? `${icon.color}0a` : undefined,
+                        }}
+                        className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl cursor-default transition-all duration-300 border backdrop-blur-md ${
+                          isActive || isHovered
+                            ? "text-foreground scale-[1.02] border-opacity-70"
+                            : "bg-black/5 dark:bg-black/10 border-border/70 dark:border-white/5 text-muted-foreground hover:text-foreground hover:bg-black/10 dark:hover:bg-black/20"
+                        }`}
+                      >
+                        <span style={{ color: icon.color }}>
+                          <TechIcon svg={icon.svg} label={icon.label} isMulticolor={icon.isMulticolor} viewBox={icon.viewBox} />
+                        </span>
+                        <span className="text-xs font-bold leading-none">{icon.label}</span>
+                      </div>
+                    )
+                  })}
                 </div>
-                <p className="text-muted-foreground leading-relaxed text-xs">
-                  {skillsData[activeWorkflow as keyof typeof skillsData]?.desc}
-                </p>
               </div>
             </div>
           </Card>
