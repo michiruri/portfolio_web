@@ -10,7 +10,7 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 
 const navItems = [
-  { label: "About",        href: "#about" },
+  { label: "Home",         href: "#about" },
   { label: "Skills",       href: "#skills" },
   { label: "Experience",   href: "#experience" },
   { label: "Achievements", href: "#achievements" },

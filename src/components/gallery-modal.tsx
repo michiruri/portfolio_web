@@ -64,10 +64,10 @@ export function GalleryModal({ isOpen, onClose }: GalleryModalProps) {
   if (!shouldRender) return null
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center">
+    <div className="fixed inset-0 z-[100] overflow-y-auto">
       {/* Backdrop */}
       <div 
-        className={`absolute inset-0 transition-opacity duration-500 ease-in-out backdrop-blur-md ${
+        className={`fixed inset-0 transition-opacity duration-500 ease-in-out backdrop-blur-md ${
           isLight ? "bg-background/85" : "bg-[#020205]/75"
         } ${
           isAnimating ? "opacity-100" : "opacity-0"
@@ -78,7 +78,7 @@ export function GalleryModal({ isOpen, onClose }: GalleryModalProps) {
       {/* Close Button */}
       <button 
         onClick={onClose}
-        className={`absolute top-6 right-6 z-[110] w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 ease-out hover:scale-105 ${
+        className={`fixed top-4 right-4 sm:top-6 sm:right-6 z-[110] w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-500 ease-out hover:scale-105 ${
           isLight 
             ? "bg-orange-500/5 hover:bg-orange-500/15 border border-orange-500/20 hover:border-orange-500/50 text-orange-600 hover:text-orange-950 hover:shadow-[0_0_15px_rgba(249,115,22,0.25)]" 
             : "bg-purple-500/5 hover:bg-purple-500/15 border border-purple-500/20 hover:border-purple-500/50 text-purple-300 hover:text-white hover:shadow-[0_0_15px_rgba(168,85,247,0.25)]"
@@ -86,12 +86,12 @@ export function GalleryModal({ isOpen, onClose }: GalleryModalProps) {
           isAnimating ? "opacity-100 scale-100" : "opacity-0 scale-75"
         }`}
       >
-        <X className="w-5 h-5" />
+        <X className="w-4 h-4 sm:w-5 sm:h-5" />
       </button>
 
       {/* Content Container */}
       <div 
-        className={`relative z-[105] w-full max-w-6xl h-full max-h-[100dvh] overflow-y-auto px-6 py-20 sm:px-12 scrollbar-hide transition-all duration-500 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] ${
+        className={`relative z-[105] w-full max-w-6xl mx-auto px-4 py-16 sm:px-6 md:px-12 transition-all duration-500 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] ${
           isAnimating 
             ? "opacity-100 [transform:perspective(1000px)_rotateX(0deg)_translateY(0)_scale(1)]" 
             : "opacity-0 [transform:perspective(1000px)_rotateX(15deg)_translateY(40px)_scale(0.97)]"
@@ -258,14 +258,14 @@ export function GalleryModal({ isOpen, onClose }: GalleryModalProps) {
           {/* Zoom Close Button */}
           <button 
             onClick={() => setZoomedItem(null)}
-            className="absolute top-6 right-6 z-[130] w-10 h-10 rounded-full flex items-center justify-center bg-white/5 border border-white/10 text-white/80 hover:text-white hover:bg-white/10 hover:scale-105 transition-all duration-200 cursor-pointer"
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 z-[130] w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center bg-white/5 border border-white/10 text-white/80 hover:text-white hover:bg-white/10 hover:scale-105 transition-all duration-200 cursor-pointer"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
 
           {/* Zoom Content */}
           <div 
-            className="relative z-[125] w-full max-w-4xl max-h-[85vh] flex flex-col items-center justify-center animate-scale-in"
+            className="relative z-[125] w-full max-w-4xl max-h-[90vh] overflow-y-auto flex flex-col items-center justify-start sm:justify-center animate-scale-in scrollbar-hide py-4"
           >
             <div 
               className={`w-full ${zoomedItem.aspect} max-w-3xl rounded-3xl border border-white/10 bg-[#07070a] flex items-center justify-center relative overflow-hidden shadow-[0_0_50px_rgba(139,92,246,0.15)]`}

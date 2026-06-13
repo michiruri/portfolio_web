@@ -55,7 +55,7 @@ export function ExperienceSection() {
       roles: [
         {
           title: "AI & Agentic Assisted Developer",
-          description: "Orchestrated AI-assisted coding pipelines using agentic tools like Cursor and Higgsfield to accelerate corporate software deliveries. Built automated workflows, custom prompt systems, and structured API layers. Spearheaded a creative initiative using Higgsfield AI and image generation tools to transform employee portraits into high-fidelity 'baby-fied' versions, generating custom AI videos of them dancing to popular themes that were featured in the company's Foundation Day celebrations and games.",
+          description: "Orchestrated AI-assisted coding pipelines using agentic tools like Cursor and Higgsfield to accelerate corporate software deliveries. Built automated workflows, custom prompt systems, and structured API layers. Spearheaded a creative initiative using Higgsfield AI and image generation tools to transform employee portraits into high-fidelity 'baby-fied' versions, generating custom AI videos of them dancing to popular themes that were featured in the company's 48th Anniversary Foundation Celebration and games.",
           skills: ["Agentic AI", "Cursor Composer", "Higgsfield", "Prompt Tuning", "LLM Workflows"]
         },
         {
@@ -65,17 +65,17 @@ export function ExperienceSection() {
         },
         {
           title: "System Administrator",
-          description: "Supervised and managed active directory networks, automated server updates, database backups, and secure system access permissions.",
+          description: "Supervised and managed active directory networks, automated server updates, database backups, and secure system access permissions. During the 36th AGAM (Annual General Assembly Meeting), administered the backend and admin operations of the consumer registration system, and successfully executed manual data entry and synchronization workflows when the primary server failed and operations shifted to the backup server.",
           skills: ["Server Administration", "Network Diagnostics", "Active Directory", "Database Backups"]
         },
         {
           title: "IT Technical Support (L1)",
-          description: "Provided primary tier technical support diagnosing network issues, client host configurations, hardware troubleshooting, and helpdesk ticketing resolutions.",
+          description: "Provided primary tier technical support diagnosing network issues, client host configurations, hardware troubleshooting, and helpdesk ticketing resolutions. On regular days, performed hard reformats, system data backups, Microsoft OS/Office installations, and setup of all necessary software suites before deploying PC units to employees for active corporate work.",
           skills: ["Hardware Checks", "Operating Systems", "Client Troubleshooting", "Ticketing Support"]
         },
         {
           title: "Graphic Designer",
-          description: "Created high-impact corporate slide decks, promotional web banners, and visual multimedia layouts for company-wide meetings and customer outreach.",
+          description: "Created high-impact corporate slide decks, promotional web banners, and visual multimedia layouts for company-wide meetings and customer outreach. Designed and created the official event backdrop for the 48th Anniversary Foundation Celebration.",
           skills: ["Figma", "Digital Art", "Vector Graphics", "Brand Layouts", "Multimedia Presentation"]
         }
       ]

@@ -147,7 +147,7 @@ export function HeroSection() {
           {/* Right: 3D Flipping Profile Card */}
           <div className={`flex-shrink-0 w-full max-w-md lg:w-[460px] flex flex-col ${inView ? "animate-slide-right delay-200" : "opacity-0"}`}>
             {/* Spacer to push card top to align with "Hi, I'm" label */}
-            <div className="flex-1 flex flex-col min-h-[520px]">
+            <div className="flex-1 flex flex-col min-h-[460px] sm:min-h-[520px]">
               {/* Flip wrapper — needs a sized parent for absolute children */}
               <div
                 className="flex-1 cursor-pointer select-none relative group/wrapper"
