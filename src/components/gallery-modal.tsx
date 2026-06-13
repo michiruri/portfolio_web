@@ -13,6 +13,7 @@ export function GalleryModal({ isOpen, onClose }: GalleryModalProps) {
   const [isAnimating, setIsAnimating] = React.useState(false)
   const [shouldRender, setShouldRender] = React.useState(false)
   const [mounted, setMounted] = React.useState(false)
+  const [zoomedItem, setZoomedItem] = React.useState<{ title: string; category: string; aspect: string } | null>(null)
   const { resolvedTheme } = useTheme()
   const isLight = mounted && resolvedTheme === "light"
 
@@ -48,11 +49,17 @@ export function GalleryModal({ isOpen, onClose }: GalleryModalProps) {
   // Handle escape key
   React.useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose()
+      if (e.key === "Escape") {
+        if (zoomedItem) {
+          setZoomedItem(null)
+        } else {
+          onClose()
+        }
+      }
     }
     window.addEventListener("keydown", handleEscape)
     return () => window.removeEventListener("keydown", handleEscape)
-  }, [onClose])
+  }, [onClose, zoomedItem])
 
   if (!shouldRender) return null
 
@@ -132,7 +139,8 @@ export function GalleryModal({ isOpen, onClose }: GalleryModalProps) {
                 ].map((item) => (
                   <div 
                     key={item.id} 
-                    className={`rounded-2xl flex items-center justify-center group relative overflow-hidden transition-all duration-300 border ${
+                    onClick={() => setZoomedItem({ title: `Artwork ${item.id}`, category: "Artworks", aspect: item.aspect })}
+                    className={`rounded-2xl flex items-center justify-center group relative overflow-hidden transition-all duration-300 border cursor-pointer ${
                       isLight 
                         ? "bg-orange-500/[0.02] border-orange-500/15 hover:border-orange-500/50 hover:bg-orange-500/[0.04] hover:shadow-[0_0_18px_rgba(249,115,22,0.15)]" 
                         : "bg-[#07070a]/40 border border-purple-500/15 hover:border-purple-500/50 hover:bg-purple-500/[0.02] hover:shadow-[0_0_18px_rgba(168,85,247,0.15)]"
@@ -174,7 +182,8 @@ export function GalleryModal({ isOpen, onClose }: GalleryModalProps) {
                 ].map((item) => (
                   <div 
                     key={item.id} 
-                    className={`rounded-2xl flex items-center justify-center group relative overflow-hidden transition-all duration-300 border ${
+                    onClick={() => setZoomedItem({ title: `Photo ${item.id}`, category: "Photography", aspect: item.aspect })}
+                    className={`rounded-2xl flex items-center justify-center group relative overflow-hidden transition-all duration-300 border cursor-pointer ${
                       isLight 
                         ? "bg-amber-500/[0.02] border-amber-500/15 hover:border-amber-500/50 hover:bg-amber-500/[0.04] hover:shadow-[0_0_18px_rgba(245,158,11,0.15)]" 
                         : "bg-[#07070a]/40 border border-cyan-500/15 hover:border-cyan-500/50 hover:bg-cyan-500/[0.02] hover:shadow-[0_0_18px_rgba(6,182,212,0.15)]"
@@ -212,10 +221,12 @@ export function GalleryModal({ isOpen, onClose }: GalleryModalProps) {
                 {[
                   { id: 1, name: "Valorant / Competitive FPS", aspect: "aspect-[16/9]" },
                   { id: 2, name: "League of Legends / MOBA Strategy", aspect: "aspect-[16/9]" },
+                  { id: 3, name: "Teamfight Tactics / Auto Battler Strategy", aspect: "aspect-[16/9]" },
                 ].map((item) => (
                   <div 
                     key={item.id} 
-                    className={`rounded-2xl flex items-center justify-center group relative overflow-hidden transition-all duration-300 border ${
+                    onClick={() => setZoomedItem({ title: item.name, category: "Gaming", aspect: item.aspect })}
+                    className={`rounded-2xl flex items-center justify-center group relative overflow-hidden transition-all duration-300 border cursor-pointer ${
                       isLight 
                         ? "bg-red-500/[0.02] border-red-500/15 hover:border-red-500/50 hover:bg-red-500/[0.04] hover:shadow-[0_0_18px_rgba(239,68,68,0.15)]" 
                         : "bg-[#07070a]/40 border border-rose-500/15 hover:border-rose-500/50 hover:bg-rose-500/[0.02] hover:shadow-[0_0_18px_rgba(244,63,94,0.15)]"
@@ -234,6 +245,67 @@ export function GalleryModal({ isOpen, onClose }: GalleryModalProps) {
           </div>
         </div>
       </div>
+
+      {/* Lightbox Zoom Overlay */}
+      {zoomedItem && (
+        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4">
+          {/* Zoom Backdrop */}
+          <div 
+            className="absolute inset-0 bg-[#020205]/95 backdrop-blur-lg transition-opacity duration-300 cursor-pointer"
+            onClick={() => setZoomedItem(null)}
+          />
+          
+          {/* Zoom Close Button */}
+          <button 
+            onClick={() => setZoomedItem(null)}
+            className="absolute top-6 right-6 z-[130] w-10 h-10 rounded-full flex items-center justify-center bg-white/5 border border-white/10 text-white/80 hover:text-white hover:bg-white/10 hover:scale-105 transition-all duration-200 cursor-pointer"
+          >
+            <X className="w-5 h-5" />
+          </button>
+
+          {/* Zoom Content */}
+          <div 
+            className="relative z-[125] w-full max-w-4xl max-h-[85vh] flex flex-col items-center justify-center animate-scale-in"
+          >
+            <div 
+              className={`w-full ${zoomedItem.aspect} max-w-3xl rounded-3xl border border-white/10 bg-[#07070a] flex items-center justify-center relative overflow-hidden shadow-[0_0_50px_rgba(139,92,246,0.15)]`}
+            >
+              {/* Radial gradient backing matching category */}
+              <div className={`absolute inset-0 opacity-40 pointer-events-none bg-gradient-to-tr ${
+                zoomedItem.category === "Artworks"
+                  ? "from-orange-500/20 to-purple-500/20"
+                  : zoomedItem.category === "Photography"
+                  ? "from-amber-500/20 to-cyan-500/20"
+                  : "from-red-500/20 to-rose-500/20"
+              }`} />
+              
+              <span className={`text-xs sm:text-sm font-bold tracking-widest uppercase text-center px-6 ${
+                zoomedItem.category === "Artworks"
+                  ? "text-orange-400"
+                  : zoomedItem.category === "Photography"
+                  ? "text-cyan-400"
+                  : "text-rose-400"
+              }`}>
+                [ {zoomedItem.title} Zoomed Placeholder ]
+              </span>
+            </div>
+
+            <div className="mt-6 text-center space-y-2">
+              <span className="inline-flex items-center rounded-full bg-white/5 border border-white/10 px-2.5 py-0.5 text-[9px] font-black uppercase tracking-widest text-white/50">
+                {zoomedItem.category}
+              </span>
+              <h4 className="text-lg font-extrabold text-white">{zoomedItem.title}</h4>
+              <p className="text-xs text-white/60 max-w-md font-semibold leading-relaxed text-justify px-4">
+                {zoomedItem.category === "Gaming" 
+                  ? "Interactive visual simulation of your strategic tactical gameplay environment."
+                  : zoomedItem.category === "Photography"
+                  ? "High-fidelity resolution exposure capturing spatial lines and depth."
+                  : "Draft render conceptualized to explore shapes, character postures, and tone."}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

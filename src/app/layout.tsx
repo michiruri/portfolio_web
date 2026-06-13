@@ -18,11 +18,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Railey Mitchell Q. Capitis | Web & Mobile Developer",
+  title: "Railey Mitchell Q. Capitis | Web & Mobile Architect",
   description: "Portfolio of Railey Mitchell Q. Capitis — BS Information Technology graduate specializing in Web & Mobile Technologies, PSU Urdaneta City Campus.",
   keywords: [
     "Railey Mitchell Q. Capitis",
     "Railey Mitchell Capitis",
+    "Web Architect",
+    "Mobile Architect",
     "Web Developer",
     "Mobile Developer",
     "Pangasinan State University",
@@ -34,7 +36,7 @@ export const metadata: Metadata = {
     "Philippines IT Graduate"
   ],
   openGraph: {
-    title: "Railey Mitchell Q. Capitis | Web & Mobile Developer",
+    title: "Railey Mitchell Q. Capitis | Web & Mobile Architect",
     description: "Portfolio of Railey Mitchell Q. Capitis — BS Information Technology graduate specializing in Web & Mobile Technologies.",
     url: "https://michiruri.web.app",
     siteName: "Railey Mitchell Capitis Portfolio",
@@ -43,7 +45,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Railey Mitchell Q. Capitis | Web & Mobile Developer",
+    title: "Railey Mitchell Q. Capitis | Web & Mobile Architect",
     description: "Portfolio of Railey Mitchell Q. Capitis — BS Information Technology graduate specializing in Web & Mobile Technologies.",
   }
 };

@@ -68,9 +68,9 @@ export function HeroSection() {
                 Quimson Capitis
               </span>
 
-              {/* Web & Mobile Developer — shimmer line */}
+              {/* Web & Mobile Architect — shimmer line */}
               <span className="text-sm sm:text-base font-bold tracking-[0.18em] uppercase text-shimmer block mt-3">
-                Web &amp; Mobile Developer
+                Web &amp; Mobile Architect
               </span>
             </h1>
 
