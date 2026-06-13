@@ -266,6 +266,12 @@ export function SkillsSection() {
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto font-semibold">
             An organized layout of the core visual design, programming tools, and databases I work with.
           </p>
+          {/* Interactive Hint */}
+          <div className="mt-4 text-[10px] font-black tracking-widest uppercase flex items-center justify-center gap-2 text-primary/75">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            <span className="hidden md:inline">Hover cards to inspect telemetry details</span>
+            <span className="inline md:hidden">Tap cards to inspect telemetry details</span>
+          </div>
         </div>
 
         {/* Bento Console Dashboard (Symmetrical 2x2 layout) */}

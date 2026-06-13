@@ -22,26 +22,26 @@ export function ThemeTransitionOverlay() {
       setTargetTheme(nextTheme)
       setStatus("fading-in")
 
-      // Step 1: Fade overlay backdrop in matching currentTheme background (500ms)
+      // Step 1: Fade overlay backdrop in matching currentTheme background (300ms)
       setTimeout(() => {
         setStatus("opaque")
 
-        // Step 2: Swap the actual themes underneath (200ms)
+        // Step 2: Swap the actual themes underneath (100ms)
         setTimeout(() => {
           setTheme(nextTheme)
 
-          // Step 3: Let page repaint and resolve elements, then fade out (800ms)
+          // Step 3: Let page repaint and resolve elements, then fade out (400ms)
           setTimeout(() => {
             setStatus("fading-out")
 
-            // Step 4: Reset state to idle (500ms)
+            // Step 4: Reset state to idle (300ms)
             setTimeout(() => {
               setStatus("idle")
               setCurrentTheme(null)
-            }, 500)
-          }, 800)
-        }, 200)
-      }, 500)
+            }, 300)
+          }, 400)
+        }, 100)
+      }, 300)
     }
 
     window.addEventListener("trigger-theme-transition", handleTransition)
@@ -71,29 +71,32 @@ export function ThemeTransitionOverlay() {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex items-center justify-center transition-opacity duration-500 ${
+      className={`fixed inset-0 z-[9999] flex items-center justify-center transition-opacity duration-300 ${
         status === "fading-in" || status === "opaque"
           ? "opacity-100 pointer-events-auto"
           : "opacity-0 pointer-events-none"
       }`}
+      style={{ willChange: "opacity" }}
     >
       {/* ── 1. BACKGROUND LAYERS (Smooth gradient cross-fade) ── */}
       
       {/* Dark theme background layer */}
       <div
-        className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+        className="absolute inset-0 transition-opacity duration-500 ease-in-out"
         style={{
           background: "radial-gradient(circle at center, #0a0518 0%, #020105 100%)",
           opacity: isDarkBgVisible ? 1 : 0,
+          willChange: "opacity",
         }}
       />
 
       {/* Light theme background layer (Warm off-white/cream) */}
       <div
-        className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+        className="absolute inset-0 transition-opacity duration-500 ease-in-out"
         style={{
           background: "radial-gradient(circle at center, #fffcf8 0%, #f7ecd8 100%)",
           opacity: isLightBgVisible ? 1 : 0,
+          willChange: "opacity",
         }}
       />
 
@@ -132,10 +135,11 @@ export function ThemeTransitionOverlay() {
           
           {/* A. THE SUN VISUAL (Morphing Layer) */}
           <div
-            className="absolute inset-0 transition-all duration-1000 ease-in-out"
+            className="absolute inset-0 transition-all duration-500 ease-in-out"
             style={{
               opacity: isSunVisible ? 1 : 0,
-              transform: isSunVisible ? "scale(1.02)" : "scale(0.82)",
+              transform: isSunVisible ? "scale(1.02) translateZ(0)" : "scale(0.82) translateZ(0)",
+              willChange: "opacity, transform",
             }}
           >
             <svg viewBox="0 0 200 200" className="w-full h-full" style={{ filter: 'drop-shadow(0 0 35px rgba(249,115,22,0.25))' }}>
@@ -173,6 +177,7 @@ export function ThemeTransitionOverlay() {
                 style={{
                   animation: 'overlay-sun-corona-cw 45s linear infinite',
                   transformOrigin: '100px 100px',
+                  willChange: 'transform',
                 }}
               >
                 {Array.from({ length: 12 }).map((_, idx) => {
@@ -193,6 +198,7 @@ export function ThemeTransitionOverlay() {
                 style={{
                   animation: 'overlay-sun-corona-ccw 30s linear infinite',
                   transformOrigin: '100px 100px',
+                  willChange: 'transform',
                 }}
               >
                 {Array.from({ length: 12 }).map((_, idx) => {
@@ -228,10 +234,11 @@ export function ThemeTransitionOverlay() {
 
           {/* B. THE BLACK HOLE VISUAL (Morphing Layer) */}
           <div
-            className="absolute inset-0 transition-all duration-1000 ease-in-out"
+            className="absolute inset-0 transition-all duration-500 ease-in-out"
             style={{
               opacity: isBlackHoleVisible ? 1 : 0,
-              transform: isBlackHoleVisible ? "scale(1.02)" : "scale(0.82)",
+              transform: isBlackHoleVisible ? "scale(1.02) translateZ(0)" : "scale(0.82) translateZ(0)",
+              willChange: "opacity, transform",
             }}
           >
             {/* 3D Accretion Rings & Core Environment */}
@@ -263,6 +270,7 @@ export function ThemeTransitionOverlay() {
                 className="absolute inset-0 [transform-style:preserve-3d]"
                 style={{
                   animation: 'overlay-spin-3d-cw 12s linear infinite',
+                  willChange: 'transform',
                 }}
               >
                 <svg viewBox="0 0 200 200" className="w-full h-full">
@@ -308,6 +316,7 @@ export function ThemeTransitionOverlay() {
                 className="absolute inset-0 [transform-style:preserve-3d]"
                 style={{
                   animation: 'overlay-spin-3d-ccw 5s linear infinite',
+                  willChange: 'transform',
                 }}
               >
                 <svg viewBox="0 0 200 200" className="w-full h-full">

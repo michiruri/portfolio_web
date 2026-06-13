@@ -41,8 +41,8 @@ export function ExperienceSection() {
 
   const experiences = [
     {
-      id: "ai-dev",
-      role: "AI & Agentic Assisted Developer",
+      id: "panelco-internship",
+      role: "Systems & Software Engineering Intern",
       company: "PANELCO III Electric Cooperative",
       division: "System Administration Division - Corporate Services Department",
       date: "2026",
@@ -50,60 +50,35 @@ export function ExperienceSection() {
       logo: "/logos/panelco-logo.png",
       fallbackLogo: "PANELCO",
       highlight: true,
-      description: "Orchestrated AI-assisted coding pipelines using agentic tools like Cursor and Higgsfield to accelerate corporate software deliveries. Built automated workflows, custom prompt systems, and structured API layers.",
-      skills: ["Agentic AI", "Cursor Composer", "Higgsfield", "Prompt Tuning", "LLM Workflows"]
-    },
-    {
-      id: "fs-dev",
-      role: "Full Stack Web Developer",
-      company: "PANELCO III Electric Cooperative",
-      division: "System Administration Division - Corporate Services Department",
-      date: "2026",
-      type: "OJT / Internship",
-      logo: "/logos/panelco-logo.png",
-      fallbackLogo: "PANELCO",
-      highlight: false,
-      description: "Designed and engineered next-generation corporate web portals, integrating real-time system administration databases with dynamic client-side forms and responsive dashboards.",
-      skills: ["Next.js", "React", "TypeScript", "Tailwind CSS", "REST APIs"]
-    },
-    {
-      id: "sys-admin",
-      role: "System Administrator",
-      company: "PANELCO III Electric Cooperative",
-      division: "System Administration Division - Corporate Services Department",
-      date: "2026",
-      type: "OJT / Internship",
-      logo: "/logos/panelco-logo.png",
-      fallbackLogo: "PANELCO",
-      highlight: false,
-      description: "Supervised and managed active directory networks, automated server updates, database backups, and secure system access permissions.",
-      skills: ["Server Administration", "Network Diagnostics", "Active Directory", "Database Backups"]
-    },
-    {
-      id: "it-support",
-      role: "IT Technical Support (L1)",
-      company: "PANELCO III Electric Cooperative",
-      division: "System Administration Division - Corporate Services Department",
-      date: "2026",
-      type: "OJT / Internship",
-      logo: "/logos/panelco-logo.png",
-      fallbackLogo: "PANELCO",
-      highlight: false,
-      description: "Provided primary tier technical support diagnosing network issues, client host configurations, hardware troubleshooting, and helpdesk ticketing resolutions.",
-      skills: ["Hardware Checks", "Operating Systems", "Client Troubleshooting", "Ticketing Support"]
-    },
-    {
-      id: "graphic-design",
-      role: "Graphic Designer",
-      company: "PANELCO III Electric Cooperative",
-      division: "System Administration Division - Corporate Services Department",
-      date: "2026",
-      type: "OJT / Internship",
-      logo: "/logos/panelco-logo.png",
-      fallbackLogo: "PANELCO",
-      highlight: false,
-      description: "Created high-impact corporate slide decks, promotional web banners, and visual multimedia layouts for company-wide meetings and customer outreach.",
-      skills: ["Figma", "Digital Art", "Vector Graphics", "Brand Layouts", "Multimedia Presentation"]
+      description: "Served as a multi-role engineering and support intern, wearing multiple hats across software systems development, database operations, infrastructure management, and multimedia. Led and orchestrated advanced systems and AI integrations to accelerate cooperative deliveries.",
+      skills: [],
+      roles: [
+        {
+          title: "AI & Agentic Assisted Developer",
+          description: "Orchestrated AI-assisted coding pipelines using agentic tools like Cursor and Higgsfield to accelerate corporate software deliveries. Built automated workflows, custom prompt systems, and structured API layers. Spearheaded a creative initiative using Higgsfield AI and image generation tools to transform employee portraits into high-fidelity 'baby-fied' versions, generating custom AI videos of them dancing to popular themes that were featured in the company's Foundation Day celebrations and games.",
+          skills: ["Agentic AI", "Cursor Composer", "Higgsfield", "Prompt Tuning", "LLM Workflows"]
+        },
+        {
+          title: "Full Stack Web Developer",
+          description: "Designed and engineered next-generation corporate web portals, integrating real-time system administration databases with dynamic client-side forms and responsive dashboards.",
+          skills: ["Next.js", "React", "TypeScript", "Tailwind CSS", "REST APIs"]
+        },
+        {
+          title: "System Administrator",
+          description: "Supervised and managed active directory networks, automated server updates, database backups, and secure system access permissions.",
+          skills: ["Server Administration", "Network Diagnostics", "Active Directory", "Database Backups"]
+        },
+        {
+          title: "IT Technical Support (L1)",
+          description: "Provided primary tier technical support diagnosing network issues, client host configurations, hardware troubleshooting, and helpdesk ticketing resolutions.",
+          skills: ["Hardware Checks", "Operating Systems", "Client Troubleshooting", "Ticketing Support"]
+        },
+        {
+          title: "Graphic Designer",
+          description: "Created high-impact corporate slide decks, promotional web banners, and visual multimedia layouts for company-wide meetings and customer outreach.",
+          skills: ["Figma", "Digital Art", "Vector Graphics", "Brand Layouts", "Multimedia Presentation"]
+        }
+      ]
     },
     {
       id: "bs-it",
@@ -203,7 +178,7 @@ export function ExperienceSection() {
                     {/* Details */}
                     <div className="space-y-3">
                       <div>
-                        <div className="flex items-center gap-1.5 mb-1">
+                        <div className="flex items-center gap-1.5 mb-2">
                           {exp.type === "Education" ? (
                             <GraduationCap className="h-4 w-4 text-primary" />
                           ) : (
@@ -211,22 +186,57 @@ export function ExperienceSection() {
                           )}
                           <h4 className="text-xs font-bold text-foreground">{exp.division}</h4>
                         </div>
-                        <p className="text-xs text-muted-foreground leading-relaxed pl-5 font-semibold">
+                        <p className="text-xs text-muted-foreground leading-relaxed pl-5 font-semibold text-justify">
                           {exp.description}
                         </p>
                       </div>
 
-                      {/* Skills tags */}
-                      <div className="flex flex-wrap gap-1.5 pl-5 pt-1">
-                        {exp.skills.map((skill) => (
-                          <span
-                            key={skill}
-                            className={`text-[9.5px] font-bold px-2 py-0.5 rounded border border-border/60 bg-muted/30 text-muted-foreground transition-all duration-300 hover:text-primary hover:border-primary/30`}
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
+                      {/* Render nested roles if present */}
+                      {exp.roles ? (
+                        <div className="pl-5 pt-4 space-y-6">
+                          <p className="text-[10px] font-black text-foreground/80 tracking-wider uppercase mb-3 border-b border-border/40 pb-1.5 flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                            Core Focus Areas &amp; Specializations
+                          </p>
+                          {exp.roles.map((subRole) => (
+                            <div key={subRole.title} className="relative group/role pl-4 border-l border-border/70 hover:border-primary/50 transition-all duration-300 space-y-2">
+                              {/* Left dot inside role */}
+                              <div className="absolute left-[-5px] top-1.5 w-2 h-2 rounded-full bg-border group-hover/role:bg-primary transition-all duration-300" />
+                              
+                              <h5 className="text-[13px] font-bold text-foreground group-hover/role:text-primary transition-colors flex items-center gap-2">
+                                {subRole.title}
+                              </h5>
+                              <p className="text-xs text-muted-foreground leading-relaxed font-semibold text-justify">
+                                {subRole.description}
+                              </p>
+                              
+                              {/* Skills for sub role */}
+                              <div className="flex flex-wrap gap-1.5 pt-1">
+                                {subRole.skills.map((skill) => (
+                                  <span
+                                    key={skill}
+                                    className="text-[9px] font-bold px-2 py-0.5 rounded border border-border/60 bg-muted/30 text-muted-foreground transition-all duration-300 hover:text-primary hover:border-primary/30"
+                                  >
+                                    {skill}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        /* Standard Single Skill Badge container (e.g. for Education) */
+                        <div className="flex flex-wrap gap-1.5 pl-5 pt-1">
+                          {exp.skills.map((skill) => (
+                            <span
+                              key={skill}
+                              className="text-[9.5px] font-bold px-2 py-0.5 rounded border border-border/60 bg-muted/30 text-muted-foreground transition-all duration-300 hover:text-primary hover:border-primary/30"
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
 
                   </CardContent>

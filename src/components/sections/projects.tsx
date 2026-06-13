@@ -8,21 +8,13 @@ import { GithubIcon } from "@/components/icons"
 import { useInView } from "@/hooks/use-in-view"
 import { useTheme } from "next-themes"
 
-// ── 1. PRODUCTS & SAAS (THE FOUNDER TIER) ────────────────────────────────────
 const saasProjects = [
-  // {
-  //   title: "Triage",
-  //   description: "An AI-first multi-tenant helpdesk SaaS platform for B2B/SMEs. Architected a secure tenant-isolated GCIP authentication system and Firestore database partition ensuring strict client data isolation. Integrated retrieval-augmented generation (RAG) policies using Google Gemini API to drive automated first-responder deflection, combined with invoicing and payment pipelines for end-to-end support automation.",
-  //   tags: ["React", "TypeScript", "Next.js", "Firebase GCIP", "Google Gemini API"],
-  //   type: "web" as const,
-  //   demo: "https://voltstream-portal.web.app",
-  // },
-    {
-    title: "???",
-    description: "SaaS platform for B2B/SMEs in Development - Hidden for Now",
-    tags: ["???"],
+  {
+    title: "Stealth Startup (SaaS Portal)",
+    description: "Architecting an AI-first SaaS platform designed to optimize workflow automation and operations for B2B/SMEs. Building custom tenant-isolated authentication, real-time database partitioning, and secure pipeline integrations. Currently kept in stealth mode during active private beta development.",
+    tags: ["React & Next.js", "TypeScript", "AI Workflows", "Tenant Isolation", "Security"],
     type: "web" as const,
-    demo: "???",
+    demo: "",
   },
 ]
 
@@ -30,7 +22,7 @@ const saasProjects = [
 const professionalProjects = [
   {
     title: "PANELCO III - Visitor Management System",
-    description: "Designed, built, and deployed as the sole software engineer a joint web and mobile solution to automate visitor tracking, gate operations, and internal routing at PANELCO III. Engineered secure regional MySQL databases, a web-based administration and monitoring portal, and a mobile application for gate guards with an integrated Google Gemini AI and ML Kit OCR engine for high-precision ID scanning, thermal receipt printing, and live audit logging.",
+    description: "Designed, built, and deployed as the sole software engineer a joint web and mobile solution to automate visitor tracking, gate operations, and internal routing at PANELCO III. Engineered a mobile application for gate guards with an integrated ML Kit OCR engine to extract raw text from photo IDs, combined with Google Gemini AI to analyze and format names, addresses, and numbers into interactive draggable chips. Guards can drag these chips directly into the corresponding form fields—minimizing manual typing, boosting data entry accuracy, and maximizing accessibility. Supported by secure regional MySQL databases and a web-based admin monitoring portal.",
     tags: ["Flutter", "Dart", "PHP API", "MySQL", "Google Gemini", "ML Kit OCR"],
     type: "both" as const,
     github: "",
@@ -131,7 +123,15 @@ function ProjectCard({ project, isLight }: { project: Project; isLight: boolean 
           </div>
         </CardContent>
         <CardFooter className="pt-4 border-t border-border/50 dark:border-white/5 flex gap-3.5 bg-muted/10 rounded-b-2xl mt-auto">
-          {project.github && project.demo ? (
+          {project.title.includes("Stealth") ? (
+            <Button
+              disabled
+              size="sm"
+              className="w-full gap-1.5 opacity-65 cursor-not-allowed border-primary/20 text-primary bg-primary/5 font-bold text-xs"
+            >
+              In Development (Stealth)
+            </Button>
+          ) : project.github && project.demo ? (
             <>
               <Button
                 variant="outline"
