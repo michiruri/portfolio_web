@@ -60,8 +60,8 @@ export function ExperienceSection() {
         },
         {
           title: "Full Stack Web Developer",
-          description: "Designed and engineered next-generation corporate web portals, integrating real-time system administration databases with dynamic client-side forms and responsive dashboards.",
-          skills: ["Next.js", "React", "TypeScript", "Tailwind CSS", "REST APIs"]
+          description: "Designed and engineered next-generation corporate web portals, transforming PANELCO's traditional manual paper visitor entry and tracking logs into a secure, paperless digital portal integrated with a real-time SQL database.",
+          skills: ["Next.js", "React", "TypeScript", "Tailwind CSS", "SQL Database", "Paperless Migration"]
         },
         {
           title: "System Administrator",
@@ -75,8 +75,8 @@ export function ExperienceSection() {
         },
         {
           title: "Graphic Designer",
-          description: "Created high-impact corporate slide decks, promotional web banners, and visual multimedia layouts for company-wide meetings and customer outreach. Designed and created the official event backdrop for the 48th Anniversary Foundation Celebration.",
-          skills: ["Figma", "Digital Art", "Vector Graphics", "Brand Layouts", "Multimedia Presentation"]
+          description: "Created high-impact corporate slide decks, promotional web banners, and visual multimedia layouts for company-wide meetings and customer outreach. Designed and created the official event backdrop for the 48th Anniversary Foundation Celebration, and collaborated with fellow SAD interns to design the official new employee ID cards for PANELCO.",
+          skills: ["Figma", "Digital Art", "Vector Graphics", "Brand Layouts", "ID Design", "Multimedia Presentation"]
         }
       ]
     },
@@ -90,8 +90,8 @@ export function ExperienceSection() {
       logo: "/logos/psu-logo.png",
       fallbackLogo: "PSU",
       highlight: false,
-      description: "Completed comprehensive technical education in software design, mobile environment compilation, database management, and complex information systems architecture.",
-      skills: ["Web Technologies", "Mobile Systems", "Databases", "Systems Architecture"]
+      description: "Completed comprehensive technical education in software design, mobile environment compilation, database management, and complex systems architecture. Gained strong foundational knowledge in cybersecurity principles and modern web/mobile developmental frameworks.",
+      skills: ["Web Technologies", "Mobile Systems", "Databases", "Systems Architecture", "Cybersecurity", "Developmental Frameworks"]
     }
   ]
 

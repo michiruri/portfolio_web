@@ -62,9 +62,9 @@ export function ContactSection() {
               
               {/* Left Column: What to Expect */}
               <div className="md:col-span-5 p-6 flex flex-col justify-between gap-6">
-                <div className="space-y-5">
+                <div className="flex flex-col gap-5">
                   {/* Heading */}
-                  <div>
+                  <div className="md:h-[68px] flex flex-col justify-end">
                     <h3 className="text-sm font-extrabold text-foreground tracking-tight leading-tight">What to Expect</h3>
                     <p className="text-xs text-muted-foreground font-semibold mt-1.5 leading-relaxed text-justify">
                       I value direct communication and respect your time. Here is what to expect:
@@ -166,17 +166,18 @@ export function ContactSection() {
                 {status !== "sent" ? (
                   <form onSubmit={handleSubmit} className="h-full flex flex-col justify-between gap-6">
                     
-                    {/* Heading matching Left Column */}
-                    <div>
-                      <h3 className="text-sm font-extrabold text-foreground tracking-tight leading-tight">Send a Message</h3>
-                      <p className="text-xs text-muted-foreground font-semibold mt-2 leading-relaxed text-justify">
-                        Have a project, a contract to discuss, or a simple question?
-                        Send me a message and let's get to work.
-                      </p>
-                    </div>
+                    <div className="flex flex-col gap-5">
+                      {/* Heading matching Left Column */}
+                      <div className="md:h-[68px] flex flex-col justify-end">
+                        <h3 className="text-sm font-extrabold text-foreground tracking-tight leading-tight">Send a Message</h3>
+                        <p className="text-xs text-muted-foreground font-semibold mt-1.5 leading-relaxed text-justify">
+                          Have a project, a contract to discuss, or a simple question?
+                          Send me a message and let's get to work.
+                        </p>
+                      </div>
 
-                    {/* Inputs Wrapper */}
-                    <div className="space-y-4 flex-grow border-t border-border/40 dark:border-white/5 pt-5">
+                      {/* Inputs Wrapper */}
+                      <div className="space-y-4 border-t border-border/40 dark:border-white/5 pt-4">
                       <div>
                         <label htmlFor="name" className="flex items-center gap-2 text-xs font-bold text-foreground mb-2 select-none">
                           <User className="h-4 w-4 text-primary shrink-0" />
@@ -228,8 +229,9 @@ export function ContactSection() {
                         />
                       </div>
                     </div>
-                    
-                    <Button
+                  </div>
+                  
+                  <Button
                       type="submit"
                       disabled={status === "sending"}
                       className="w-full gap-2 py-2.5 h-10 font-bold text-xs bg-primary text-primary-foreground hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer relative overflow-hidden shrink-0 mt-2"
