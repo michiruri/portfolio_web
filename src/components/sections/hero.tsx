@@ -126,6 +126,16 @@ export function HeroSection() {
                 <Gamepad2 className="h-4 w-4 mr-2" />
                 Side Quests
               </Button>
+
+              <Button
+                size="lg"
+                variant="outline"
+                className={`cursor-pointer font-bold text-sm hover:scale-105 transition-all duration-300 ${isLight ? "hover:shadow-[0_0_15px_rgba(249,115,22,0.15)] hover:border-primary/50" : "hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] hover:border-primary/50"} border-primary/20 text-primary bg-primary/5 hover:bg-primary/10`}
+                render={<a href="/404" />}
+                nativeButton={false}
+              >
+                ???
+              </Button>
             </div>
             
             <GalleryModal isOpen={isGalleryOpen} onClose={() => setIsGalleryOpen(false)} />
@@ -204,9 +214,9 @@ export function HeroSection() {
                     </div>
                   </div>
 
-                  {/* ── BACK: Profile Highlights Dashboard ── */}
+                  {/* ── BACK: Profile Photo (Meme / Humor) ── */}
                   <div
-                    className={`rounded-2xl bg-[#07070a] p-6 flex flex-col justify-between relative group/card border border-white/5 transition-all duration-500 shadow-2xl hover:border-primary/50 min-h-0 overflow-hidden ${isLight ? "hover:shadow-[0_0_25px_rgba(249,115,22,0.25)]" : "hover:shadow-[0_0_30px_rgba(139,92,246,0.35)]"}`}
+                    className={`rounded-2xl p-4 flex flex-col justify-between relative group/card bg-card border border-border/70 dark:bg-[#07070a] dark:border-white/5 transition-all duration-500 shadow-2xl hover:border-primary/60 dark:hover:border-primary/50 ${isLight ? "hover:shadow-[0_0_25px_rgba(249,115,22,0.2)]" : "hover:shadow-[0_0_25px_rgba(139,92,246,0.25)] dark:hover:shadow-[0_0_30px_rgba(139,92,246,0.35)]"}`}
                     style={{
                       position: "absolute",
                       inset: 0,
@@ -216,52 +226,28 @@ export function HeroSection() {
                       pointerEvents: isFlipped ? "auto" : "none",
                     }}
                   >
-                    <div className="flex items-center justify-between border-b border-slate-800/80 pb-3 shrink-0">
-                      <div className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]"></span>
-                        <span className="text-xs font-mono font-bold text-emerald-400">developer.json</span>
+                    <div className="relative z-10 flex-1 w-full rounded-xl overflow-hidden flex items-center justify-center">
+                      <img
+                        src="/profile_back.gif"
+                        alt="Railey Mitchell Q. Capitis Meme"
+                        className="object-cover w-full h-full pointer-events-none"
+                      />
+                    </div>
+                    
+                    <div className="pt-5 flex items-center justify-between text-xs relative z-10">
+                      <div>
+                        <p className="font-bold text-slate-800 dark:text-white/90 tracking-wide uppercase text-[11px] flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse shadow-[0_0_8px_rgba(245,158,11,0.8)]"></span>
+                          Secret Mode
+                        </p>
+                        <p className="text-[11px] font-medium text-slate-500 dark:text-white/50 mt-1">
+                          Click card to return
+                        </p>
                       </div>
-                      
-                      <div className="flex items-center gap-1.5 text-white/60 group-hover/card:text-white transition-colors px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+                      <div className="flex items-center gap-1.5 text-slate-600 dark:text-white/60 group-hover/card:text-slate-900 dark:group-hover/card:text-white transition-colors px-3 py-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 backdrop-blur-md">
                         <span className="text-[10px] font-bold uppercase tracking-wider">Return</span>
                         <RefreshCw className="w-3.5 h-3.5" />
                       </div>
-                    </div>
-
-                    <div className="font-mono text-[10px] sm:text-[11px] md:text-[12px] space-y-1.5 mt-5 flex-1 text-slate-300 leading-normal overflow-y-auto min-h-0" onClick={(e) => e.stopPropagation()}>
-                      <p><span className="text-violet-400 font-bold">const</span> <span className="text-indigo-300">developer</span> = <span className="text-slate-400">{"{"}</span></p>
-                      <p className="pl-4"><span className="text-indigo-300">name</span>: <span className="text-emerald-400">&quot;Railey Mitchell Q. Capitis&quot;</span><span className="text-slate-400">,</span></p>
-                      <p className="pl-4"><span className="text-indigo-300">degree</span>: <span className="text-emerald-400">&quot;Bachelor of Science in Information Technology&quot;</span><span className="text-slate-400">,</span></p>
-                      <p className="pl-4"><span className="text-indigo-300">major</span>: <span className="text-emerald-400">&quot;Web &amp; Mobile Technologies&quot;</span><span className="text-slate-400">,</span></p>
-                      <p className="pl-4"><span className="text-indigo-300">university</span>: <span className="text-emerald-400">&quot;Pangasinan State University - Urdaneta City Campus&quot;</span><span className="text-slate-400">,</span></p>
-                      <p className="pl-4"><span className="text-indigo-300">internship</span>: <span className="text-slate-400">{"{"}</span></p>
-                      <p className="pl-8"><span className="text-indigo-300">company</span>: <span className="text-emerald-400">&quot;Pangasinan III Electric Cooperative (PANELCO III)&quot;</span><span className="text-slate-400">,</span></p>
-                      <p className="pl-4"><span className="text-indigo-300">roles</span>: <span className="text-slate-400">[</span></p>
-                      <p className="pl-8 text-xs">
-                        <span className="text-emerald-400">&quot;Software Developer&quot;</span><span className="text-slate-400">,</span>{" "}
-                        <span className="text-emerald-400">&quot;Systems Administrator & Data Operations&quot;</span><span className="text-slate-400">,</span>{" "}
-                        <span className="text-emerald-400">&quot;IT Support & Hardware Technician&quot;</span><span className="text-slate-400">,</span>{" "}
-                        <span className="text-emerald-400">&quot;Network & Infrastructure Technician&quot;</span><span className="text-slate-400">,</span>{" "}
-                        <span className="text-emerald-400">&quot;Event Technology & Multimedia Specialist&quot;</span><span className="text-slate-400">,</span>{" "}
-                      </p>
-                      <p className="pl-4"><span className="text-slate-400">] ,</span></p>
-                      <p className="pl-8"><span className="text-indigo-300">division</span>: <span className="text-emerald-400">&quot;System Administration Division&quot;</span><span className="text-slate-400">,</span></p>
-                      <p className="pl-8"><span className="text-indigo-300">department</span>: <span className="text-emerald-400">&quot;Corporate Services Department&quot;</span></p>
-                      <p className="pl-4"><span className="text-slate-400">{"} ,"}</span></p>
-                      <p className="pl-4"><span className="text-indigo-300">topcit</span>: <span className="text-slate-400">{"{"}</span></p>
-                      <p className="pl-8"><span className="text-indigo-300">score</span>: <span className="text-amber-400">522</span><span className="text-slate-400">,</span></p>
-                      <p className="pl-8"><span className="text-indigo-300">level</span>: <span className="text-amber-400">3</span><span className="text-slate-400">,</span></p>
-                      <p className="pl-8"><span className="text-indigo-300">definition</span>: <span className="text-emerald-400">&quot;competent&quot;</span></p>
-                      <p className="pl-4"><span className="text-slate-400">{"} ,"}</span></p>
-                      <p className="pl-4"><span className="text-indigo-300">csEligible</span>: <span className="text-emerald-400">&quot;Professional Level&quot;</span><span className="text-slate-400">,</span></p>
-                      <p className="pl-4"><span className="text-indigo-300">likes</span>: <span className="text-slate-400">[</span></p>
-                      <p className="pl-8">
-                        <span className="text-emerald-400">&quot;cats&quot;</span><span className="text-slate-400">,</span>{" "}
-                        <span className="text-emerald-400">&quot;open-source&quot;</span><span className="text-slate-400">,</span>{" "}
-                        <span className="text-emerald-400">&quot;anime&quot;</span>
-                      </p>
-                      <p className="pl-4"><span className="text-slate-400">]</span></p>
-                      <p><span className="text-slate-400">{"};"}</span></p>
                     </div>
                   </div>
 

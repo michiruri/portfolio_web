@@ -103,6 +103,9 @@ export function Footer() {
             <button onClick={() => setIsGalleryOpen(true)} className={`hover:text-primary ${isLight ? "" : "dark:hover:text-pink-400"} transition-colors flex items-center gap-1 group cursor-pointer`}>
               <Gamepad2 className="w-3.5 h-3.5 group-hover:animate-pulse" /> Side Quests
             </button>
+            <a href="/404" className={`hover:text-primary ${isLight ? "" : "dark:hover:text-pink-400"} transition-colors flex items-center gap-1 group cursor-pointer`}>
+              ???
+            </a>
           </div>
         </div>
       </footer>
