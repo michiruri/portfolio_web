@@ -3,7 +3,7 @@
 import * as React from "react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Code2, GraduationCap, MapPin, Sparkles, Gamepad2, RefreshCw } from "lucide-react"
+import { ArrowRight, Code2, GraduationCap, MapPin, Sparkles, RefreshCw } from "lucide-react"
 import { useInView } from "@/hooks/use-in-view"
 import { GalleryModal } from "@/components/gallery-modal"
 
@@ -123,7 +123,6 @@ export function HeroSection() {
                 className={`cursor-pointer font-bold text-sm hover:scale-105 transition-all duration-300 ${isLight ? "hover:shadow-[0_0_15px_rgba(249,115,22,0.15)] hover:border-primary/50" : "hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] hover:border-primary/50"} border-primary/20 text-primary bg-primary/5 hover:bg-primary/10`}
                 onClick={() => setIsGalleryOpen(true)}
               >
-                <Gamepad2 className="h-4 w-4 mr-2" />
                 Side Quests
               </Button>
 

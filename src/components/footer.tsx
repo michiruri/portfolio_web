@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { ArrowUpRight, User, MapPin, Link2, Activity, Mail, Gamepad2 } from "lucide-react"
+import { ArrowUpRight, User, MapPin, Link2, Activity, Mail } from "lucide-react"
 import { GithubIcon, LinkedinIcon } from "@/components/icons"
 import { GalleryModal } from "@/components/gallery-modal"
 import { useTheme } from "next-themes"
@@ -101,7 +101,7 @@ export function Footer() {
             <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className={`hover:text-primary ${isLight ? "" : "dark:hover:text-purple-300"} transition-colors cursor-pointer`}>Home</button>
             <button onClick={() => scrollTo("projects")} className={`hover:text-primary ${isLight ? "" : "dark:hover:text-purple-300"} transition-colors cursor-pointer`}>Projects</button>
             <button onClick={() => setIsGalleryOpen(true)} className={`hover:text-primary ${isLight ? "" : "dark:hover:text-pink-400"} transition-colors flex items-center gap-1 group cursor-pointer`}>
-              <Gamepad2 className="w-3.5 h-3.5 group-hover:animate-pulse" /> Side Quests
+              Side Quests
             </button>
             <a href="/404" className={`hover:text-primary ${isLight ? "" : "dark:hover:text-pink-400"} transition-colors flex items-center gap-1 group cursor-pointer`}>
               ???
