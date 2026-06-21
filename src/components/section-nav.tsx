@@ -5,11 +5,12 @@ import { ChevronUp, ChevronDown } from "lucide-react"
 
 // Must match the id attributes on each section element
 const SECTIONS = [
-  { id: "about",        label: "Home" },
+  { id: "about",        label: "About" },
+  { id: "products",     label: "Products" },
+  { id: "projects",     label: "Work" },
   { id: "skills",       label: "Tech Stack & Skills" },
   { id: "experience",   label: "Education & Experience" },
   { id: "achievements", label: "Achievements" },
-  { id: "projects",     label: "Projects" },
   { id: "contact",      label: "Contact" },
 ]
 

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" width="320" height="60">
+  <defs>
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@900&amp;family=IBM+Plex+Mono:wght@700&amp;display=swap');
+      .logo-text {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+      }
+      .sub-text {
+        font-family: 'IBM Plex Mono', monospace;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+      }
+    </style>
+    <linearGradient id="triageShield" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6" />
+      <stop offset="100%" stop-color="#A855F7" />
+    </linearGradient>
+  </defs>
+  
+  <g transform="translate(10, 10) scale(0.4)">
+    <path d="M 42 10 L 10 20 L 10 42 L 42 42 Z" fill="url(#triageShield)" />
+    <path d="M 58 10 L 90 20 L 90 42 L 58 42 Z" fill="url(#triageShield)" />
+    <path d="M 10 58 L 10 70 C 10 85 25 95 42 100 L 42 58 Z" fill="url(#triageShield)" />
+    <path d="M 90 58 L 90 70 C 90 85 75 95 58 100 L 58 58 Z" fill="url(#triageShield)" />
+    
+    <circle cx="50" cy="50" r="5" fill="#FFFFFF" />
+    
+    <rect x="48" y="28" width="4" height="8" fill="#FFFFFF" />
+    <rect x="48" y="64" width="4" height="8" fill="#FFFFFF" />
+    <rect x="28" y="48" width="8" height="4" fill="#FFFFFF" />
+    <rect x="64" y="48" width="8" height="4" fill="#FFFFFF" />
+  </g>
+
+  <text x="65" y="32" class="logo-text" font-size="22" fill="#FFFFFF">T<tspan fill="#8B5CF6">RI</tspan>AGE</text>
+  <text x="65" y="48" class="sub-text" font-size="8" fill="#9CA3AF">RI SOFTWARE SOLUTIONS</text>
+</svg>

@@ -5,6 +5,7 @@ import { ArrowUpRight, User, MapPin, Link2, Activity, Mail } from "lucide-react"
 import { GithubIcon, LinkedinIcon } from "@/components/icons"
 import { GalleryModal } from "@/components/gallery-modal"
 import { useTheme } from "next-themes"
+import { STUDIO, TRIAGE_URL, FUTARI_URL } from "@/lib/studio-products"
 
 export function Footer() {
   const [isGalleryOpen, setIsGalleryOpen] = React.useState(false)
@@ -39,7 +40,7 @@ export function Footer() {
               <User className="w-4 h-4" /> Profile
             </span>
             <p className="text-[14px] font-medium text-muted-foreground leading-relaxed max-w-xs">
-              Full-stack by nature, custom-built by choice — efficient, personalized, and straight to the point.
+              I design, build, and ship multi-tenant SaaS on Firebase, Next.js, and Vertex AI — from B2B support tools to consumer apps, without enterprise bloat.
             </p>
           </div>
 
@@ -57,12 +58,18 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Socials Node */}
+          {/* Connect Node — socials + products */}
           <div className="flex flex-col">
             <span className={`text-[10px] font-bold uppercase tracking-widest ${isLight ? "text-orange-600" : "text-indigo-400"} mb-6 flex items-center gap-2`}>
               <Link2 className="w-4 h-4" /> Connect
             </span>
             <div className="flex flex-col gap-3">
+              <a href={TRIAGE_URL} target="_blank" rel="noopener noreferrer" className={`group flex items-center gap-2 text-[14px] font-medium text-muted-foreground ${isLight ? "hover:text-primary" : "hover:text-primary"} transition-colors w-fit`}>
+                Triage <ArrowUpRight className={`w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${isLight ? "text-muted-foreground/60" : "text-white/50"}`} />
+              </a>
+              <a href={FUTARI_URL} target="_blank" rel="noopener noreferrer" className={`group flex items-center gap-2 text-[14px] font-medium text-muted-foreground ${isLight ? "hover:text-primary" : "hover:text-primary"} transition-colors w-fit`}>
+                Futari <ArrowUpRight className={`w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${isLight ? "text-muted-foreground/60" : "text-white/50"}`} />
+              </a>
               <a href="https://github.com/michiruri" target="_blank" rel="noopener noreferrer" className={`group flex items-center gap-2 text-[14px] font-medium text-muted-foreground ${isLight ? "hover:text-primary" : "hover:text-cyan-300"} transition-colors w-fit`}>
                 <GithubIcon className={`w-4 h-4 ${isLight ? "text-muted-foreground/50" : "text-white/40"} ${isLight ? "group-hover:text-primary" : "group-hover:text-cyan-300"} transition-colors`} /> GitHub <ArrowUpRight className={`w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${isLight ? "text-muted-foreground/60" : "text-white/50"}`} />
               </a>
@@ -95,11 +102,20 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="relative z-10 w-full px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6 mt-16 max-w-[1600px] mx-auto">
           <p className="text-[11px] font-medium tracking-wide text-muted-foreground/60">
-            © {new Date().getFullYear()} RAILEY MITCHELL Q. CAPITIS
+            © {new Date().getFullYear()}{" "}
+            <a
+              href={TRIAGE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors font-bold tracking-wider"
+            >
+              {STUDIO.displayName}
+            </a>
           </p>
           <div className="flex items-center gap-8 text-[10px] font-black tracking-[0.2em] uppercase text-muted-foreground/60">
             <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className={`hover:text-primary ${isLight ? "" : "dark:hover:text-purple-300"} transition-colors cursor-pointer`}>Home</button>
-            <button onClick={() => scrollTo("projects")} className={`hover:text-primary ${isLight ? "" : "dark:hover:text-purple-300"} transition-colors cursor-pointer`}>Projects</button>
+            <button onClick={() => scrollTo("products")} className={`hover:text-primary ${isLight ? "" : "dark:hover:text-purple-300"} transition-colors cursor-pointer`}>Products</button>
+            <button onClick={() => scrollTo("projects")} className={`hover:text-primary ${isLight ? "" : "dark:hover:text-purple-300"} transition-colors cursor-pointer`}>Work</button>
             <button onClick={() => setIsGalleryOpen(true)} className={`hover:text-primary ${isLight ? "" : "dark:hover:text-pink-400"} transition-colors flex items-center gap-1 group cursor-pointer`}>
               Side Quests
             </button>

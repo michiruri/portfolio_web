@@ -10,12 +10,13 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 
 const navItems = [
-  { label: "Home",         href: "#about" },
-  { label: "Skills",       href: "#skills" },
-  { label: "Experience",   href: "#experience" },
+  { label: "About",    href: "#about" },
+  { label: "Products", href: "#products" },
+  { label: "Work",     href: "#projects" },
+  { label: "Skills",   href: "#skills" },
+  { label: "Experience", href: "#experience" },
   { label: "Achievements", href: "#achievements" },
-  { label: "Projects",     href: "#projects" },
-  { label: "Contact",      href: "#contact" },
+  { label: "Contact",  href: "#contact" },
 ]
 
 export function Navbar() {
@@ -59,7 +60,7 @@ export function Navbar() {
             </div>
             <span className="hidden sm:block text-xs font-black text-foreground tracking-tight leading-snug">
               Railey Mitchell Q. Capitis
-              <span className="block text-[8px] font-black text-muted-foreground tracking-[0.16em] uppercase mt-0.5">web &amp; mobile architect</span>
+              <span className="block text-[8px] font-black text-muted-foreground tracking-[0.16em] uppercase mt-0.5">Web &amp; Mobile Architect</span>
             </span>
             <span className="sm:hidden text-xs font-black text-foreground tracking-wider bg-primary/10 border border-primary/20 px-2 py-0.5 rounded-lg">
               RM.

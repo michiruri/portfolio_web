@@ -1,0 +1,2 @@
+- wouldn't it be better if the founder & lead enginer title leads to the ri software solutions (removing the "owner of") becoming like 1 line founder & lead engineer, 2nd line ri software solutions?
+- also add that the saas i built are custome themed and tailored with their own personality and whatnot, and that i don't just make generic systems and whatnot

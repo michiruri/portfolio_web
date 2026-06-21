@@ -18,36 +18,40 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Railey Mitchell Q. Capitis | Web & Mobile Architect",
-  description: "Portfolio of Railey Mitchell Q. Capitis — BS Information Technology graduate specializing in Web & Mobile Technologies, PSU Urdaneta City Campus.",
+  title: "Railey Mitchell Q. Capitis — Founder, Ri Software Solutions",
+  description:
+    "Owner of RI SOFTWARE SOLUTIONS. Founder & Lead Engineer building Triage (B2B) and Futari (B2C). Full-stack architect on Firebase, Next.js, and Vertex AI.",
   keywords: [
+    "Railey Mitchell Quimson Capitis",
     "Railey Mitchell Q. Capitis",
     "Railey Mitchell Capitis",
-    "Web Architect",
-    "Mobile Architect",
-    "Web Developer",
-    "Mobile Developer",
+    "Ri Software Solutions",
+    "Triage",
+    "Futari",
+    "AI SaaS",
+    "Firebase",
+    "Next.js",
+    "Vertex AI",
     "Pangasinan State University",
     "PSU Urdaneta",
-    "PANELCO III OJT",
-    "Next.js Portfolio",
-    "Flutter Developer",
-    "React Native Developer",
-    "Philippines IT Graduate"
+    "Web Developer",
+    "Philippines IT Graduate",
   ],
   openGraph: {
-    title: "Railey Mitchell Q. Capitis | Web & Mobile Architect",
-    description: "Portfolio of Railey Mitchell Q. Capitis — BS Information Technology graduate specializing in Web & Mobile Technologies.",
-    url: "https://michiruri.web.app",
-    siteName: "Railey Mitchell Capitis Portfolio",
+    title: "Ri Software Solutions · Railey Mitchell Quimson Capitis",
+    description:
+      "Owner of RI SOFTWARE SOLUTIONS. Founder & Lead Engineer building Triage (B2B) and Futari (B2C).",
+    url: "https://raileymitchellcapitis.web.app",
+    siteName: "Ri Software Solutions",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Railey Mitchell Q. Capitis | Web & Mobile Architect",
-    description: "Portfolio of Railey Mitchell Q. Capitis — BS Information Technology graduate specializing in Web & Mobile Technologies.",
-  }
+    title: "Ri Software Solutions · Railey Mitchell Quimson Capitis",
+    description:
+      "Owner of RI SOFTWARE SOLUTIONS. Founder & Lead Engineer building Triage (B2B) and Futari (B2C).",
+  },
 };
 
 export default function RootLayout({

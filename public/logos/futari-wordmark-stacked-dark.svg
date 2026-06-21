@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 170" width="100%" height="100%">
+  <defs>
+    <path id="brand-sakura-petal" d="M50 50 C40 30, 25 15, 35 5 C42 0, 48 5, 50 10 C52 5, 58 0, 65 5 C75 15, 60 30, 50 50" />
+    <path id="brand-stamen" d="M50 50 L50 35 M50 35 L48 33 M50 35 L52 33" stroke="#A65E5E" stroke-width="0.5" fill="none" />
+    <linearGradient id="cherry-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C07D7D" />
+      <stop offset="100%" stop-color="#A65E5E" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Icon Group (Centered on top) -->
+  <g transform="translate(50, 10)">
+    <!-- Outer Petals -->
+    <g fill="#F5D6D6" stroke="#E29B9B" stroke-width="0.75">
+      <use href="#brand-sakura-petal" />
+      <use href="#brand-sakura-petal" transform="rotate(72 50 50)" />
+      <use href="#brand-sakura-petal" transform="rotate(144 50 50)" />
+      <use href="#brand-sakura-petal" transform="rotate(216 50 50)" />
+      <use href="#brand-sakura-petal" transform="rotate(288 50 50)" />
+    </g>
+    <!-- Inner Petals -->
+    <g fill="#E29B9B">
+      <use href="#brand-sakura-petal" transform="scale(0.75) translate(16.6 16.6)" />
+      <use href="#brand-sakura-petal" transform="rotate(72 50 50) scale(0.75) translate(16.6 16.6)" />
+      <use href="#brand-sakura-petal" transform="rotate(144 50 50) scale(0.75) translate(16.6 16.6)" />
+      <use href="#brand-sakura-petal" transform="rotate(216 50 50) scale(0.75) translate(16.6 16.6)" />
+      <use href="#brand-sakura-petal" transform="rotate(288 50 50) scale(0.75) translate(16.6 16.6)" />
+    </g>
+    <!-- Stamens and Center -->
+    <g fill="#A65E5E">
+      <use href="#brand-stamen" />
+      <use href="#brand-stamen" transform="rotate(72 50 50)" />
+      <use href="#brand-stamen" transform="rotate(144 50 50)" />
+      <use href="#brand-stamen" transform="rotate(216 50 50)" />
+      <use href="#brand-stamen" transform="rotate(288 50 50)" />
+      <circle cx="50" cy="50" r="4" fill="#A65E5E" opacity="0.9" />
+    </g>
+  </g>
+
+  <!-- Wordmark Text (Centered) -->
+  <text x="100" y="142" font-family="Georgia, ui-serif, serif" font-size="32" font-weight="700" text-anchor="middle" letter-spacing="-0.03em">
+    <tspan fill="#FDFDF9">Futa</tspan><tspan fill="url(#cherry-gradient)" font-weight="800">ri</tspan>
+  </text>
+  
+  <!-- Tagline (Centered, smaller and wider letter-spacing to match landing page hero style) -->
+  <text x="100" y="156" font-family="'Quicksand', 'Inter', system-ui, sans-serif" font-size="5" font-weight="800" text-anchor="middle" letter-spacing="0.22em" fill="#C07D7D">YOUR COZY SHARED SPACE</text>
+</svg>

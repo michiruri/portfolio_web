@@ -3,9 +3,10 @@
 import * as React from "react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Code2, GraduationCap, MapPin, Sparkles, RefreshCw } from "lucide-react"
+import { ArrowRight, GraduationCap, Lightbulb, MapPin, Sparkles, RefreshCw } from "lucide-react"
 import { useInView } from "@/hooks/use-in-view"
 import { GalleryModal } from "@/components/gallery-modal"
+import { STUDIO } from "@/lib/studio-products"
 
 const badges = [
   { label: "TypeScript",      color: "bg-blue-500/10 text-blue-600 dark:text-blue-400 ring-blue-600/20" },
@@ -45,46 +46,41 @@ export function HeroSection() {
           {/* Left: Text content */}
           <div className="flex-1 text-center lg:text-left">
 
-            {/* Availability badge */}
-            <div className={`inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-semibold text-primary mb-8 shadow-sm ${inView ? "animate-fade-in delay-0" : "opacity-0"}`}>
-              <Sparkles className="h-3.5 w-3.5 text-primary" />
-              Open to Opportunities · Class of 2026
-            </div>
-
-            {/* Heading — name emphasis */}
+            {/* Heading — founder identity */}
             <h1 className={`max-w-2xl font-heading tracking-tight ${inView ? "animate-fade-up delay-100" : "opacity-0"}`}>
-              {/* "Hi, I'm" label */}
-              <span className="text-[13px] font-black uppercase tracking-[0.3em] text-primary/95 block mb-4">
-                Hi, I&apos;m
+              <span className="text-[10px] sm:text-xs font-extrabold uppercase tracking-[0.2em] text-primary block mb-3.5">
+                Hi, I'm
               </span>
-
-              {/* Line 1 — first & middle name, foreground */}
               <span className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-foreground block leading-[0.95] tracking-tight">
                 Railey Mitchell
               </span>
-
-              {/* Line 2 — last names, primary accent gradient */}
-              <span className={`text-5xl sm:text-6xl md:text-7xl font-extrabold bg-clip-text text-transparent block leading-[0.95] tracking-tight mb-4 ${isLight ? "bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500" : "bg-gradient-to-r from-primary via-purple-600 to-indigo-500"}`}>
+              <span className="text-5xl sm:text-6xl md:text-7xl font-extrabold block leading-[0.95] tracking-tight bg-gradient-to-r from-[#8B5CF6] via-[#7C3AED] to-[#6366F1] bg-clip-text text-transparent">
                 Quimson Capitis
               </span>
 
-              {/* Web & Mobile Architect — shimmer line */}
-              <span className="text-sm sm:text-base font-bold tracking-[0.18em] uppercase text-shimmer block mt-3">
-                Web &amp; Mobile Architect
+              <span className="text-sm sm:text-base font-bold tracking-[0.14em] uppercase text-shimmer block mt-5">
+                Founder &amp; Lead Engineer
+              </span>
+              <span className="text-[11px] sm:text-xs font-bold tracking-[0.12em] uppercase text-muted-foreground block mt-2">
+                Owner of{" "}
+                <a
+                  href="#products"
+                  className="font-black text-foreground dark:text-white hover:text-primary dark:hover:text-primary transition-colors cursor-pointer no-underline"
+                >
+                  RI SOFTWARE SOLUTIONS
+                </a>
               </span>
             </h1>
 
-            {/* Description quote / philosophy — exactly 2 lines */}
-            <p className={`mt-6 max-w-lg text-sm text-muted-foreground sm:text-base leading-relaxed ${inView ? "animate-fade-up delay-200" : "opacity-0"}`}>
-              &ldquo;Full-stack by nature, custom-built by choice — efficient,
-              personalized, and straight to the point.&rdquo;
+            <p className={`mt-5 max-w-lg text-sm text-muted-foreground sm:text-base leading-relaxed ${inView ? "animate-fade-up delay-200" : "opacity-0"}`}>
+              Full-stack by nature, custom-built by choice — efficient, personalized, and straight to the point.
             </p>
 
             {/* Details pills */}
             <div className={`mt-5 flex flex-wrap justify-center lg:justify-start gap-3 text-sm text-muted-foreground/80 ${inView ? "animate-fade-up delay-300" : "opacity-0"}`}>
               <span className="inline-flex items-center gap-1.5 font-semibold">
                 <MapPin className="h-3.5 w-3.5 text-primary" />
-                Urdaneta City, Pangasinan
+                Pangasinan, PH
               </span>
               <span className="hidden sm:block text-muted-foreground/40">·</span>
               <span className="inline-flex items-center gap-1.5 font-semibold">
@@ -98,12 +94,12 @@ export function HeroSection() {
               <Button
                 size="lg"
                 className={`group cursor-pointer gap-2 hover:scale-105 transition-all duration-300 ${isLight ? "hover:shadow-[0_0_20px_rgba(249,115,22,0.3)]" : "hover:shadow-[0_0_20px_rgba(139,92,246,0.3)]"} relative overflow-hidden`}
-                render={<a href="#projects" />}
+                render={<a href="#products" />}
                 nativeButton={false}
               >
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                 <span className="relative z-10 flex items-center gap-2">
-                  View My Work
+                  View Products
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </span>
               </Button>
@@ -129,7 +125,7 @@ export function HeroSection() {
               <Button
                 size="lg"
                 variant="outline"
-                className={`cursor-pointer font-bold text-sm hover:scale-105 transition-all duration-300 ${isLight ? "hover:shadow-[0_0_15px_rgba(249,115,22,0.15)] hover:border-primary/50" : "hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] hover:border-primary/50"} border-primary/20 text-primary bg-primary/5 hover:bg-primary/10`}
+                className={`hidden sm:inline-flex cursor-pointer font-bold text-sm hover:scale-105 transition-all duration-300 ${isLight ? "hover:shadow-[0_0_15px_rgba(249,115,22,0.15)] hover:border-primary/50" : "hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] hover:border-primary/50"} border-primary/20 text-primary bg-primary/5 hover:bg-primary/10`}
                 render={<a href="/404" />}
                 nativeButton={false}
               >

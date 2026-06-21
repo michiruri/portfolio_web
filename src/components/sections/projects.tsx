@@ -3,22 +3,13 @@
 import * as React from "react"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ExternalLink, Monitor, Phone, Rocket, Shield, Terminal } from "lucide-react"
+import { ExternalLink, Monitor, Phone, Shield, Terminal } from "lucide-react"
 import { GithubIcon } from "@/components/icons"
 import { useInView } from "@/hooks/use-in-view"
 import { useTheme } from "next-themes"
 
-const saasProjects = [
-  {
-    title: "Stealth Startup (SaaS Portal)",
-    description: "Architecting an AI-first SaaS platform designed to optimize workflow automation and operations for B2B/SMEs. Building custom tenant-isolated authentication, real-time database partitioning, and secure pipeline integrations. Currently kept in stealth mode during active private beta development.",
-    tags: ["React & Next.js", "TypeScript", "AI Workflows", "Tenant Isolation", "Security"],
-    type: "web" as const,
-    demo: "",
-  },
-]
 
-// ── 2. PROFESSIONAL ENGAGEMENTS (THE ARCHITECT TIER) ─────────────────────────
+// ── PROFESSIONAL ENGAGEMENTS (THE ARCHITECT TIER) ─────────────────────────────
 const professionalProjects = [
   {
     title: "PANELCO III - Visitor Management System",
@@ -34,20 +25,13 @@ const professionalProjects = [
 // ── 3. TECHNICAL EXPERIMENTS (THE PLAYGROUND) ────────────────────────────────
 const playgroundProjects = [
   {
-    title: "Mise",
-    description: "An all-in-one SaaS recipe-building and cost-tracking application designed for home bakers and commercial bakeries. Built with Riverpod state management and GoRouter. Showcases complex UI components like the RecipeCanvas editor, dynamic ingredient scaling calculators, Firestore-linked inventory costing, and automated expense spreadsheets.",
-    tags: ["Flutter", "Dart", "Riverpod", "Firestore", "Google Gemini"],
-    type: "mobile" as const,
-    github: "",
-    demo: "",
-  },
-  {
-    title: "typing_game_rai",
-    description: "A HTML5 Canvas speed typing web game featuring boss-fight state logic. Features a state machine managing word clear intervals, secret keyword overlays (KEYWORD MODE ACTIVATED / RESTORING TO REALITY), and multi-event stacking logic (Black Hole + Abundance + Time Warp). Implemented Firebase Firestore score tracking with client-side caching to prevent API quota limits.",
-    tags: ["JavaScript", "HTML5 Canvas", "Firebase", "State Management"],
+    title: "Typing Game (typing_game_rai)",
+    description: "A high-octane HTML5 Canvas speed-typing game featuring dynamic boss encounters, custom canvas physics, and a rich anomaly event system. Engineered with an object-oriented architecture for varied enemy behaviors and multi-event stacking logic. The backend utilizes Node.js and Firebase Firestore for a real-time global leaderboard, complete with intelligent client-side caching and automated database pruning to strictly manage API quota limits.",
+    tags: ["Vanilla JS", "HTML5 Canvas", "Node.js", "Firebase", "OOP"],
     type: "web" as const,
     github: "",
     demo: "",
+    image: "/projects/some_typing-game-rai.png"
   },
 ]
 
@@ -98,12 +82,18 @@ function ProjectCard({ project, isLight }: { project: Project; isLight: boolean 
           </div>
           <CardTitle className="text-lg font-extrabold transition-colors group-hover:text-primary">{project.title}</CardTitle>
           
-          {/* Image Preview Placeholder (after the title and before the description) */}
+          {/* Image Preview */}
           <div className={`aspect-[16/9] w-full rounded-xl ${isLight ? "bg-orange-500/5" : "bg-black/40"} border border-border/70 dark:border-white/5 flex items-center justify-center relative overflow-hidden my-3 group-hover/card:border-primary/35 transition-all`}>
-            <div className={`absolute inset-0 bg-gradient-to-tr ${isLight ? "from-orange-500/10 to-amber-500/10" : "from-purple-500/5 to-cyan-500/5"} opacity-50 pointer-events-none`} />
-            <span className="text-[9px] font-bold tracking-widest uppercase text-muted-foreground/50 group-hover/card:text-primary/60 transition-colors z-10">
-              [ {project.title} Preview Placeholder ]
-            </span>
+            {project.image ? (
+              <img src={project.image} alt={`${project.title} preview`} className="w-full h-full object-cover" />
+            ) : (
+              <>
+                <div className={`absolute inset-0 bg-gradient-to-tr ${isLight ? "from-orange-500/10 to-amber-500/10" : "from-purple-500/5 to-cyan-500/5"} opacity-50 pointer-events-none`} />
+                <span className="text-[9px] font-bold tracking-widest uppercase text-muted-foreground/50 group-hover/card:text-primary/60 transition-colors z-10">
+                  [ {project.title} Preview Placeholder ]
+                </span>
+              </>
+            )}
           </div>
 
           <CardDescription className="mt-2 text-xs font-semibold text-muted-foreground leading-relaxed text-justify">
@@ -123,15 +113,7 @@ function ProjectCard({ project, isLight }: { project: Project; isLight: boolean 
           </div>
         </CardContent>
         <CardFooter className="pt-4 border-t border-border/50 dark:border-white/5 flex gap-3.5 bg-muted/10 rounded-b-2xl mt-auto">
-          {project.title.includes("Stealth") ? (
-            <Button
-              disabled
-              size="sm"
-              className="w-full gap-1.5 opacity-65 cursor-not-allowed border-primary/20 text-primary bg-primary/5 font-bold text-xs"
-            >
-              In Development (Stealth)
-            </Button>
-          ) : project.github && project.demo ? (
+          {project.github && project.demo ? (
             <>
               <Button
                 variant="outline"
@@ -207,61 +189,36 @@ export function ProjectsSection() {
             Featured Work
           </h2>
           <p className={`mt-4 text-muted-foreground max-w-xl mx-auto font-semibold ${inView ? "animate-fade-in delay-150" : "opacity-0"}`}>
-            A structured look at my software engineering work — from revenue-generating SaaS to high-scale enterprise systems and technical playgrounds.
+            Professional engagements and technical experiments — alongside studio products above.
           </p>
         </div>
 
-        {/* ─── SECTION 1: PRODUCTS & SAAS (THE FOUNDER TIER) ─── */}
+        {/* ─── SECTION 1: PROFESSIONAL ENGAGEMENTS (THE ARCHITECT TIER) ─── */}
         <div className="mb-20">
           <div className={`flex items-center gap-3 mb-6 ${inView ? "animate-fade-up delay-100" : "opacity-0"}`}>
             <div className="flex items-center gap-2.5">
-              <div className={`w-8 h-8 rounded-lg flex items-center justify-center border transition-all duration-300 ${isLight ? "bg-amber-500/10 border-amber-500/20 text-amber-600 shadow-[0_0_10px_rgba(245,158,11,0.15)]" : "bg-cyan-500/10 border-cyan-500/20 text-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.15)]"}`}>
-                <Rocket className="h-4 w-4" />
-              </div>
-              <div>
-                <div className="flex flex-wrap items-center gap-2">
-                  <h3 className="text-base font-black tracking-tight text-foreground leading-none">Products &amp; SaaS</h3>
-                  <span className={`inline-flex items-center rounded-full text-[9px] font-black uppercase tracking-widest px-2 py-0.5 border transition-all duration-300 ${isLight ? "bg-amber-500/10 text-amber-600 border-amber-500/25" : "bg-cyan-500/10 text-cyan-400 border-cyan-500/25"}`}>The Founder Tier</span>
-                </div>
-                <p className="text-xs text-muted-foreground font-semibold mt-1">Complete, revenue-generating platforms built for B2B/SMEs.</p>
-              </div>
-            </div>
-            <div className={`flex-1 h-px transition-colors duration-300 ${isLight ? "bg-orange-500/15" : "bg-purple-500/10"}`} />
-          </div>
-
-          <div className="max-w-2xl mx-auto">
-            <div className={inView ? "animate-scale-in delay-200" : "opacity-0"}>
-              <ProjectCard project={saasProjects[0]} isLight={isLight} />
-            </div>
-          </div>
-        </div>
-
-        {/* ─── SECTION 2: PROFESSIONAL ENGAGEMENTS (THE ARCHITECT TIER) ─── */}
-        <div className="mb-20">
-          <div className={`flex items-center gap-3 mb-6 ${inView ? "animate-fade-up delay-200" : "opacity-0"}`}>
-            <div className="flex items-center gap-2.5">
-              <div className={`w-8 h-8 rounded-lg flex items-center justify-center border transition-all duration-300 ${isLight ? "bg-orange-500/10 border-orange-500/20 text-orange-600 shadow-[0_0_10px_rgba(249,115,22,0.15)]" : "bg-purple-500/10 border-purple-500/20 text-purple-400 shadow-[0_0_10px_rgba(168,85,247,0.15)]"}`}>
+              <div className={`w-8 h-8 rounded-lg flex items-center justify-center border transition-all duration-300 ${isLight ? "bg-blue-500/10 border-blue-500/20 text-blue-600 shadow-[0_0_10px_rgba(59,130,246,0.15)]" : "bg-blue-500/10 border-blue-500/20 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.15)]"}`}>
                 <Shield className="h-4 w-4" />
               </div>
               <div>
                 <div className="flex flex-wrap items-center gap-2">
                   <h3 className="text-base font-black tracking-tight text-foreground leading-none">Professional Engagements</h3>
-                  <span className={`inline-flex items-center rounded-full text-[9px] font-black uppercase tracking-widest px-2 py-0.5 border transition-all duration-300 ${isLight ? "bg-orange-500/10 text-orange-600 border-orange-500/25" : "bg-purple-500/10 text-purple-400 border-purple-500/25"}`}>The Architect Tier</span>
+                  <span className={`inline-flex items-center rounded-full text-[9px] font-black uppercase tracking-widest px-2 py-0.5 border transition-all duration-300 ${isLight ? "bg-blue-500/10 text-blue-600 border-blue-500/25" : "bg-blue-500/10 text-blue-400 border-blue-500/25"}`}>The Architect Tier</span>
                 </div>
                 <p className="text-xs text-muted-foreground font-semibold mt-1">Production systems engineered as the sole developer for client scale.</p>
               </div>
             </div>
-            <div className={`flex-1 h-px transition-colors duration-300 ${isLight ? "bg-orange-500/15" : "bg-purple-500/10"}`} />
+            <div className={`flex-1 h-px transition-colors duration-300 ${isLight ? "bg-blue-500/15" : "bg-blue-500/10"}`} />
           </div>
 
           <div className="max-w-2xl mx-auto">
-            <div className={inView ? "animate-scale-in delay-300" : "opacity-0"}>
+            <div className={inView ? "animate-scale-in delay-200" : "opacity-0"}>
               <ProjectCard project={professionalProjects[0]} isLight={isLight} />
             </div>
           </div>
         </div>
 
-        {/* ─── SECTION 3: TECHNICAL EXPERIMENTS (THE PLAYGROUND) ─── */}
+        {/* ─── SECTION 2: TECHNICAL EXPERIMENTS (THE PLAYGROUND) ─── */}
         <div>
           <div className={`flex items-center gap-3 mb-6 ${inView ? "animate-fade-up delay-300" : "opacity-0"}`}>
             <div className="flex items-center gap-2.5">
@@ -279,7 +236,7 @@ export function ProjectsSection() {
             <div className={`flex-1 h-px transition-colors duration-300 ${isLight ? "bg-orange-500/15" : "bg-purple-500/10"}`} />
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="max-w-2xl mx-auto">
             {playgroundProjects.map((project, idx) => (
               <div
                 key={idx}
