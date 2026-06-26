@@ -207,11 +207,11 @@ export function AchievementsSection() {
                   <div className="space-y-2.5">
                     <div className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-[9.5px] font-bold text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
                       <ShieldCheck className="h-3.5 w-3.5 shrink-0" />
-                      Status: Passed
+                      Passed (Professional Level)
                     </div>
                     <div>
-                      <h4 className="text-xs font-bold text-foreground leading-snug">Civil Service Examination</h4>
-                      <p className="text-[9.5px] text-muted-foreground font-semibold mt-0.5">Professional Level (Lifetime)</p>
+                      <h4 className="text-xs font-bold text-foreground leading-snug">CSE-PPT Professional Level Exam</h4>
+                      <p className="text-[9.5px] text-muted-foreground font-semibold mt-0.5">March 8, 2026 (Lifetime Eligibility)</p>
                     </div>
                   </div>
 

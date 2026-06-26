@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { ArrowUpRight, User, MapPin, Link2, Activity, Mail } from "lucide-react"
+import { ArrowUpRight, User, MapPin, Link2, Activity, Mail, Rocket } from "lucide-react"
 import { GithubIcon, LinkedinIcon } from "@/components/icons"
 import { GalleryModal } from "@/components/gallery-modal"
 import { useTheme } from "next-themes"
@@ -32,7 +32,7 @@ export function Footer() {
         <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[150px] ${isLight ? "bg-orange-500/5" : "bg-purple-500/5"} rounded-full blur-[80px] pointer-events-none`} />
 
         {/* Top Info Grid */}
-        <div className="relative z-10 w-full px-6 md:px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 max-w-[1600px] mx-auto">
+        <div className="relative z-10 w-full px-6 md:px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 max-w-[1600px] mx-auto">
           
           {/* Bio Node */}
           <div className="flex flex-col">
@@ -58,27 +58,36 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Connect Node — socials + products */}
+          {/* Connect Node */}
           <div className="flex flex-col">
             <span className={`text-[10px] font-bold uppercase tracking-widest ${isLight ? "text-orange-600" : "text-indigo-400"} mb-6 flex items-center gap-2`}>
               <Link2 className="w-4 h-4" /> Connect
             </span>
             <div className="flex flex-col gap-3">
-              <a href={TRIAGE_URL} target="_blank" rel="noopener noreferrer" className={`group flex items-center gap-2 text-[14px] font-medium text-muted-foreground ${isLight ? "hover:text-primary" : "hover:text-primary"} transition-colors w-fit`}>
-                Triage <ArrowUpRight className={`w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${isLight ? "text-muted-foreground/60" : "text-white/50"}`} />
-              </a>
-              <a href={FUTARI_URL} target="_blank" rel="noopener noreferrer" className={`group flex items-center gap-2 text-[14px] font-medium text-muted-foreground ${isLight ? "hover:text-primary" : "hover:text-primary"} transition-colors w-fit`}>
-                Futari <ArrowUpRight className={`w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${isLight ? "text-muted-foreground/60" : "text-white/50"}`} />
-              </a>
               <a href="https://github.com/michiruri" target="_blank" rel="noopener noreferrer" className={`group flex items-center gap-2 text-[14px] font-medium text-muted-foreground ${isLight ? "hover:text-primary" : "hover:text-cyan-300"} transition-colors w-fit`}>
-                <GithubIcon className={`w-4 h-4 ${isLight ? "text-muted-foreground/50" : "text-white/40"} ${isLight ? "group-hover:text-primary" : "group-hover:text-cyan-300"} transition-colors`} /> GitHub <ArrowUpRight className={`w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${isLight ? "text-muted-foreground/60" : "text-white/50"}`} />
+                <GithubIcon className={`w-4 h-4 ${isLight ? "text-muted-foreground/50" : "text-white/40"} ${isLight ? "group-hover:text-primary" : "group-hover:text-cyan-300"} transition-colors`} /> GitHub <ArrowUpRight className={`w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${isLight ? "text-muted-foreground/60 group-hover:text-primary" : "text-white/50 group-hover:text-cyan-300"}`} />
               </a>
               <a href="https://www.linkedin.com/in/michiruri" target="_blank" rel="noopener noreferrer" className={`group flex items-center gap-2 text-[14px] font-medium text-muted-foreground ${isLight ? "hover:text-primary" : "hover:text-purple-300"} transition-colors w-fit`}>
-                <LinkedinIcon className={`w-4 h-4 ${isLight ? "text-muted-foreground/50" : "text-white/40"} ${isLight ? "group-hover:text-primary" : "group-hover:text-purple-300"} transition-colors`} /> LinkedIn <ArrowUpRight className={`w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${isLight ? "text-muted-foreground/60" : "text-white/50"}`} />
+                <LinkedinIcon className={`w-4 h-4 ${isLight ? "text-muted-foreground/50" : "text-white/40"} ${isLight ? "group-hover:text-primary" : "group-hover:text-purple-300"} transition-colors`} /> LinkedIn <ArrowUpRight className={`w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${isLight ? "text-muted-foreground/60 group-hover:text-primary" : "text-white/50 group-hover:text-purple-300"}`} />
               </a>
               <a href="mailto:raileymitchellcapitis@gmail.com" className={`group flex items-center gap-2 text-[14px] font-medium text-muted-foreground ${isLight ? "hover:text-primary" : "hover:text-pink-300"} transition-colors w-fit`}>
-                <Mail className={`w-4 h-4 ${isLight ? "text-muted-foreground/50" : "text-white/40"} ${isLight ? "group-hover:text-primary" : "group-hover:text-pink-300"} transition-colors`} /> Email <ArrowUpRight className={`w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${isLight ? "text-muted-foreground/60" : "text-white/50"}`} />
+                <Mail className={`w-4 h-4 ${isLight ? "text-muted-foreground/50" : "text-white/40"} ${isLight ? "group-hover:text-primary" : "group-hover:text-pink-300"} transition-colors`} /> Email <ArrowUpRight className={`w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${isLight ? "text-muted-foreground/60 group-hover:text-primary" : "text-white/50 group-hover:text-pink-300"}`} />
               </a>
+            </div>
+          </div>
+
+          {/* Products Node */}
+          <div className="flex flex-col">
+            <span className={`text-[10px] font-bold uppercase tracking-widest ${isLight ? "text-orange-600" : "text-purple-400"} mb-6 flex items-center gap-2`}>
+              <Rocket className="w-4 h-4" /> Products
+            </span>
+            <div className="flex flex-col gap-3">
+              <a href={TRIAGE_URL} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 text-[14px] font-medium text-muted-foreground hover:text-purple-600 dark:hover:text-purple-400 transition-colors w-fit">
+                Triage <ArrowUpRight className="w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-all text-muted-foreground/60 dark:text-white/50" />
+              </a>
+              <span className="group flex items-center gap-2 text-[14px] font-medium text-muted-foreground/40 cursor-not-allowed w-fit" title="In Development">
+                Futari (In Dev)
+              </span>
             </div>
           </div>
 
@@ -93,7 +102,7 @@ export function Footer() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></span>
               </div>
               <p className="text-[13px] font-semibold text-emerald-400/90 leading-snug">
-                Open to remote roles<br/>& opportunities
+                Looking for Triage Co-Dev Partners.
               </p>
             </div>
           </div>

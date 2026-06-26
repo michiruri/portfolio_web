@@ -25,7 +25,7 @@ export type StudioProduct = {
   tags: string[]
   image?: string
   accent: "triage" | "futari"
-  primaryCta: { label: string; href: string }
+  primaryCta: { label: string; href?: string; disabled?: boolean }
   secondaryCta?: { label: string; href: string }
 }
 
@@ -54,6 +54,6 @@ export const studioProducts: StudioProduct[] = [
     tags: ["Svelte 5", "Capacitor 8", "Firebase", "Lemon Squeezy"],
     image: "/projects/futari.png",
     accent: "futari",
-    primaryCta: { label: "Visit Futari", href: FUTARI_URL },
+    primaryCta: { label: "In Development", disabled: true },
   },
 ]

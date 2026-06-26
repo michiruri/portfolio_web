@@ -25,12 +25,13 @@ const professionalProjects = [
 // ── 3. TECHNICAL EXPERIMENTS (THE PLAYGROUND) ────────────────────────────────
 const playgroundProjects = [
   {
-    title: "Typing Game (typing_game_rai)",
+    title: "Some Typing Game",
     description: "A high-octane HTML5 Canvas speed-typing game featuring dynamic boss encounters, custom canvas physics, and a rich anomaly event system. Engineered with an object-oriented architecture for varied enemy behaviors and multi-event stacking logic. The backend utilizes Node.js and Firebase Firestore for a real-time global leaderboard, complete with intelligent client-side caching and automated database pruning to strictly manage API quota limits.",
     tags: ["Vanilla JS", "HTML5 Canvas", "Node.js", "Firebase", "OOP"],
     type: "web" as const,
     github: "",
-    demo: "",
+    demo: "https://some-typing-game.web.app",
+    demoLabel: "Play Game",
     image: "/projects/some_typing-game-rai.png"
   },
 ]
@@ -44,6 +45,7 @@ type Project = {
   github?: string
   role?: string
   image?: string
+  demoLabel?: string
 }
 
 function ProjectCard({ project, isLight }: { project: Project; isLight: boolean }) {
@@ -119,7 +121,7 @@ function ProjectCard({ project, isLight }: { project: Project; isLight: boolean 
                 variant="outline"
                 size="sm"
                 className="flex-grow gap-1.5 hover:scale-105 transition-all duration-300 cursor-pointer"
-                render={<a href="#" onClick={(e) => e.preventDefault()} />}
+                render={<a href={project.github} target="_blank" rel="noopener noreferrer" />}
                 nativeButton={false}
               >
                 <GithubIcon className="h-4 w-4" />
@@ -128,22 +130,33 @@ function ProjectCard({ project, isLight }: { project: Project; isLight: boolean 
               <Button
                 size="sm"
                 className="flex-grow gap-1.5 hover:scale-105 transition-all duration-300 cursor-pointer bg-primary text-primary-foreground hover:bg-primary/90"
-                render={<a href="#" onClick={(e) => e.preventDefault()} />}
+                render={<a href={project.demo} target="_blank" rel="noopener noreferrer" />}
                 nativeButton={false}
               >
                 <ExternalLink className="h-4 w-4" />
-                Demo
+                {project.demoLabel || "Demo"}
               </Button>
             </>
           ) : project.demo ? (
             <Button
               size="sm"
               className="w-full gap-1.5 hover:scale-105 transition-all duration-300 cursor-pointer bg-primary text-primary-foreground hover:bg-primary/90"
-              render={<a href="#" onClick={(e) => e.preventDefault()} />}
+              render={<a href={project.demo} target="_blank" rel="noopener noreferrer" />}
               nativeButton={false}
             >
               <ExternalLink className="h-4 w-4" />
-              Live Product
+              {project.demoLabel || "Live Product"}
+            </Button>
+          ) : project.github ? (
+            <Button
+              variant="outline"
+              size="sm"
+              className="w-full gap-1.5 hover:scale-105 transition-all duration-300 cursor-pointer"
+              render={<a href={project.github} target="_blank" rel="noopener noreferrer" />}
+              nativeButton={false}
+            >
+              <GithubIcon className="h-4 w-4" />
+              Source Code
             </Button>
           ) : (
             <Button

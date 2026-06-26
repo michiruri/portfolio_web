@@ -153,6 +153,44 @@ const icons: Record<string, { svg?: string; img?: string; color: string; label: 
     label: "Other Agents",
     color: "#f59e0b",
     svg: `<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m11.314 11.314l.707.707M12 8a4 4 0 1 0 0 8a4 4 0 0 0 0-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>`
+  },
+  resend: {
+    label: "Resend",
+    color: "#ffffff",
+    viewBox: "0 0 1800 1800",
+    svg: `<path d="M1000.46 450C1174.77 450 1278.43 553.669 1278.43 691.282C1278.43 828.896 1174.77 932.563 1000.46 932.563H912.382L1350 1350H1040.82L707.794 1033.48C683.944 1011.47 672.936 985.781 672.935 963.765C672.935 932.572 694.959 905.049 737.161 893.122L908.712 847.244C973.85 829.812 1018.81 779.353 1018.81 713.298C1018.8 632.567 952.745 585.78 871.095 585.78H450V450H1000.46Z"/>`
+  },
+  emailjs: {
+    label: "EmailJS",
+    color: "#F15A24",
+    svg: `<path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M22 7l-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polygon points="22 18 19 15 16 18 19 21" fill="currentColor"/>`
+  },
+  dnsrouting: {
+    label: "DNS Routing",
+    color: "#3b82f6",
+    svg: `<path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10zm0-20v20M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10M12 2a15.3 15.3 0 0 0-4 10 15.3 15.3 0 0 0 4 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`
+  },
+  emailforwarding: {
+    label: "Email Forwarding & Aliases",
+    color: "#10b981",
+    svg: `<path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M22 7l-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M16 19h6m0 0l-3-3m3 3l-3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`
+  },
+  gcp: {
+    label: "Google Cloud (GCP)",
+    color: "#4285F4",
+    viewBox: "0 -25 256 256",
+    isMulticolor: true,
+    svg: `<path d="M170.2517,56.8186 L192.5047,34.5656 L193.9877,25.1956 C153.4367,-11.6774 88.9757,-7.4964 52.4207,33.9196 C42.2667,45.4226 34.7337,59.7636 30.7167,74.5726 L38.6867,73.4496 L83.1917,66.1106 L86.6277,62.5966 C106.4247,40.8546 139.8977,37.9296 162.7557,56.4286 L170.2517,56.8186 Z" fill="#EA4335" /><path d="M224.2048,73.9182 C219.0898,55.0822 208.5888,38.1492 193.9878,25.1962 L162.7558,56.4282 C175.9438,67.2042 183.4568,83.4382 183.1348,100.4652 L183.1348,106.0092 C198.4858,106.0092 210.9318,118.4542 210.9318,133.8052 C210.9318,149.1572 198.4858,161.2902 183.1348,161.2902 L127.4638,161.2902 L121.9978,167.2242 L121.9978,200.5642 L127.4638,205.7952 L183.1348,205.7952 C223.0648,206.1062 255.6868,174.3012 255.9978,134.3712 C256.1858,110.1682 244.2528,87.4782 224.2048,73.9182" fill="#4285F4" /><path d="M71.8704,205.7957 L127.4634,205.7957 L127.4634,161.2897 L71.8704,161.2897 C67.9094,161.2887 64.0734,160.4377 60.4714,158.7917 L52.5844,161.2117 L30.1754,183.4647 L28.2234,191.0387 C40.7904,200.5277 56.1234,205.8637 71.8704,205.7957" fill="#34A853" /><path d="M71.8704,61.4255 C31.9394,61.6635 -0.2366,94.2275 0.0014,134.1575 C0.1344,156.4555 10.5484,177.4455 28.2234,191.0385 L60.4714,158.7915 C46.4804,152.4705 40.2634,136.0055 46.5844,122.0155 C52.9044,108.0255 69.3704,101.8085 83.3594,108.1285 C89.5244,110.9135 94.4614,115.8515 97.2464,122.0155 L129.4944,89.7685 C115.7734,71.8315 94.4534,61.3445 71.8704,61.4255" fill="#FBBC05" />`
+  },
+  firebasehosting: {
+    label: "Firebase Hosting",
+    color: "#FFCA28",
+    img: "/logos/firebase-logo.png",
+  },
+  firebaseapphosting: {
+    label: "Firebase App Hosting",
+    color: "#FFA000",
+    img: "/logos/firebase-logo.png",
   }
 }
 
@@ -180,7 +218,13 @@ const skillsData = {
   git: { name: "Git", desc: "Local project tracking, repository checkpoints, version rollback history logs." },
   github: { name: "GitHub", desc: "Project collaboration space, codebase sharing portals, actions pipelines." },
   figma: { name: "Figma", desc: "Interface design layouts wireframing, custom vector graphics, high fidelity prototypes." },
-  firebasehosting: { name: "Firebase Hosting", desc: "Global asset delivery networks, custom domains configuration, secure SSL hosting." },
+  firebasehosting: { name: "Firebase Hosting", desc: "Global asset delivery networks, static website hosting, custom domains config, and secure SSL provisioning." },
+  firebaseapphosting: { name: "Firebase App Hosting", desc: "Next.js server-side rendered (SSR) web applications deployment, backend serverless compute engines integration, and automated Git-to-deploy pipelines." },
+  gcp: { name: "Google Cloud (GCP)", desc: "Google Cloud tenancy workspace management, IAM resource access policies, and integration of the Agent Platform API." },
+  dnsrouting: { name: "DNS & Domain Routing", desc: "Domain registration, DNS zones configuration (A, CNAME, MX, TXT records), and secure email delivery routing validation." },
+  emailforwarding: { name: "Email Forwarding & Aliases", desc: "Inbound email forwarding rules, virtual email aliases (Gmail), and custom domains branding routing." },
+  resend: { name: "Resend", desc: "Modern developer-first email delivery engine API integration, customized domain authentication, and transactional email automation." },
+  emailjs: { name: "EmailJS", desc: "Client-side email transmission service integration, connecting form elements directly to email templates without custom backend servers." },
   
   agenticai: { name: "Agentic AI", desc: "Autonomous AI agents building, self-correcting logic, workflow loops, and dynamic action planning integrations." },
   mcp: { name: "Model Context Protocol", desc: "Model Context Protocol implementation, linking client host services and local tools context directly to LLM queries." },
@@ -411,7 +455,7 @@ export function SkillsSection() {
                   <div>
                     <h3 className="text-base font-black text-foreground tracking-tight flex items-center gap-2">
                       <span style={{ color: icons[activeBackend]?.color }}>
-                        <TechIcon svg={icons[activeBackend]?.svg} img={icons[activeBackend]?.img} label={icons[activeBackend]?.label} viewBox={icons[activeBackend]?.viewBox} />
+                        <TechIcon svg={icons[activeBackend]?.svg} img={icons[activeBackend]?.img} label={icons[activeBackend]?.label} isMulticolor={icons[activeBackend]?.isMulticolor} viewBox={icons[activeBackend]?.viewBox} />
                       </span>
                       {skillsData[activeBackend as keyof typeof skillsData]?.name}
                     </h3>
@@ -429,10 +473,11 @@ export function SkillsSection() {
               {/* Chips Grid Right (3 Cols) */}
               <div className="md:col-span-3 p-5 flex flex-col justify-center">
                 <div className="grid grid-cols-2 gap-2.5">
-                  {(["nodejs", "mongodb", "firebase", "postgresql", "mysql", "sqlite"] as const).map((key) => {
+                  {(["nodejs", "mongodb", "firebase", "postgresql", "mysql", "sqlite", "resend", "emailjs"] as const).map((key) => {
                     const icon = icons[key]
                     const isActive = activeBackend === key
                     const isHovered = hoveredSkill === key
+                    const isSpecialColor = key === "resend" && !isHovered && !isActive
 
                     return (
                       <div
@@ -453,8 +498,11 @@ export function SkillsSection() {
                             : `${isLight ? "bg-orange-500/[0.03]" : "bg-black/5 dark:bg-black/10"} border-border/70 dark:border-white/5 text-muted-foreground hover:text-foreground ${isLight ? "hover:bg-orange-500/[0.06]" : "hover:bg-black/10 dark:hover:bg-black/20"}`
                         }`}
                       >
-                        <span style={{ color: icon.color }}>
-                          <TechIcon svg={icon.svg} img={icon.img} label={icon.label} viewBox={icon.viewBox} />
+                        <span
+                          className={isSpecialColor ? "text-foreground" : ""}
+                          style={isSpecialColor ? undefined : { color: icon.color }}
+                        >
+                          <TechIcon svg={icon.svg} img={icon.img} label={icon.label} isMulticolor={icon.isMulticolor} viewBox={icon.viewBox} />
                         </span>
                         <span className="text-xs font-bold leading-none">{icon.label}</span>
                       </div>
@@ -494,7 +542,7 @@ export function SkillsSection() {
                   <div>
                     <h3 className="text-base font-black text-foreground tracking-tight flex items-center gap-2">
                       <span style={{ color: icons[activeAI]?.color }}>
-                        <TechIcon svg={icons[activeAI]?.svg} img={icons[activeAI]?.img} label={icons[activeAI]?.label} viewBox={icons[activeAI]?.viewBox} />
+                        <TechIcon svg={icons[activeAI]?.svg} img={icons[activeAI]?.img} label={icons[activeAI]?.label} isMulticolor={icons[activeAI]?.isMulticolor} viewBox={icons[activeAI]?.viewBox} />
                       </span>
                       {skillsData[activeAI as keyof typeof skillsData]?.name}
                     </h3>
@@ -541,7 +589,7 @@ export function SkillsSection() {
                           className={`${isSpecialColor ? "text-foreground" : ""} transition-transform duration-300 ${isActive || isHovered ? "scale-110" : ""}`}
                           style={isSpecialColor ? undefined : { color: icon.color }}
                         >
-                          <TechIcon svg={icon.svg} img={icon.img} label={icon.label} viewBox={icon.viewBox} />
+                          <TechIcon svg={icon.svg} img={icon.img} label={icon.label} isMulticolor={icon.isMulticolor} viewBox={icon.viewBox} />
                         </span>
                         <span className="text-xs font-bold leading-none select-none">{icon.label}</span>
                       </div>
@@ -577,13 +625,13 @@ export function SkillsSection() {
                   </div>
                   <div>
                     <h3 className="text-base font-black text-foreground tracking-tight flex items-center gap-2">
-                      <span style={{ color: activeWorkflow === "firebasehosting" ? icons.firebase?.color : icons[activeWorkflow]?.color }}>
+                      <span style={{ color: icons[activeWorkflow]?.color }}>
                         <TechIcon
-                          svg={activeWorkflow === "firebasehosting" ? icons.firebase?.svg : icons[activeWorkflow]?.svg}
-                          img={activeWorkflow === "firebasehosting" ? icons.firebase?.img : icons[activeWorkflow]?.img}
-                          label={activeWorkflow === "firebasehosting" ? icons.firebase?.label : icons[activeWorkflow]?.label}
-                          isMulticolor={activeWorkflow === "firebasehosting" ? icons.firebase?.isMulticolor : icons[activeWorkflow]?.isMulticolor}
-                          viewBox={activeWorkflow === "firebasehosting" ? icons.firebase?.viewBox : icons[activeWorkflow]?.viewBox}
+                          svg={icons[activeWorkflow]?.svg}
+                          img={icons[activeWorkflow]?.img}
+                          label={icons[activeWorkflow]?.label}
+                          isMulticolor={icons[activeWorkflow]?.isMulticolor}
+                          viewBox={icons[activeWorkflow]?.viewBox}
                         />
                       </span>
                       {skillsData[activeWorkflow as keyof typeof skillsData]?.name}
@@ -602,10 +650,11 @@ export function SkillsSection() {
               {/* Chips Grid Right (3 Cols) */}
               <div className="md:col-span-3 p-5 flex flex-col justify-center">
                 <div className="grid grid-cols-2 gap-2.5">
-                  {(["figma", "git", "github", "firebasehosting"] as const).map((key) => {
-                    const icon = key === "firebasehosting" ? icons.firebase : icons[key]
+                  {(["git", "github", "firebasehosting", "firebaseapphosting", "gcp", "dnsrouting", "emailforwarding", "figma"] as const).map((key) => {
+                    const icon = icons[key]
                     const isActive = activeWorkflow === key
                     const isHovered = hoveredSkill === key
+                    const isSpecialColor = key === "github" && !isHovered && !isActive
 
                     return (
                       <div
@@ -616,9 +665,9 @@ export function SkillsSection() {
                         }}
                         onMouseLeave={() => setHoveredSkill(null)}
                         style={{
-                          borderColor: isHovered || isActive ? icon.color : undefined,
-                          boxShadow: isHovered || isActive ? `0 0 15px ${icon.color}20` : undefined,
-                          backgroundColor: isHovered || isActive ? `${icon.color}0a` : undefined,
+                          borderColor: isHovered || isActive ? icon?.color : undefined,
+                          boxShadow: isHovered || isActive ? `0 0 15px ${icon?.color}20` : undefined,
+                          backgroundColor: isHovered || isActive ? `${icon?.color}0a` : undefined,
                         }}
                         className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl cursor-default transition-all duration-300 border backdrop-blur-md ${
                           isActive || isHovered
@@ -626,10 +675,13 @@ export function SkillsSection() {
                             : `${isLight ? "bg-orange-500/[0.03]" : "bg-black/5 dark:bg-black/10"} border-border/70 dark:border-white/5 text-muted-foreground hover:text-foreground ${isLight ? "hover:bg-orange-500/[0.06]" : "hover:bg-black/10 dark:hover:bg-black/20"}`
                         }`}
                       >
-                        <span style={{ color: icon.color }}>
-                          <TechIcon svg={icon.svg} img={icon.img} label={icon.label} isMulticolor={icon.isMulticolor} viewBox={icon.viewBox} />
+                        <span
+                          className={isSpecialColor ? "text-foreground" : ""}
+                          style={isSpecialColor ? undefined : { color: icon?.color }}
+                        >
+                          <TechIcon svg={icon?.svg} img={icon?.img} label={icon?.label} isMulticolor={icon?.isMulticolor} viewBox={icon?.viewBox} />
                         </span>
-                        <span className="text-xs font-bold leading-none">{icon.label}</span>
+                        <span className="text-xs font-bold leading-none">{icon?.label}</span>
                       </div>
                     )
                   })}

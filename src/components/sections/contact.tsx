@@ -28,10 +28,32 @@ export function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus("sending")
-    // Simulate network transmission delay
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-    setStatus("sent")
-    setFormData({ name: "", email: "", message: "" })
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/raileymitchellcapitis@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          _subject: `New Portfolio Message from ${formData.name}`
+        })
+      })
+
+      if (response.ok) {
+        setStatus("sent")
+        setFormData({ name: "", email: "", message: "" })
+      } else {
+        throw new Error("Form submission failed")
+      }
+    } catch (error) {
+      console.error(error)
+      alert("Something went wrong. Please try again or email directly at raileymitchellcapitis@gmail.com.")
+      setStatus("idle")
+    }
   }
 
   return (

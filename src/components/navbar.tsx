@@ -100,7 +100,7 @@ export function Navbar() {
           <Button
             variant="outline"
             className={`hidden sm:inline-flex h-9 gap-1.5 cursor-pointer px-4 font-bold text-xs hover:scale-105 transition-all duration-300 ${isLight ? "hover:shadow-[0_0_15px_rgba(249,115,22,0.15)]" : "hover:shadow-[0_0_15px_rgba(139,92,246,0.15)]"} border-primary/30 text-primary hover:text-primary hover:border-primary/60 bg-primary/5 hover:bg-primary/10`}
-            render={<a href="/resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download Resume" />}
+            render={<a href="/resume" target="_blank" rel="noopener noreferrer" aria-label="Download Resume" />}
             nativeButton={false}
           >
             <FileText className="h-3.5 w-3.5" />
@@ -140,7 +140,7 @@ export function Navbar() {
                   })}
                   {/* Mobile resume link */}
                   <a
-                    href="/resume.pdf"
+                    href="/resume"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`mt-4 flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-sm font-bold border border-primary/30 bg-primary/5 text-primary hover:bg-primary/10 hover:border-primary/60 ${isLight ? "hover:shadow-[0_0_15px_rgba(249,115,22,0.15)]" : "hover:shadow-[0_0_15px_rgba(139,92,246,0.15)]"} transition-all`}

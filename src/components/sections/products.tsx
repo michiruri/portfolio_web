@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Image from "next/image"
-import { ExternalLink, Headset, Rocket, Users } from "lucide-react"
+import { ExternalLink, Headset, Rocket, Users, Wrench } from "lucide-react"
 import { Card, CardContent, CardFooter, CardHeader, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { useInView } from "@/hooks/use-in-view"
@@ -152,16 +152,26 @@ function ProductBlock({
           </CardContent>
 
           <CardFooter className="pt-4 border-t border-border/50 dark:border-white/5 bg-muted/10 rounded-b-2xl">
-            <Button
-              className={`w-full gap-1.5 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer font-bold text-xs py-2 h-9 rounded-xl border ${buttonStyle}`}
-              render={
-                <a href={product.primaryCta.href} target="_blank" rel="noopener noreferrer" aria-label={product.primaryCta.label} />
-              }
-              nativeButton={false}
-            >
-              <ExternalLink className="h-4 w-4" />
-              {product.primaryCta.label}
-            </Button>
+            {product.primaryCta.disabled ? (
+              <Button
+                disabled
+                className={`w-full gap-1.5 transition-all duration-300 font-bold text-xs py-2 h-9 rounded-xl border opacity-60 cursor-not-allowed ${buttonStyle}`}
+              >
+                <Wrench className="h-4 w-4" />
+                {product.primaryCta.label}
+              </Button>
+            ) : (
+              <Button
+                className={`w-full gap-1.5 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer font-bold text-xs py-2 h-9 rounded-xl border ${buttonStyle}`}
+                render={
+                  <a href={product.primaryCta.href} target="_blank" rel="noopener noreferrer" aria-label={product.primaryCta.label} />
+                }
+                nativeButton={false}
+              >
+                <ExternalLink className="h-4 w-4" />
+                {product.primaryCta.label}
+              </Button>
+            )}
           </CardFooter>
         </Card>
       </div>

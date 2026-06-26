@@ -1,4 +1,4 @@
-# Typing Game (typing_game_rai) - Portfolio Context
+# Some Typing Game - Portfolio Context
 
 ## Overview
 A high-octane HTML5 Canvas speed-typing game featuring dynamic boss encounters, custom canvas physics, and a rich anomaly event system. Engineered with an object-oriented architecture for varied enemy behaviors and multi-event stacking logic. The backend utilizes Node.js and Firebase Firestore for a real-time global leaderboard, complete with intelligent client-side caching and automated database pruning to strictly manage API quota limits.
@@ -23,11 +23,11 @@ A high-octane HTML5 Canvas speed-typing game featuring dynamic boss encounters, 
 ### 3. Dynamic Event System ("Anomalies")
 *   **Slot-Machine Mechanics:** Triggered by destroying specific enemies, rolling a random global game modifier.
 *   **Game State Mutators:** Events drastically alter the game loop physics and visual logic.
-    *   `BLACK HOLE`: Drags all entities towards a central gravity well using radius/angle math.
-    *   `TIME WARP`: Slows down enemy speed dramatically (`deltaTime` manipulation).
-    *   `REVERSE THRUST`: Reverses enemy Y-velocity to move upwards.
-    *   `CONGA LINE`: Forces all enemies to follow the leader in a snake-like pattern.
-    *   `COLOR SCRAMBLE`: Randomizes canvas fill styles per frame.
+*   `BLACK HOLE`: Drags all entities towards a central gravity well using radius/angle math.
+*   `TIME WARP`: Slows down enemy speed dramatically (`deltaTime` manipulation).
+*   `REVERSE THRUST`: Reverses enemy Y-velocity to move upwards.
+*   `CONGA LINE`: Forces all enemies to follow the leader in a snake-like pattern.
+*   `COLOR SCRAMBLE`: Randomizes canvas fill styles per frame.
 
 ### 4. Real-Time Database Optimization (Firebase)
 *   **Anti-Quota Limit Strategies:** Built a custom Node.js server that listens to Firestore via `onSnapshot` and caches the top 100 high scores in server memory.

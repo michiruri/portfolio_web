@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <style>
+    :root {
+      /* Default to dark mode (cosmic purple palette) */
+      --box-bg: rgba(139, 92, 246, 0.1);
+      --box-border: rgba(139, 92, 246, 0.3);
+      --icon-color: #8B5CF6;
+    }
+    @media (prefers-color-scheme: light) {
+      /* Light mode (vibrant solar orange palette) */
+      --box-bg: rgba(249, 115, 22, 0.1);
+      --box-border: rgba(249, 115, 22, 0.35);
+      --icon-color: #F97316;
+    }
+    .logo-box {
+      fill: var(--box-bg);
+      stroke: var(--box-border);
+      stroke-width: 1.5;
+    }
+    .logo-icon {
+      stroke: var(--icon-color);
+      stroke-width: 2.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  </style>
+
+  <rect class="logo-box" x="1.5" y="1.5" width="29" height="29" rx="8" />
+  
+  <g class="logo-icon" transform="translate(4, 4)">
+    <polyline points="16 18 22 12 16 6" />
+    <polyline points="8 6 2 12 8 18" />
+    <line x1="14.5" y1="4" x2="9.5" y2="20" />
+  </g>
+</svg>
