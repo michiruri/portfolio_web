@@ -35,10 +35,10 @@ export const studioProducts: StudioProduct[] = [
     name: "Triage",
     tagline: "Surgical precision for modern customer support",
     description:
-      "Multi-tenant AI service desk: ticket triage, agent workflows, digest email policy, routing, analytics, and client portal.",
+      "White-label, multi-tenant AI service desk: ticket triage, agent workflows, digest email policy, routing, analytics, client portal, and multi-channel notification dispatch via email and WhatsApp.",
     status: "Alpha",
     segment: "B2B",
-    tags: ["Next.js", "Firebase", "Vertex AI", "Postmark"],
+    tags: ["Next.js", "Firebase", "Vertex AI", "Postmark", "WhatsApp"],
     image: "/projects/triage.png",
     accent: "triage",
     primaryCta: { label: "Visit Triage", href: TRIAGE_URL },

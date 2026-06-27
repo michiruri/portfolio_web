@@ -2,6 +2,7 @@
   "hosting": {
     "site": "raileymitchellcapitis",
     "public": "out",
+    "cleanUrls": true,
     "ignore": [
       "firebase.json",
       "**/.*",
