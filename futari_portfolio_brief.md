@@ -7,13 +7,13 @@ This document provides a technical analysis, feature breakdown, and technology a
 
 * **Product Name**: Futari (meaning "two people" / "couple" in Japanese)
 * **Tagline**: Collaborative planning built for couples
-* **Segment**: B2C SaaS (sibling to the B2B SaaS Triage)
-* **Studio Ownership**: Owned and operated by **Ri Software Solutions**
+* **Segment**: B2C SaaS
+* **Ownership**: Built and operated independently by **Railey Mitchell Q. Capitis** (Solo Indie Developer)
 * **Status**: `In Development` (Active pre-release staging)
 * **Live Demo Staging URL**: [https://futari-ri.web.app](https://futari-ri.web.app)
 
 ### Elevator Pitch
-> Futari is a secure, multi-tenant B2C couples application for shared planning, cycle tracking, daily memories, and everyday coordination. Built with the same enterprise-grade architectural rigor as Triage, it is carefully tuned for private, personal use rather than business operations.
+> Futari is a secure, multi-tenant B2C couples application for shared planning, cycle tracking, daily memories, and everyday coordination. Built with enterprise-grade architectural rigor, it is carefully tuned for intimate, personal connection.
 
 ---
 

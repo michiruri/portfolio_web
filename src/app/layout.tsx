@@ -9,7 +9,6 @@ import { ThemeTransitionOverlay } from "@/components/theme-transition-overlay";
 const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 const geistMono = Geist_Mono({
@@ -18,39 +17,45 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Railey Mitchell Q. Capitis — Founder, Ri Software Solutions",
+  title: "Railey Mitchell Q. Capitis — Solo Indie Developer",
   description:
-    "Owner of RI SOFTWARE SOLUTIONS. Founder & Lead Engineer building Triage (B2B) and Futari (B2C). Full-stack architect on Firebase, Next.js, and Vertex AI.",
+    "Solo indie developer crafting personal, highly customizable web apps. Building and shipping full-stack products with Next.js, TypeScript, and cloud-native architecture — zero corporate bloat.",
   keywords: [
     "Railey Mitchell Quimson Capitis",
     "Railey Mitchell Q. Capitis",
     "Railey Mitchell Capitis",
-    "Ri Software Solutions",
-    "Triage",
+    "Solo Indie Developer",
+    "Indie Hacker",
+    "Indie SaaS",
+    "Solo SaaS Builder",
+    "B2C SaaS",
     "Futari",
-    "AI SaaS",
-    "Firebase",
+    "Svelte 5",
     "Next.js",
-    "Vertex AI",
+    "Firebase",
+    "Google Cloud Platform",
+    "GCP",
+    "Gemini Enterprise Agent Platform",
     "Pangasinan State University",
     "PSU Urdaneta",
     "Web Developer",
     "Philippines IT Graduate",
   ],
   openGraph: {
-    title: "Ri Software Solutions · Railey Mitchell Quimson Capitis",
+    title: "Railey Mitchell Q. Capitis · Solo Indie Developer",
     description:
-      "Owner of RI SOFTWARE SOLUTIONS. Founder & Lead Engineer building Triage (B2B) and Futari (B2C).",
+      "Solo indie developer crafting personal, highly customizable web apps. Building and shipping full-stack products with Next.js, TypeScript, and cloud-native architecture — zero corporate bloat.",
     url: "https://raileymitchellcapitis.web.app",
-    siteName: "Ri Software Solutions",
+    siteName: "Railey Mitchell Capitis",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ri Software Solutions · Railey Mitchell Quimson Capitis",
+    title: "Railey Mitchell Q. Capitis · Solo Indie Developer",
     description:
-      "Owner of RI SOFTWARE SOLUTIONS. Founder & Lead Engineer building Triage (B2B) and Futari (B2C).",
+      "Solo indie developer crafting personal, highly customizable web apps. Building and shipping full-stack products with Next.js, TypeScript, and cloud-native architecture — zero corporate bloat.",
+    creator: "@michiruri_dev",
   },
 };
 
@@ -62,10 +67,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${geistMono.variable} h-full antialiased overflow-x-hidden max-w-full`}
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
-      <body className="min-h-screen flex flex-col bg-background text-foreground relative overflow-x-hidden">
+      <body className="min-h-screen flex flex-col bg-background text-foreground relative overflow-x-hidden max-w-full">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

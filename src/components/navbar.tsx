@@ -60,7 +60,7 @@ export function Navbar() {
             </div>
             <span className="hidden sm:block text-xs font-black text-foreground tracking-tight leading-snug">
               Railey Mitchell Q. Capitis
-              <span className="block text-[8px] font-black text-muted-foreground tracking-[0.16em] uppercase mt-0.5">Web &amp; Mobile Architect</span>
+              <span className="block text-[8px] font-black text-muted-foreground tracking-[0.16em] uppercase mt-0.5">Solo Indie Developer</span>
             </span>
             <span className="sm:hidden text-xs font-black text-foreground tracking-wider bg-primary/10 border border-primary/20 px-2 py-0.5 rounded-lg">
               RM.
@@ -69,7 +69,7 @@ export function Navbar() {
         </div>
 
         {/* Center: Nav links (desktop) */}
-        <nav className="hidden md:flex items-center gap-1.5 text-xs font-semibold">
+        <nav className="hidden lg:flex items-center gap-1.5 text-xs font-semibold">
           {navItems.map((item) => {
             const isActive = activeSection === item.href.replace("#", "")
             return (
@@ -107,8 +107,8 @@ export function Navbar() {
             Resume
           </Button>
 
-          {/* Mobile hamburger */}
-          <div className="md:hidden">
+          {/* Mobile & Tablet hamburger */}
+          <div className="lg:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger render={<Button variant="ghost" size="icon" className="h-9 w-9" />}>
                 <Menu className="h-5 w-5" />

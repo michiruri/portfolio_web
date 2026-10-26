@@ -154,9 +154,16 @@
   }
   body {
     @apply bg-background text-foreground;
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
   }
   html {
     @apply font-sans;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  html[data-scroll-behavior="smooth"] {
     scroll-behavior: smooth;
   }
 }
@@ -407,4 +414,13 @@
 
 .animate-spin-reverse {
   animation: spin-reverse 10s linear infinite;
+}
+
+/* Hide scrollbars on modern browsers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

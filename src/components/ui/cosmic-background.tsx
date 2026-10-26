@@ -81,7 +81,7 @@ export function CosmicBackground() {
     const updateDimensions = () => {
       const freshWidth = window.innerWidth
       const freshHeight = window.innerHeight
-      const rightOffsetPx = freshWidth > 768 ? freshWidth * 0.06 : freshWidth * 0.02
+      const rightOffsetPx = freshWidth > 768 ? freshWidth * 0.05 : freshWidth * 0.02
       const bhWidth = freshWidth > 768 ? 420 : 320
       const amplitude = Math.max(50, freshWidth - rightOffsetPx * 2 - bhWidth)
       const viewportYOffset = freshHeight * 0.15
@@ -114,7 +114,7 @@ export function CosmicBackground() {
           const scrollY = window.scrollY
           const freshWidth = window.innerWidth
           const freshHeight = window.innerHeight
-          const rightOffsetPx = freshWidth > 768 ? freshWidth * 0.06 : freshWidth * 0.02
+          const rightOffsetPx = freshWidth > 768 ? freshWidth * 0.05 : freshWidth * 0.02
           const bhWidth = freshWidth > 768 ? 420 : 320
           const amplitude = Math.max(50, freshWidth - rightOffsetPx * 2 - bhWidth)
           
@@ -233,7 +233,7 @@ export function CosmicBackground() {
       {/* ── 3. DETAILED ARTISTIC SVG BLACK HOLE / SUN ── */}
       <div 
         ref={blackHoleRef}
-        className={`fixed top-[15%] right-[2%] md:right-[6%] w-[320px] h-[320px] md:w-[420px] md:h-[420px] pointer-events-none select-none transition-opacity duration-700 z-0 ${isLight ? "opacity-45" : "opacity-85"}`}
+        className={`fixed top-[4%] right-[-2%] sm:right-[2%] md:right-[5%] w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] pointer-events-none select-none transition-opacity duration-700 z-0 ${isLight ? "opacity-45" : "opacity-85"}`}
         style={{
           transform: `translate3d(${initialX}px, ${initialY}px, 0)`,
         }}

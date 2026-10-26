@@ -1,266 +1,213 @@
 "use client"
 
 import * as React from "react"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import Image from "next/image"
+import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ExternalLink, Monitor, Phone, Shield, Terminal } from "lucide-react"
-import { GithubIcon } from "@/components/icons"
+import { ExternalLink, Play, Sparkles, Zap, Shield, Trophy } from "lucide-react"
 import { useInView } from "@/hooks/use-in-view"
-import { useTheme } from "next-themes"
+import { getTagColor } from "@/lib/tag-colors"
 
-
-// ── PROFESSIONAL ENGAGEMENTS (THE ARCHITECT TIER) ─────────────────────────────
-const professionalProjects = [
-  {
-    title: "PANELCO III - Visitor Management System",
-    description: "Designed, built, and deployed as the sole software engineer a joint web and mobile solution to automate visitor tracking, gate operations, and internal routing at PANELCO III. Engineered a mobile application for gate guards with an integrated ML Kit OCR engine to extract raw text from photo IDs, combined with Google Gemini AI to analyze and format names, addresses, and numbers into interactive draggable chips. Guards can drag these chips directly into the corresponding form fields—minimizing manual typing, boosting data entry accuracy, and maximizing accessibility. Supported by secure regional MySQL databases and a web-based admin monitoring portal.",
-    tags: ["Flutter", "Dart", "PHP API", "MySQL", "Google Gemini", "ML Kit OCR"],
-    type: "both" as const,
-    github: "",
-    demo: "",
-    role: "Lead Engineer",
-  },
-]
-
-// ── 3. TECHNICAL EXPERIMENTS (THE PLAYGROUND) ────────────────────────────────
 const playgroundProjects = [
   {
+    id: "typing-game",
     title: "Some Typing Game",
-    description: "A high-octane HTML5 Canvas speed-typing game featuring dynamic boss encounters, custom canvas physics, and a rich anomaly event system. Engineered with an object-oriented architecture for varied enemy behaviors and multi-event stacking logic. The backend utilizes Node.js and Firebase Firestore for a real-time global leaderboard, complete with intelligent client-side caching and automated database pruning to strictly manage API quota limits.",
-    tags: ["Vanilla JS", "HTML5 Canvas", "Node.js", "Firebase", "OOP"],
-    type: "web" as const,
-    github: "",
+    category: "Typing Arcade Game",
+    description:
+      "A fast-paced space typing arcade game built from scratch in vanilla JavaScript. Features custom 2D particle physics, escalating boss encounters, and a real-time Firestore leaderboard.",
+    features: [
+      {
+        icon: Zap,
+        label: "60fps Canvas Physics",
+        detail: "Custom particle collision system, recoil effects, and projectile mechanics built in pure JavaScript.",
+      },
+      {
+        icon: Shield,
+        label: "Dynamic Boss Encounters",
+        detail: "Object-oriented event architecture managing boss attack patterns, phases, and stacked anomalies.",
+      },
+      {
+        icon: Trophy,
+        label: "Optimized Leaderboard",
+        detail: "Real-time ranking with client-side query caching to eliminate redundant database read quotas.",
+      },
+    ],
+    tags: ["Vanilla JS", "HTML5 Canvas", "Firebase", "Node.js", "OOP"],
     demo: "https://some-typing-game.web.app",
-    demoLabel: "Play Game",
-    image: "/projects/some_typing-game-rai.png"
+    demoLabel: "Launch Game",
+    image: "/projects/typing-game/landing.png",
   },
 ]
-
-type Project = {
-  title: string
-  description: string
-  tags: string[]
-  type: "web" | "mobile" | "both"
-  demo: string
-  github?: string
-  role?: string
-  image?: string
-  demoLabel?: string
-}
-
-function ProjectCard({ project, isLight }: { project: Project; isLight: boolean }) {
-  const glowColor = isLight
-    ? project.type === "web"
-      ? "from-primary/20 to-amber-500/20"
-      : project.type === "mobile"
-      ? "from-orange-500/20 to-primary/20"
-      : "from-primary/25 via-orange-500/20 to-amber-500/25"
-    : project.type === "web" 
-    ? "from-primary/20 to-cyan-500/20" 
-    : project.type === "mobile" 
-    ? "from-purple-500/20 to-primary/20" 
-    : "from-primary/25 via-purple-500/20 to-cyan-500/25"
-  
-  return (
-    <div className="relative h-full group/card">
-      <div className={`absolute inset-0 bg-gradient-to-tr ${glowColor} rounded-2xl blur-xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none`} />
-      <Card className="relative flex flex-col h-full border border-border/70 dark:border-white/5 bg-card/60 dark:bg-[#07070a] backdrop-blur-sm rounded-2xl hover:border-primary/30 transition-all duration-300 group">
-        <CardHeader className="pb-2">
-          <div className="flex items-center justify-between mb-2">
-            <span className="inline-flex items-center gap-1.5 text-[10px] font-bold text-primary uppercase tracking-wider">
-              {project.type === "web" ? (
-                <><Monitor className="h-3.5 w-3.5" />Web App</>
-              ) : project.type === "mobile" ? (
-                <><Phone className="h-3.5 w-3.5" />Mobile App</>
-              ) : (
-                <><Monitor className="h-3.5 w-3.5" /><span className="mx-0.5">&amp;</span><Phone className="h-3.5 w-3.5" />Web &amp; Mobile App</>
-              )}
-            </span>
-            {project.role && (
-              <span className="inline-flex items-center gap-1 text-[9px] font-bold text-muted-foreground bg-muted/50 px-2.5 py-0.5 rounded-full border border-border/50">
-                {project.role}
-              </span>
-            )}
-          </div>
-          <CardTitle className="text-lg font-extrabold transition-colors group-hover:text-primary">{project.title}</CardTitle>
-          
-          {/* Image Preview */}
-          <div className={`aspect-[16/9] w-full rounded-xl ${isLight ? "bg-orange-500/5" : "bg-black/40"} border border-border/70 dark:border-white/5 flex items-center justify-center relative overflow-hidden my-3 group-hover/card:border-primary/35 transition-all`}>
-            {project.image ? (
-              <img src={project.image} alt={`${project.title} preview`} className="w-full h-full object-cover" />
-            ) : (
-              <>
-                <div className={`absolute inset-0 bg-gradient-to-tr ${isLight ? "from-orange-500/10 to-amber-500/10" : "from-purple-500/5 to-cyan-500/5"} opacity-50 pointer-events-none`} />
-                <span className="text-[9px] font-bold tracking-widest uppercase text-muted-foreground/50 group-hover/card:text-primary/60 transition-colors z-10">
-                  [ {project.title} Preview Placeholder ]
-                </span>
-              </>
-            )}
-          </div>
-
-          <CardDescription className="mt-2 text-xs font-semibold text-muted-foreground leading-relaxed text-justify">
-            {project.description}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="flex-grow pt-4">
-          <div className="flex flex-wrap gap-1.5">
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="inline-flex items-center rounded-md bg-muted px-2 py-0.5 text-xs font-semibold text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors cursor-default border border-border/50"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </CardContent>
-        <CardFooter className="pt-4 border-t border-border/50 dark:border-white/5 flex gap-3.5 bg-muted/10 rounded-b-2xl mt-auto">
-          {project.github && project.demo ? (
-            <>
-              <Button
-                variant="outline"
-                size="sm"
-                className="flex-grow gap-1.5 hover:scale-105 transition-all duration-300 cursor-pointer"
-                render={<a href={project.github} target="_blank" rel="noopener noreferrer" />}
-                nativeButton={false}
-              >
-                <GithubIcon className="h-4 w-4" />
-                Code
-              </Button>
-              <Button
-                size="sm"
-                className="flex-grow gap-1.5 hover:scale-105 transition-all duration-300 cursor-pointer bg-primary text-primary-foreground hover:bg-primary/90"
-                render={<a href={project.demo} target="_blank" rel="noopener noreferrer" />}
-                nativeButton={false}
-              >
-                <ExternalLink className="h-4 w-4" />
-                {project.demoLabel || "Demo"}
-              </Button>
-            </>
-          ) : project.demo ? (
-            <Button
-              size="sm"
-              className="w-full gap-1.5 hover:scale-105 transition-all duration-300 cursor-pointer bg-primary text-primary-foreground hover:bg-primary/90"
-              render={<a href={project.demo} target="_blank" rel="noopener noreferrer" />}
-              nativeButton={false}
-            >
-              <ExternalLink className="h-4 w-4" />
-              {project.demoLabel || "Live Product"}
-            </Button>
-          ) : project.github ? (
-            <Button
-              variant="outline"
-              size="sm"
-              className="w-full gap-1.5 hover:scale-105 transition-all duration-300 cursor-pointer"
-              render={<a href={project.github} target="_blank" rel="noopener noreferrer" />}
-              nativeButton={false}
-            >
-              <GithubIcon className="h-4 w-4" />
-              Source Code
-            </Button>
-          ) : (
-            <Button
-              variant="outline"
-              size="sm"
-              className="w-full gap-1.5 hover:scale-105 transition-all duration-300 cursor-pointer"
-              render={<a href="#" onClick={(e) => e.preventDefault()} />}
-              nativeButton={false}
-            >
-              <GithubIcon className="h-4 w-4" />
-              Source Code
-            </Button>
-          )}
-        </CardFooter>
-      </Card>
-    </div>
-  )
-}
-
-const CARD_DELAYS = ["delay-100", "delay-200", "delay-300", "delay-400"]
 
 export function ProjectsSection() {
   const { ref, inView } = useInView()
-  const [mounted, setMounted] = React.useState(false)
-  const { resolvedTheme } = useTheme()
-  const isLight = mounted && resolvedTheme === "light"
-
-  React.useEffect(() => {
-    setMounted(true)
-  }, [])
+  const [isHovered, setIsHovered] = React.useState(false)
 
   return (
-    <section
-      id="projects"
-      ref={ref}
-      className="snap-section py-20 bg-transparent w-full"
-    >
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 w-full">
-
+    <section id="projects" ref={ref} className="snap-section py-20 bg-transparent w-full scroll-mt-20 overflow-hidden">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 w-full">
+        
         {/* Section Header */}
-        <div className="text-center mb-20">
-          <h2 className={`font-heading text-3xl font-extrabold tracking-tight sm:text-4xl text-foreground ${inView ? "animate-fade-up delay-0" : "opacity-0"}`}>
-            Featured Work
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-amber-500/25 bg-amber-500/10 text-amber-500 text-xs font-semibold tracking-wide mb-3">
+            <Sparkles className="w-3.5 h-3.5" />
+            Interactive Works
+          </div>
+          <h2
+            className={`font-heading text-3xl font-extrabold tracking-tight sm:text-4xl text-foreground transition-all duration-700 ${
+              inView ? "animate-fade-up delay-100" : "opacity-0"
+            }`}
+          >
+            Projects &amp; Experiments
           </h2>
-          <p className={`mt-4 text-muted-foreground max-w-xl mx-auto font-semibold ${inView ? "animate-fade-in delay-150" : "opacity-0"}`}>
-            Professional engagements and technical experiments — alongside studio products above.
+          <p
+            className={`mt-3 text-muted-foreground max-w-xl mx-auto font-medium text-sm sm:text-base leading-relaxed transition-all duration-700 ${
+              inView ? "animate-fade-in delay-200" : "opacity-0"
+            }`}
+          >
+            Custom canvas engines, algorithmic state systems, and interactive builds.
           </p>
         </div>
 
-        {/* ─── SECTION 1: PROFESSIONAL ENGAGEMENTS (THE ARCHITECT TIER) ─── */}
-        <div className="mb-20">
-          <div className={`flex items-center gap-3 mb-6 ${inView ? "animate-fade-up delay-100" : "opacity-0"}`}>
-            <div className="flex items-center gap-2.5">
-              <div className={`w-8 h-8 rounded-lg flex items-center justify-center border transition-all duration-300 ${isLight ? "bg-blue-500/10 border-blue-500/20 text-blue-600 shadow-[0_0_10px_rgba(59,130,246,0.15)]" : "bg-blue-500/10 border-blue-500/20 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.15)]"}`}>
-                <Shield className="h-4 w-4" />
-              </div>
-              <div>
-                <div className="flex flex-wrap items-center gap-2">
-                  <h3 className="text-base font-black tracking-tight text-foreground leading-none">Professional Engagements</h3>
-                  <span className={`inline-flex items-center rounded-full text-[9px] font-black uppercase tracking-widest px-2 py-0.5 border transition-all duration-300 ${isLight ? "bg-blue-500/10 text-blue-600 border-blue-500/25" : "bg-blue-500/10 text-blue-400 border-blue-500/25"}`}>The Architect Tier</span>
-                </div>
-                <p className="text-xs text-muted-foreground font-semibold mt-1">Production systems engineered as the sole developer for client scale.</p>
-              </div>
-            </div>
-            <div className={`flex-1 h-px transition-colors duration-300 ${isLight ? "bg-blue-500/15" : "bg-blue-500/10"}`} />
-          </div>
-
-          <div className="max-w-2xl mx-auto">
-            <div className={inView ? "animate-scale-in delay-200" : "opacity-0"}>
-              <ProjectCard project={professionalProjects[0]} isLight={isLight} />
-            </div>
-          </div>
-        </div>
-
-        {/* ─── SECTION 2: TECHNICAL EXPERIMENTS (THE PLAYGROUND) ─── */}
-        <div>
-          <div className={`flex items-center gap-3 mb-6 ${inView ? "animate-fade-up delay-300" : "opacity-0"}`}>
-            <div className="flex items-center gap-2.5">
-              <div className={`w-8 h-8 rounded-lg flex items-center justify-center border transition-all duration-300 ${isLight ? "bg-amber-500/10 border-amber-500/20 text-amber-600 shadow-[0_0_10px_rgba(245,158,11,0.15)]" : "bg-amber-500/10 border-amber-500/20 text-amber-400 shadow-[0_0_10px_rgba(245,158,11,0.15)]"}`}>
-                <Terminal className="h-4 w-4" />
-              </div>
-              <div>
-                <div className="flex flex-wrap items-center gap-2">
-                  <h3 className="text-base font-black tracking-tight text-foreground leading-none">Technical Experiments</h3>
-                  <span className={`inline-flex items-center rounded-full text-[9px] font-black uppercase tracking-widest px-2 py-0.5 border transition-all duration-300 ${isLight ? "bg-amber-500/10 text-amber-600 border-amber-500/25" : "bg-amber-500/10 text-amber-400 border-amber-500/25"}`}>The Playground</span>
-                </div>
-                <p className="text-xs text-muted-foreground font-semibold mt-1">Explorations in complex component designs, states, and algorithms.</p>
-              </div>
-            </div>
-            <div className={`flex-1 h-px transition-colors duration-300 ${isLight ? "bg-orange-500/15" : "bg-purple-500/10"}`} />
-          </div>
-
-          <div className="max-w-2xl mx-auto">
-            {playgroundProjects.map((project, idx) => (
+        {/* ─── ANIMATED PROJECT SHOWCASE DISPLAY ─── */}
+        <div className="w-full">
+          {playgroundProjects.map((project) => (
+            <div
+              key={project.id}
+              className={`relative group transition-all duration-700 ${
+                inView ? "animate-scale-in delay-200" : "opacity-0"
+              }`}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              {/* Cosmic Starlight Glow behind the project display */}
               <div
-                key={idx}
-                className={inView ? `animate-scale-in ${CARD_DELAYS[idx + 2] ?? "delay-400"}` : "opacity-0"}
-              >
-                <ProjectCard project={project} isLight={isLight} />
-              </div>
-            ))}
-          </div>
-        </div>
+                className="absolute -inset-4 bg-gradient-to-r from-amber-500/20 via-primary/20 to-orange-500/20 rounded-3xl blur-2xl opacity-40 group-hover:opacity-75 transition-opacity duration-700 pointer-events-none"
+              />
 
+              <Card className="relative overflow-hidden border border-border/80 dark:border-white/10 bg-card/85 dark:bg-[#07070d]/90 backdrop-blur-2xl rounded-3xl shadow-xl transition-all duration-300 hover:border-amber-500/40">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-center">
+                  
+                  {/* Left Column: Visual Display Widescreen Showcase (Expanded to col-span-7) */}
+                  <div className="lg:col-span-7 p-4 sm:p-6 bg-muted/20 dark:bg-black/35 border-b lg:border-b-0 lg:border-r border-border/60">
+                    <div className="relative rounded-2xl overflow-hidden border border-border/70 dark:border-white/10 shadow-xl bg-black group/img">
+                      
+                      {/* Browser Header Bar */}
+                      <div className="flex items-center justify-between px-3.5 py-2 border-b border-white/10 bg-black/60 text-[11px] font-mono text-muted-foreground">
+                        <div className="flex items-center gap-1.5">
+                          <span className="w-2 h-2 rounded-full bg-red-500/80" />
+                          <span className="w-2 h-2 rounded-full bg-yellow-500/80" />
+                          <span className="w-2 h-2 rounded-full bg-green-500/80" />
+                        </div>
+                        <span className="text-foreground/80 truncate px-2">some-typing-game.web.app</span>
+                        <span className="text-amber-400 font-semibold hidden sm:inline">60 FPS Canvas</span>
+                      </div>
+
+                      {/* Full-view uncropped screenshot viewport */}
+                      <div className="relative aspect-[16/9] w-full overflow-hidden bg-black flex items-center justify-center">
+                        {project.image ? (
+                          <Image
+                            src={project.image}
+                            alt={`${project.title} Preview`}
+                            fill
+                            className="object-contain transition-transform duration-500 group-hover/img:scale-[1.02]"
+                            sizes="(max-width: 1024px) 100vw, 700px"
+                            priority
+                          />
+                        ) : (
+                          <div className="absolute inset-0 flex items-center justify-center text-xs text-muted-foreground">
+                            Preview Unavailable
+                          </div>
+                        )}
+
+                        {/* Subtle Star Particle Canvas simulation overlay on hover */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 pointer-events-none">
+                          <span className="text-xs text-white flex items-center gap-2 font-bold">
+                            <Play className="h-3.5 w-3.5 fill-amber-400 text-amber-400 animate-pulse" />
+                            Playable 60fps Typing Arcade
+                          </span>
+                          <p className="text-[11px] text-white/80 mt-0.5">
+                            Real-time typing defense against multi-phase bosses
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right Column: Clean Project Value & Key Mechanics */}
+                  <div className="lg:col-span-5 p-5 sm:p-7 flex flex-col justify-between space-y-4">
+                    <div>
+                      <div className="flex items-center justify-between gap-2 mb-1.5">
+                        <span className="text-[11px] font-bold uppercase tracking-wider text-amber-500">
+                          {project.category}
+                        </span>
+                        <span className="text-[11px] text-muted-foreground font-medium">
+                          Playable in Browser
+                        </span>
+                      </div>
+
+                      <h3 className="text-xl sm:text-2xl font-black text-foreground tracking-tight group-hover:text-primary transition-colors">
+                        {project.title}
+                      </h3>
+
+                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mt-2 font-normal">
+                        {project.description}
+                      </p>
+
+                      {/* Key Features (Straight to the point) */}
+                      <div className="mt-3.5 space-y-2 pt-3 border-t border-border/50">
+                        {project.features.map((feature, idx) => {
+                          const Icon = feature.icon
+                          return (
+                            <div key={idx} className="flex items-start gap-2.5">
+                              <Icon className="h-3.5 w-3.5 text-amber-500 shrink-0 mt-0.5" />
+                              <div className="text-xs leading-snug">
+                                <span className="font-bold text-foreground">
+                                  {feature.label}:{" "}
+                                </span>
+                                <span className="text-muted-foreground">
+                                  {feature.detail}
+                                </span>
+                              </div>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    </div>
+
+                    {/* Bottom: Tags & Launch CTA */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-border/40">
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className={`inline-flex items-center rounded-md px-2 py-0.5 text-xs font-semibold ring-1 ring-inset ${getTagColor(
+                              tag
+                            )}`}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      <Button
+                        size="sm"
+                        className="font-bold text-xs gap-1.5 cursor-pointer bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-[0_0_15px_rgba(245,158,11,0.3)] hover:shadow-[0_0_25px_rgba(245,158,11,0.5)] border-transparent shrink-0 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                        render={
+                          <a href={project.demo} target="_blank" rel="noopener noreferrer" />
+                        }
+                        nativeButton={false}
+                      >
+                        <ExternalLink className="h-3.5 w-3.5" />
+                        {project.demoLabel}
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )

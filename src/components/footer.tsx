@@ -2,13 +2,11 @@
 
 import * as React from "react"
 import { ArrowUpRight, User, MapPin, Link2, Activity, Mail, Rocket } from "lucide-react"
-import { GithubIcon, LinkedinIcon } from "@/components/icons"
-import { GalleryModal } from "@/components/gallery-modal"
+import { GithubIcon, LinkedinIcon, XIcon, KofiIcon } from "@/components/icons"
 import { useTheme } from "next-themes"
-import { STUDIO, TRIAGE_URL, FUTARI_URL } from "@/lib/studio-products"
+import { FUTARI_URL } from "@/lib/studio-products"
 
 export function Footer() {
-  const [isGalleryOpen, setIsGalleryOpen] = React.useState(false)
   const [mounted, setMounted] = React.useState(false)
   const { resolvedTheme } = useTheme()
   const isLight = mounted && resolvedTheme === "light"
@@ -32,110 +30,110 @@ export function Footer() {
         <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[150px] ${isLight ? "bg-orange-500/5" : "bg-purple-500/5"} rounded-full blur-[80px] pointer-events-none`} />
 
         {/* Top Info Grid */}
-        <div className="relative z-10 w-full px-6 md:px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 max-w-[1600px] mx-auto">
+        <div className="relative z-10 w-full px-4 sm:px-6 md:px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 max-w-[1400px] mx-auto">
           
-          {/* Bio Node */}
+          {/* Identity & Note */}
           <div className="flex flex-col">
-            <span className={`text-[10px] font-bold uppercase tracking-widest ${isLight ? "text-orange-600" : "text-blue-400"} mb-6 flex items-center gap-2`}>
-              <User className="w-4 h-4" /> Profile
+            <span className={`text-[11px] font-bold uppercase tracking-widest ${isLight ? "text-orange-600" : "text-primary"} mb-4 flex items-center gap-2`}>
+              <User className="w-4 h-4" /> Developer &amp; Founder
             </span>
-            <p className="text-[14px] font-medium text-muted-foreground leading-relaxed max-w-xs">
-              I design, build, and ship multi-tenant SaaS on Firebase, Next.js, and Vertex AI — from B2B support tools to consumer apps, without enterprise bloat.
+            <p className="text-[13px] font-medium text-muted-foreground leading-relaxed max-w-sm">
+              Solo engineer designing, building, and deploying full-stack web platforms from scratch. Fueled by coffee, curiosity, and the drive to ship real products.
+            </p>
+            <p className="text-[12px] text-muted-foreground/70 mt-3 flex items-center gap-1.5">
+              <MapPin className="w-3.5 h-3.5 text-primary shrink-0" />
+              <span>Urdaneta City, Pangasinan, PH</span>
             </p>
           </div>
 
-          {/* Location Node */}
+          {/* Products & Builds */}
           <div className="flex flex-col">
-            <span className={`text-[10px] font-bold uppercase tracking-widest ${isLight ? "text-orange-600" : "text-rose-400"} mb-6 flex items-center gap-2`}>
-              <MapPin className="w-4 h-4" /> Location
+            <span className={`text-[11px] font-bold uppercase tracking-widest ${isLight ? "text-orange-600" : "text-purple-400"} mb-4 flex items-center gap-2`}>
+              <Rocket className="w-4 h-4" /> Products &amp; Work
             </span>
-            <p className="text-[14px] font-medium text-muted-foreground leading-relaxed flex items-start gap-2">
-              <MapPin className={`w-4 h-4 mt-0.5 ${isLight ? "text-muted-foreground/50" : "text-white/40"} shrink-0`} />
-              <span>
-                Urdaneta City<br/>
-                Pangasinan, Philippines
-              </span>
-            </p>
+            <div className="flex flex-col gap-2.5">
+              <a href={FUTARI_URL} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 text-[13px] font-medium text-muted-foreground hover:text-[#E29B9B] transition-colors w-fit">
+                Futari <ArrowUpRight className="w-3.5 h-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-muted-foreground/60 group-hover:text-[#E29B9B]" />
+              </a>
+              <a href="https://some-typing-game.web.app" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 text-[13px] font-medium text-muted-foreground hover:text-amber-400 transition-colors w-fit">
+                Some Typing Game <ArrowUpRight className="w-3.5 h-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-muted-foreground/60 group-hover:text-amber-400" />
+              </a>
+            </div>
           </div>
 
-          {/* Connect Node */}
+          {/* Connect & Social */}
           <div className="flex flex-col">
-            <span className={`text-[10px] font-bold uppercase tracking-widest ${isLight ? "text-orange-600" : "text-indigo-400"} mb-6 flex items-center gap-2`}>
+            <span className={`text-[11px] font-bold uppercase tracking-widest ${isLight ? "text-orange-600" : "text-indigo-400"} mb-4 flex items-center gap-2`}>
               <Link2 className="w-4 h-4" /> Connect
             </span>
-            <div className="flex flex-col gap-3">
-              <a href="https://github.com/michiruri" target="_blank" rel="noopener noreferrer" className={`group flex items-center gap-2 text-[14px] font-medium text-muted-foreground ${isLight ? "hover:text-primary" : "hover:text-cyan-300"} transition-colors w-fit`}>
-                <GithubIcon className={`w-4 h-4 ${isLight ? "text-muted-foreground/50" : "text-white/40"} ${isLight ? "group-hover:text-primary" : "group-hover:text-cyan-300"} transition-colors`} /> GitHub <ArrowUpRight className={`w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${isLight ? "text-muted-foreground/60 group-hover:text-primary" : "text-white/50 group-hover:text-cyan-300"}`} />
+            <div className="flex flex-col gap-2.5">
+              <a href="https://github.com/michiruri" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 text-[13px] font-medium text-muted-foreground hover:text-white transition-colors w-fit">
+                <GithubIcon className="w-3.5 h-3.5 text-muted-foreground/60 group-hover:text-white transition-colors" /> GitHub <ArrowUpRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-muted-foreground/60 group-hover:text-white" />
               </a>
-              <a href="https://www.linkedin.com/in/michiruri" target="_blank" rel="noopener noreferrer" className={`group flex items-center gap-2 text-[14px] font-medium text-muted-foreground ${isLight ? "hover:text-primary" : "hover:text-purple-300"} transition-colors w-fit`}>
-                <LinkedinIcon className={`w-4 h-4 ${isLight ? "text-muted-foreground/50" : "text-white/40"} ${isLight ? "group-hover:text-primary" : "group-hover:text-purple-300"} transition-colors`} /> LinkedIn <ArrowUpRight className={`w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${isLight ? "text-muted-foreground/60 group-hover:text-primary" : "text-white/50 group-hover:text-purple-300"}`} />
+              <a href="https://www.linkedin.com/in/michiruri" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 text-[13px] font-medium text-muted-foreground hover:text-[#0A66C2] dark:hover:text-[#38bdf8] transition-colors w-fit">
+                <LinkedinIcon className="w-3.5 h-3.5 text-muted-foreground/60 group-hover:text-[#0A66C2] dark:group-hover:text-[#38bdf8] transition-colors" /> LinkedIn <ArrowUpRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-muted-foreground/60 group-hover:text-[#0A66C2] dark:group-hover:text-[#38bdf8]" />
               </a>
-              <a href="mailto:raileymitchellcapitis@gmail.com" className={`group flex items-center gap-2 text-[14px] font-medium text-muted-foreground ${isLight ? "hover:text-primary" : "hover:text-pink-300"} transition-colors w-fit`}>
-                <Mail className={`w-4 h-4 ${isLight ? "text-muted-foreground/50" : "text-white/40"} ${isLight ? "group-hover:text-primary" : "group-hover:text-pink-300"} transition-colors`} /> Email <ArrowUpRight className={`w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${isLight ? "text-muted-foreground/60 group-hover:text-primary" : "text-white/50 group-hover:text-pink-300"}`} />
+              <a href="https://x.com/michiruri_dev" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 text-[13px] font-medium text-muted-foreground hover:text-sky-400 transition-colors w-fit">
+                <XIcon className="w-3.5 h-3.5 text-muted-foreground/60 group-hover:text-sky-400 transition-colors" /> X (Twitter) <ArrowUpRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-muted-foreground/60 group-hover:text-sky-400" />
+              </a>
+              <a href="https://ko-fi.com/michiruri" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 text-[13px] font-medium text-muted-foreground hover:text-amber-400 transition-colors w-fit">
+                <KofiIcon className="w-3.5 h-3.5 text-muted-foreground/60 group-hover:text-amber-400 transition-colors" /> Ko-fi (Fuel the grind) <ArrowUpRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-muted-foreground/60 group-hover:text-amber-400" />
               </a>
             </div>
           </div>
 
-          {/* Products Node */}
+          {/* Status & Focus */}
           <div className="flex flex-col">
-            <span className={`text-[10px] font-bold uppercase tracking-widest ${isLight ? "text-orange-600" : "text-purple-400"} mb-6 flex items-center gap-2`}>
-              <Rocket className="w-4 h-4" /> Products
+            <span className={`text-[11px] font-bold uppercase tracking-widest ${isLight ? "text-orange-600" : "text-emerald-400"} mb-4 flex items-center gap-2`}>
+              <Activity className="w-4 h-4" /> Status &amp; Focus
             </span>
-            <div className="flex flex-col gap-3">
-              <a href={TRIAGE_URL} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 text-[14px] font-medium text-muted-foreground hover:text-purple-600 dark:hover:text-purple-400 transition-colors w-fit">
-                Triage <ArrowUpRight className="w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-all text-muted-foreground/60 dark:text-white/50" />
-              </a>
-              <span className="group flex items-center gap-2 text-[14px] font-medium text-muted-foreground/40 cursor-not-allowed w-fit" title="In Development">
-                Futari (In Dev)
-              </span>
-            </div>
-          </div>
-
-          {/* Availability Node */}
-          <div className="flex flex-col">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-400 mb-6 flex items-center gap-2">
-              <Activity className="w-4 h-4" /> Status
-            </span>
-            <div className="flex items-start gap-4">
-              <div className="relative mt-1 flex h-2 w-2 shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-50"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></span>
+            <div className="flex flex-col gap-3.5">
+              <div className="flex items-start gap-2.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse mt-1 shrink-0" />
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground/60 leading-none mb-1">
+                    Availability
+                  </span>
+                  <p className="text-[12px] font-semibold text-emerald-500/90 leading-snug">
+                    Open for remote roles &amp; contracts
+                  </p>
+                </div>
               </div>
-              <p className="text-[13px] font-semibold text-emerald-400/90 leading-snug">
-                Looking for Triage Co-Dev Partners.
-              </p>
+
+              <div className="flex items-start gap-2.5">
+                <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse mt-1 shrink-0" />
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground/60 leading-none mb-1">
+                    Current Focus
+                  </span>
+                  <p className="text-[12px] font-semibold text-purple-400/90 leading-snug">
+                    Wrapping up Futari pre-launch
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="relative z-10 w-full px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6 mt-16 max-w-[1600px] mx-auto">
-          <p className="text-[11px] font-medium tracking-wide text-muted-foreground/60">
+        <div className="relative z-10 w-full px-4 sm:px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-4 mt-12 pt-6 border-t border-border/40 max-w-[1400px] mx-auto">
+          <p className="text-[11px] font-medium text-muted-foreground/70 text-center md:text-left">
             © {new Date().getFullYear()}{" "}
-            <a
-              href={TRIAGE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-primary transition-colors font-bold tracking-wider"
-            >
-              {STUDIO.displayName}
-            </a>
+            <span className="font-extrabold text-white">
+              Railey Mitchell Q. Capitis
+            </span>
+            {" · All Rai-ghts Reserved"}
           </p>
-          <div className="flex items-center gap-8 text-[10px] font-black tracking-[0.2em] uppercase text-muted-foreground/60">
-            <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className={`hover:text-primary ${isLight ? "" : "dark:hover:text-purple-300"} transition-colors cursor-pointer`}>Home</button>
-            <button onClick={() => scrollTo("products")} className={`hover:text-primary ${isLight ? "" : "dark:hover:text-purple-300"} transition-colors cursor-pointer`}>Products</button>
-            <button onClick={() => scrollTo("projects")} className={`hover:text-primary ${isLight ? "" : "dark:hover:text-purple-300"} transition-colors cursor-pointer`}>Work</button>
-            <button onClick={() => setIsGalleryOpen(true)} className={`hover:text-primary ${isLight ? "" : "dark:hover:text-pink-400"} transition-colors flex items-center gap-1 group cursor-pointer`}>
-              Side Quests
-            </button>
-            <a href="/404" className={`hover:text-primary ${isLight ? "" : "dark:hover:text-pink-400"} transition-colors flex items-center gap-1 group cursor-pointer`}>
-              ???
-            </a>
+          <div className="flex flex-wrap justify-center items-center gap-5 sm:gap-6 text-[11px] font-semibold tracking-wider text-muted-foreground/70">
+            <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="hover:text-primary transition-colors cursor-pointer">Home</button>
+            <button onClick={() => scrollTo("products")} className="hover:text-primary transition-colors cursor-pointer">Products</button>
+            <button onClick={() => scrollTo("projects")} className="hover:text-primary transition-colors cursor-pointer">Work</button>
+            <button onClick={() => scrollTo("skills")} className="hover:text-primary transition-colors cursor-pointer">Skills</button>
+            <button onClick={() => scrollTo("contact")} className="hover:text-primary transition-colors cursor-pointer">Contact</button>
+            <a href="/404" className="font-mono text-[11px] text-muted-foreground/50 hover:text-purple-400 active:text-purple-300 transition-all duration-300 cursor-pointer hover:drop-shadow-[0_0_8px_rgba(168,85,247,0.8)] px-1 py-0.5" title="Secret">???</a>
           </div>
         </div>
       </footer>
-
-      <GalleryModal isOpen={isGalleryOpen} onClose={() => setIsGalleryOpen(false)} />
     </>
   )
 }
