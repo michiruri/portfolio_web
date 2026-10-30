@@ -547,11 +547,11 @@ export default function HeaderStudioPage() {
     // 5e. Tagline (2-line layout matching portfolio hero)
     if (showTagline) {
       const taglineY1 = titleY + Math.round(27 * s)
-      const taglineY2 = taglineY1 + Math.round(19 * s)
+      const taglineY2 = taglineY1 + Math.round(20 * s)
       ctx.font = `600 ${Math.round(13.5 * s)}px 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif`
       ctx.fillStyle = "rgba(203, 213, 225, 0.85)"
-      ctx.fillText("Full-stack by nature, custom-built by choice —", leftMargin, taglineY1)
-      ctx.fillText("efficient, personalized, and straight to the point.", leftMargin, taglineY2)
+      ctx.fillText("Solo engineer designing, building, and deploying full-stack web platforms from scratch.", leftMargin, taglineY1)
+      ctx.fillText("Fueled by coffee, curiosity, and the drive to ship real products.", leftMargin, taglineY2)
     }
 
     // ── 6. BOTTOM-RIGHT ANCHORED SOCIAL LINKS & SKILL CHIPS ──

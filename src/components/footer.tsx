@@ -5,9 +5,11 @@ import { ArrowUpRight, User, MapPin, Link2, Activity, Mail, Rocket } from "lucid
 import { GithubIcon, LinkedinIcon, XIcon, KofiIcon } from "@/components/icons"
 import { useTheme } from "next-themes"
 import { FUTARI_URL } from "@/lib/studio-products"
+import { GalleryModal } from "@/components/gallery-modal"
 
 export function Footer() {
   const [mounted, setMounted] = React.useState(false)
+  const [isGalleryOpen, setIsGalleryOpen] = React.useState(false)
   const { resolvedTheme } = useTheme()
   const isLight = mounted && resolvedTheme === "light"
 
@@ -130,10 +132,20 @@ export function Footer() {
             <button onClick={() => scrollTo("projects")} className="hover:text-primary transition-colors cursor-pointer">Work</button>
             <button onClick={() => scrollTo("skills")} className="hover:text-primary transition-colors cursor-pointer">Skills</button>
             <button onClick={() => scrollTo("contact")} className="hover:text-primary transition-colors cursor-pointer">Contact</button>
+            <button
+              type="button"
+              onClick={() => setIsGalleryOpen(true)}
+              className="hover:text-primary transition-colors cursor-pointer"
+            >
+              Side Quests
+            </button>
             <a href="/404" className="font-mono text-[11px] text-muted-foreground/50 hover:text-purple-400 active:text-purple-300 transition-all duration-300 cursor-pointer hover:drop-shadow-[0_0_8px_rgba(168,85,247,0.8)] px-1 py-0.5" title="Secret">???</a>
           </div>
         </div>
       </footer>
+
+      {/* Side Quests Modal */}
+      <GalleryModal isOpen={isGalleryOpen} onClose={() => setIsGalleryOpen(false)} />
     </>
   )
 }
